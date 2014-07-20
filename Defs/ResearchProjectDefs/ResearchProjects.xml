@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResearchProjectDefs>
+
+	<ResearchProjectDef>
+		<defName>Basic_Traps_Research</defName>
+		<label>Basic Traps Research</label>
+		<description>Apparently, people have solved this whole "defense" issue before, we should probably dig out the history books and see what people used to do before terra-watt lasers were invented.
+   </description>
+	 <totalCost>10000</totalCost>
+   <prerequisites></prerequisites>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>Electric_Traps_Research</defName>
+		<label>Electric Traps Research</label>
+		<description> With all these deadly traps, the carnage is really hurting our colonists psyche. I wonder if there is any way to incapacitate without killing. Anywho, this research allows you to develop deadly electric traps.
+   </description>
+	 <totalCost>40000</totalCost>
+   <prerequisites><li>Basic_Traps_Research</li></prerequisites>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>Explosives_Traps_Research</defName>
+		<label>High Explosives Research</label>
+		<description> Sometimes you need a bit more than just a pile of explosives on a pressure switch. This research will allow us to build proper stations for refining and producing proper explosives.
+   </description>
+	 <totalCost>20000</totalCost>
+   <prerequisites><li>Basic_Traps_Research</li></prerequisites>
+	</ResearchProjectDef>
+	<ResearchProjectDef>
+		<defName>FOF_Traps_Research</defName>
+		<label>Intelligent Traps Research</label>
+		<description> We probably should figure out a way to keep our colonists from setting off our own traps.
+   </description>
+	 <totalCost>70000</totalCost>
+   <prerequisites><li>Basic_Traps_Research</li></prerequisites>
+	</ResearchProjectDef>
+	<ResearchProjectDef>
+		<defName>Reinforced_Power</defName>
+		<label>Reinforced Power Conduits</label>
+		<description> Electricity has become a tactically significant resource. We can't afford to have brownouts in the middle of battle, so we should probably upgrade our power transmission tech.
+   </description>
+	 <totalCost>50000</totalCost>
+   <prerequisites><li>Basic_Traps_Research</li> <li>Stonecutting</li></prerequisites>
+	</ResearchProjectDef>
+	
+</ResearchProjectDefs>

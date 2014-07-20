@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RecipeDefs>
+
+  <RecipeDef Name="RecipeBase" Abstract="True">
+    <label>UNSET LABEL</label>
+    <description>UNSET DISC</description>
+    <jobString>UNSET JOB STR</jobString>
+    <workAmount>20</workAmount>
+    <workEffect>ExtractMetalFromSlag</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="RecipeBase">
+    <defName>MakeThrowableCaltrops</defName>
+    <label>Make Throwable Caltrops</label>
+    <description>makes a bag full of caltrops, ready to be thrown.</description>
+    <jobString>Producing caltrops.</jobString>
+    <workAmount>2500</workAmount>
+    <workEffect>ExtractMetalFromSlag</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Metal</li>
+          </thingDefs>
+        </filter>
+        <count>25</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>Weapon_Caltrops</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Metal</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
+   <RecipeDef ParentName="RecipeBase">
+    <defName>MakeElectronics</defName>
+    <label>Make Electronics</label>
+    <description>makes a variety of electronics critical for more advanced traps.</description>
+    <jobString>making electronics.</jobString>
+    <workAmount>1000</workAmount>
+    <workEffect>ExtractMetalFromSlag</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Metal</li>
+        	</thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+        <li>
+        <filter>
+          <thingDefs>
+        	<li>Silver</li>
+        	</thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>Electronics</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+      <li>Silver</li>
+        <li>Metal</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
+   <RecipeDef ParentName="RecipeBase">
+    <defName>MakeExplosives</defName>
+    <label>Make Explosives</label>
+    <description>Disturbingly, these berrys seem to be highly flamable. This refines them into proper explosives, ready for packing in a mine!</description>
+    <jobString>making explosives.</jobString>
+    <workAmount>500</workAmount>
+    <workEffect>ExtractMetalFromSlag</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>RawFireFruit</li>
+        	</thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>Explosives</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>RawFireFruit</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
+  
+<RecipeDef ParentName="RecipeBase">
+    <defName>AssembleMine</defName>
+    <label>Assemble Mine</label>
+    <description>A real hazard, for both your enemies and your colonists!</description>
+    <jobString>making explosives.</jobString>
+    <workAmount>500</workAmount>
+    <workEffect>ExtractMetalFromSlag</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Metal</li>
+        	</thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Explosives</li>
+        	</thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+     <li>
+        <filter>
+          <thingDefs>
+            <li>Electronics</li>
+        	</thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>UnsetMine</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+     	 <li>Metal</li>
+        <li>Electronics</li>
+   		 <li>Explosives</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
+  
+<RecipeDef ParentName="RecipeBase">
+    <defName>AssembleSmartMine</defName>
+    <label>Assemble Smart Mine</label>
+    <description>A mine that will NOT kill your colonists! Just remember to disarm it when you have company.</description>
+    <jobString>making explosives.</jobString>
+    <workAmount>500</workAmount>
+    <workEffect>ExtractMetalFromSlag</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Metal</li>
+        	</thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Explosives</li>
+        	</thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Electronics</li>
+        	</thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>UnsetSmartMine</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        	 <li>Metal</li>
+        <li>Electronics</li>
+   		 <li>Explosives</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
+
+<RecipeDef ParentName="RecipeBase">
+    <defName>AssembleMineIncend</defName>
+    <label>Assemble Incendiary Mine</label>
+    <description>A real danger in forested or brushy areas, this mine lights fires! It has a minimal explosive charge.</description>
+    <jobString>making explosives.</jobString>
+    <workAmount>500</workAmount>
+    <workEffect>ExtractMetalFromSlag</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+		<li>
+        <filter>
+          <thingDefs>
+            <li>Metal</li>
+        	</thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Explosives</li>
+        	</thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>RawFireFruit</li>
+        	</thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Electronics</li>
+        	</thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>UnsetMineIncend</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        	 <li>Metal</li>
+        <li>Electronics</li>
+   		 <li>Explosives</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
+  
+
+</RecipeDefs>

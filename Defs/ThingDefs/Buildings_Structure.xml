@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ThingDefs>
+	<ThingDef Name="BuildingBase" Abstract="True">
+		<category>Building</category>
+		<soundBulletHit>BulletImpactMetal</soundBulletHit>
+		<selectable>true</selectable>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<surfaceNeeded>Light</surfaceNeeded>
+		<constructionEffect>ConstructMetal</constructionEffect>
+		<repairEffect>Repair</repairEffect>
+	</ThingDef>
+	<ThingDef ParentName="BuildingBase" Name="WallBase" Abstract="True">
+		<eType>Wall</eType>
+		<thingClass>Building</thingClass>
+		<linkDrawerType>CornerFiller</linkDrawerType>
+		<category>Building</category>
+		<blueprintTexturePath>Things/Building/Linked/Wall_Blueprint_Atlas</blueprintTexturePath>
+		<altitudeLayer>BuildingTall</altitudeLayer>
+		<passability>Impassable</passability>
+		<castEdgeShadows>true</castEdgeShadows>
+		<fillPercent>1</fillPercent>
+		<coversFloor>true</coversFloor>
+		<placingDraggableDimensions>1</placingDraggableDimensions>
+		<tickerType>Never</tickerType>
+		<rotatable>false</rotatable>
+		<selectable>true</selectable>
+		<neverMultiSelect>true</neverMultiSelect>
+		<surfaceNeeded>Heavy</surfaceNeeded>
+		<holdsRoof>true</holdsRoof>
+		<designationCategory>Structure</designationCategory>
+		<staticSunShadowHeight>1.0</staticSunShadowHeight>
+		<blockLight>true</blockLight>
+    <building>
+      <ignoreNeedsPower>true</ignoreNeedsPower>
+    </building>
+	</ThingDef>
+	
+	<!--========================= Walls =============================--> 
+<!-- 
+
+	<ThingDef ParentName="WallBase">
+    <defName>WallReinforcedStone</defName>
+    <label>Reinforced Wall</label>
+    <texturePath>Things/Building/WallReinforcedStone_Atlas</texturePath>
+    <menuIconPath>Things/Building/WallReinforcedStone_MenuIcon</menuIconPath>
+    <maxHealth>1000</maxHealth>
+    <flammability>0</flammability>
+    <mineable>true</mineable>
+    <description>Tough stone reinforced with rebar and steel brackets. This is probably the strongest building material in the solar system. Does not transmit power.</description>
+    <workToBuild>450</workToBuild>
+    <linkFlags>
+      <li>Rock</li>
+      <li>WallWood</li>
+      <li>WallMetal</li>
+      <li>WallStone</li>
+      <li>WallBrick</li>
+      <li>WallMud</li>
+    </linkFlags>
+    <costList>
+      <li>
+        <thingDef>StoneBlocks</thingDef>
+        <count>10</count>
+        </li>
+        <li>
+        <thingDef>Metal</thingDef>
+        <count>25</count>
+      </li>
+    </costList>
+    <filthLeavings>
+      <li>
+      <thingDef>RockRubble</thingDef>
+		<count>2</count>
+		</li>
+        <li>
+        <thingDef>SlagRubble</thingDef>
+        <count>2</count>
+      </li>
+    </filthLeavings>
+     <researchPrerequisite>Stonecutting</researchPrerequisite>
+  </ThingDef>
+  
+ -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>ArmoredPowerConduit</defName>
+    <eType>Building_PowerConduit</eType>
+    <label>Armored Power conduit</label>
+    <thingClass>Building</thingClass>
+         <researchPrerequisite>Reinforced_Power</researchPrerequisite>
+    <linkDrawerType>Transmitter</linkDrawerType>
+    <linkFlags>
+      <li>PowerConduit</li>
+     
+    </linkFlags>
+    <category>Building</category>
+    <texturePath>Things/ArmoredPowerConduit_Atlas</texturePath>
+    <blueprintTexturePath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</blueprintTexturePath>
+    <uiIconPath>Things/ArmoredPowerConduit_MenuIcon</uiIconPath>
+    <flammability>0.5</flammability>
+    <building>
+      <ignoreNeedsPower>true</ignoreNeedsPower>
+      <transmitsPower>true</transmitsPower>
+    </building>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <passability>Standable</passability>
+    <maxHealth>150</maxHealth>
+    <description>A set of electrical cables covered in thick metal. more resistant to flame than ordinary conduits.</description>
+    <placingDraggableDimensions>1</placingDraggableDimensions>
+    <workToBuild>75</workToBuild>
+    <costList>
+      <li>
+        <thingDef>Metal</thingDef>
+        <count>3</count>
+      </li>
+    </costList>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <soundBulletHit>BulletImpactMetal</soundBulletHit>
+    <surfaceNeeded>Light</surfaceNeeded>
+    <designationCategory>Power</designationCategory>
+    <constructionEffect>ConstructDig</constructionEffect>
+  </ThingDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>SunkenPowerConduit</defName>
+    <eType>Building_PowerConduit</eType>
+    <label>Sunken Power Conduit</label>
+    <thingClass>Building</thingClass>
+     <researchPrerequisite>Reinforced_Power</researchPrerequisite>
+    <linkDrawerType>Transmitter</linkDrawerType>
+    <linkFlags>
+      <li>PowerConduit</li>
+    </linkFlags>
+    <category>Building</category>
+    <texturePath>Things/SunkenPowerConduit_Atlas</texturePath>
+    <blueprintTexturePath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</blueprintTexturePath>
+    <uiIconPath>Things/SunkenPowerConduit_MenuIcon</uiIconPath>
+    <flammability>0.0</flammability>
+    <building>
+      <ignoreNeedsPower>true</ignoreNeedsPower>
+      <transmitsPower>true</transmitsPower>
+    </building>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <passability>Standable</passability>
+    <maxHealth>300</maxHealth>
+    <description>A set of electrical cables deeply sunken into the ground and covered with strong headstones. Flameproof and nearly indestructible. Great for areas that see a lot of combat.</description>
+    <fillPercent>0.01</fillPercent>
+    <placingDraggableDimensions>1</placingDraggableDimensions>
+    <workToBuild>500</workToBuild>
+    <costList>
+      <li>
+        <thingDef>Metal</thingDef>
+        <count>5</count>
+        </li>
+        <li>
+        <thingDef>StoneBlocks</thingDef>
+        <count>4</count>
+      </li>
+    </costList>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <soundBulletHit>BulletImpactMetal</soundBulletHit>
+    <surfaceNeeded>Diggable</surfaceNeeded>
+    <designationCategory>Power</designationCategory>
+    <constructionEffect>ConstructDig</constructionEffect>
+  </ThingDef>
+
+	
+	
+	
+</ThingDefs>

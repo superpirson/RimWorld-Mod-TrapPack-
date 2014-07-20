@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+
+
+  <ThingDef Name="BuildingBase" Abstract="True">
+    <category>Building</category>
+    <soundBulletHit>BulletImpactMetal</soundBulletHit>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <surfaceNeeded>Light</surfaceNeeded>
+    <constructionEffect>ConstructMetal</constructionEffect>
+    <repairEffect>Repair</repairEffect>
+  </ThingDef>
+  
+  <!-- ========================= Work tables ==========================-->
+  <ThingDef ParentName="BuildingBase">
+    <DefName>TrapMakeingTable</DefName>
+    <EType>Building_WorkTable</EType>
+    <Label>Trap Making Table</Label>
+    <ThingClass>Building_WorkTable</ThingClass>
+    <Description>For making parts required in even the simplest of traps.</Description>
+    <TexturePath>Things/Buildings/TrapMakeingTable</TexturePath>
+    <CostList>
+      <li>
+        <thingDef>WoodLog</thingDef>
+        <count>60</count>
+      </li>
+      <li>
+        <thingDef>Metal</thingDef>
+        <count>10</count>
+      </li>
+    </CostList>
+    <AltitudeLayer>Waist</AltitudeLayer>
+    <WorkToBuild>850</WorkToBuild>
+    <UseStandardHealth>True</UseStandardHealth>
+    <maxHealth>120</maxHealth>
+    <Size>(3,1)</Size>
+    <Overdraw>False</Overdraw>
+    <DesignationCategory>Production</DesignationCategory>
+    <Passability>Impassable</Passability>
+    <hasInteractionSquare>True</hasInteractionSquare>
+    <interactionSquareOffset>(0,0,-1)</interactionSquareOffset>
+    <itemSurface>True</itemSurface>
+    <constructionEffect>ConstructMetal</constructionEffect>
+    <recipes>
+      <li>MakeThrowableCaltrops</li>
+     <li>MakeElectronics</li>
+     <li>AssembleMine</li>
+    <li>AssembleSmartMine</li>
+      <li>AssembleMineIncend</li>
+    </recipes>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+    </building>
+  </ThingDef>
+   <ThingDef ParentName="BuildingBase">
+    <DefName>ExplosivesRefinery</DefName>
+    <EType>Building_WorkTable</EType>
+    <Label>Explosives Refinery</Label>
+    <ThingClass>Building_WorkTable</ThingClass>
+    <Description>it does stuff.</Description>
+    <TexturePath>Things/Buildings/ExplosivesRefinery</TexturePath>
+    <CostList>
+      <li>
+        <thingDef>Metal</thingDef>
+        <count>200</count>
+      </li>
+    </CostList>
+    <AltitudeLayer>Waist</AltitudeLayer>
+    <WorkToBuild>2000</WorkToBuild>
+    <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
+    <UseStandardHealth>True</UseStandardHealth>
+    <maxHealth>50</maxHealth>
+    <Size>(3,2)</Size>
+    <Overdraw>False</Overdraw>
+    <DesignationCategory>Production</DesignationCategory>
+    <Passability>Impassable</Passability>
+    <hasInteractionSquare>True</hasInteractionSquare>
+    <interactionSquareOffset>(0,0,-1)</interactionSquareOffset>
+    <itemSurface>false</itemSurface>
+    <constructionEffect>ConstructMetal</constructionEffect>
+    <recipes>
+     <li>MakeExplosives</li>
+    </recipes>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+    </building>
+  </ThingDef>
+</ThingDefs>

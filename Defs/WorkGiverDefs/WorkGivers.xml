@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WorkGivers>
+
+	<!--============= WoodPlanks ===========-->
+  <WorkGiverDef>
+    <defName>DoBillsMakeThrowableCaltrops</defName>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Crafting</workType>
+    <priorityInType>111</priorityInType>
+    <workTableDef>TrapMakeingTable</workTableDef>
+    <verb>make caltrops</verb>
+    <gerund>makeing caltrops</gerund>
+  </WorkGiverDef>
+   <WorkGiverDef>
+    <defName>DoBillsMakeTraps</defName>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Crafting</workType>
+    <priorityInType>112</priorityInType>
+    <workTableDef>TrapMakeingTable</workTableDef>
+    <verb>make traps</verb>
+    <gerund>makeing traps</gerund>
+  </WorkGiverDef>
+
+ <WorkGiverDef>
+    <defName>DoBillsMakeExplosives</defName>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Crafting</workType>
+    <priorityInType>113</priorityInType>
+    <workTableDef>ExplosivesRefinery</workTableDef>
+    <verb>make explosives</verb>
+    <gerund>nervously making explosives</gerund>
+  </WorkGiverDef>
+</WorkGivers>

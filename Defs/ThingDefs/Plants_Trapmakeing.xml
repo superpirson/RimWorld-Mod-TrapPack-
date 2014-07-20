@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Plants>
+
+
+	<ThingDef Name="PlantBase" Abstract="True">
+		<eType>Plant</eType>
+		<category>Plant</category>
+		<thingClass>Plant</thingClass>
+		<altitudeLayer>LowPlant</altitudeLayer>
+		<flammability>1.0</flammability>
+		<useStandardHealth>True</useStandardHealth>
+		<maxHealth>75</maxHealth>
+		<tickerType>Rare</tickerType>
+		<selectable>False</selectable>
+		<neverMultiSelect>True</neverMultiSelect>
+		<drawerType>MapMeshOnly</drawerType>
+		<baseMaterialType>PlantCutout</baseMaterialType>
+		<plant>
+      <harvestDestroys>true</harvestDestroys>
+      <harvestingSound>Harvest_Standard</harvestingSound>
+      <harvestFinishSound>Harvest_Standard_Finish</harvestFinishSound>
+      <sowWork>150</sowWork>
+      <fertilityMin>0.5</fertilityMin>
+      <fertilityFactorGrowthRate>1.0</fertilityFactorGrowthRate>
+      <topWindExposure>0.1</topWindExposure>
+      <growthPer20kTicks>0.48</growthPer20kTicks>
+      <growMinGlow>Overlit</growMinGlow>
+      <lifeSpan>200000</lifeSpan>
+			<seedShootMinGrowthPercent>0.6</seedShootMinGrowthPercent>
+			<visualSizeRange>
+				<min>0.3</min>
+				<max>1.00</max>
+			</visualSizeRange>
+		</plant>
+	</ThingDef>
+
+
+
+
+
+
+	<!--=========================== Crops ==============================-->
+
+
+	<ThingDef ParentName="PlantBase">
+		<defName>PlantFireFruit</defName>
+		<label>Fire Fruit plant</label>
+		<maxHealth>85</maxHealth>
+		<description>A strange foul-smelling fruit native to the planet. Highly toxic, and seems to be flammable.</description>
+		<beauty>NiceTiny</beauty>
+		<textureFolderPath>Things/Plant/StrawberryPlant</textureFolderPath>
+		<selectable>true</selectable>
+		<pathCost>10</pathCost>
+		<plant>
+      <shootsSeeds>false</shootsSeeds>
+      <harvestTag>Food</harvestTag>
+      <harvestedThingDef>RawFireFruit</harvestedThingDef>
+      <harvestDestroys>false</harvestDestroys>
+      <harvestYieldRange>
+        <min>1</min>
+        <max>2.5</max>
+      </harvestYieldRange>
+      <sowableGround>true</sowableGround>
+      <sowableHydroponic>true</sowableHydroponic>
+      <topWindExposure>0.1</topWindExposure>
+			<growthPer20kTicks>0.18</growthPer20kTicks>
+			<lifeSpan>200000</lifeSpan>
+			<fertilityMin>0.5</fertilityMin>
+			<fertilityFactorGrowthRate>1.0</fertilityFactorGrowthRate>
+			<visualSizeRange>
+				<min>0.3</min>
+				<max>1.05</max>
+			</visualSizeRange>
+		</plant>
+	</ThingDef>
+</Plants>

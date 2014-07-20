@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Resources>
+
+
+	<ThingDef Name="ResourceBase" Abstract="True">
+		<thingClass>ThingResource</thingClass>
+		<label>Unspecified resource</label>
+		<category>Item</category>
+		<eType>Item</eType>
+		<resourceCountPriority>Middle</resourceCountPriority>
+		<useStandardHealth>true</useStandardHealth>
+		<selectable>true</selectable>
+		<maxHealth>100</maxHealth>
+		<altitudeLayer>Item</altitudeLayer>
+		<stackLimit>75</stackLimit>
+		<tradersCarry>true</tradersCarry>
+		<comps>
+			<li><compClass>CompForbiddable</compClass></li>
+		</comps>
+		<beauty>Ugly</beauty>
+		<alwaysHaulable>true</alwaysHaulable>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<rotatable>false</rotatable>
+		<pathCost>15</pathCost>
+	</ThingDef>
+<!-- 	end bases  -->
+	
+	
+  <ThingDef ParentName="ResourceBase">
+    <defName>Electronics</defName>
+    <label>Electronics</label>
+    <description>These are needed for complex traps.</description>
+    <textureFolderPath>Things/Electronics/Electronics</textureFolderPath>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <basePrice>20</basePrice>
+    <storeCategories>
+      <li>Manufactured</li>
+    </storeCategories>
+  </ThingDef>
+  
+  <ThingDef ParentName="ResourceBase">
+    <defName>Explosives</defName>
+    <label>Explosives</label>
+    <description>These are needed for exploding traps.</description>
+    <textureFolderPath>Things/Explosives</textureFolderPath>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <basePrice>10</basePrice>
+    <storeCategories>
+      <li>Manufactured</li>
+    </storeCategories>
+  </ThingDef>
+    <ThingDef ParentName="ResourceBase">
+    <defName>UnsetMine</defName>
+    <label>Unset Mine</label>
+    <description>These are needed for exploding traps.</description>
+    <textureFolderPath>Things/Mine/Unset_</textureFolderPath>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <basePrice>10</basePrice>
+    <storeCategories>
+      <li>Manufactured</li>
+    </storeCategories>
+  </ThingDef>
+    <ThingDef ParentName="ResourceBase">
+    <defName>UnsetSmartMine</defName>
+    <label>Unset Smart Mine</label>
+    <description>These are needed for exploding traps.</description>
+    <textureFolderPath>Things/Smart_Mine/Unset_</textureFolderPath>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <basePrice>10</basePrice>
+    <storeCategories>
+      <li>Manufactured</li>
+    </storeCategories>
+  </ThingDef>
+    <ThingDef ParentName="ResourceBase">
+    <defName>UnsetMineIncend</defName>
+    <label>Unset Incendiary Mine</label>
+    <description>These are needed for exploding traps.</description>
+    <textureFolderPath>Things/Mine_Incend/Unset_</textureFolderPath>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <basePrice>10</basePrice>
+    <storeCategories>
+      <li>Manufactured</li>
+    </storeCategories>
+  </ThingDef>
+  
+	<ThingDef ParentName="ResourceBase">
+		<defName>RawFireFruit</defName>
+		<label>Fire Fruit</label>
+		<description>These nasty berrys are highly flammable and quite toxic.</description>
+		<texturePath>Things/Item/Resource/PlantFoodRaw/Berries</texturePath>
+    <soundInteract>Food_Drop</soundInteract>
+    <soundDrop>Food_Drop</soundDrop>
+		<basePrice>10.0</basePrice>
+		<storeCategories>
+			<li>ResourcesRaw</li>
+		</storeCategories>
+	</ThingDef>
+
+
+
+</Resources>

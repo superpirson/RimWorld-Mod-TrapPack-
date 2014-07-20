@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+	<!-- ==================== Bases ========================== -->
+
+	<ThingDef Name="BaseEquipment" Abstract="True">
+		<eType>Equipment</eType>
+		<equipmentType>Secondary</equipmentType>
+		<label>Equipment lacks label</label>
+		<thingClass>Equipment</thingClass>
+		<category>Item</category>
+		<useStandardHealth>true</useStandardHealth>
+		<selectable>true</selectable>
+		<maxHealth>100</maxHealth>
+		<altitudeLayer>Item</altitudeLayer>
+		<description>Equipment lacks desc.</description>
+		<weaponTags>
+			<li>Grenade</li>
+		</weaponTags>
+		<comps>
+			<li><compClass>CompForbiddable</compClass></li>
+		</comps>
+		<alwaysHaulable>true</alwaysHaulable>
+		<storeCategories>
+			<li>Weapons</li>
+		</storeCategories>
+		<tickerType>Never</tickerType>
+    <verb>
+      <category>Nonnative</category>
+    </verb>
+  </ThingDef>
+
+
+	<ThingDef Name="BaseGrenade" Abstract="True">
+		<category>Projectile</category>
+		<altitudeLayer>Projectile</altitudeLayer>
+    <thingClass>Projectile_Explosive</thingClass>
+    <label>Projectile</label>
+		<tickerType>Normal</tickerType>
+		<useStandardHealth>False</useStandardHealth>
+		<neverMultiSelect>True</neverMultiSelect>
+		<baseMaterialType>Transparent</baseMaterialType>
+		<projectile>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+    </projectile>
+	</ThingDef>
+
+
+
+	<!-- ==================== Frag grenade ========================== -->
+	
+	<ThingDef ParentName="BaseGrenade">
+		<defName>Zap_Effect</defName>
+		<label>Zap Effect</label>
+		<thingClass>TrapPack.Zap_Effect</thingClass>
+		<textureFolderPath>Things/zap</textureFolderPath>
+		<randomizeRotationOnSpawn> True</randomizeRotationOnSpawn>
+		<AltitudeLayer>Projectile</AltitudeLayer>
+					<!-- 
+	<projectile>
+			<postExplosionSpawnThingDef>Caltrops</postExplosionSpawnThingDef>
+			<explosionRadius >0.9</explosionRadius >
+			<damageDef>Bomb</damageDef>
+			<explosionDelay>10</explosionDelay>
+		</projectile>
+ -->
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseGrenade">
+		<defName>Proj_Caltrops</defName>
+		<label>Caltrops</label>
+		<thingClass>TrapPack.Proj_Caltrops</thingClass>
+		<texturePath>Things/Projectile/Grenade</texturePath>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseEquipment">
+		<defName>Weapon_Caltrops</defName>
+		<equipmentType>Primary</equipmentType>
+		<label>Throwable Caltrops</label>
+	<description>Nasty caltrops. they can be thrown to impede access to an area. The rain and wind will wash them away over time. Clean them to remove them.</description>
+		<texturePath>Things/Caltrops_Bag</texturePath>
+		<soundInteract>InteractGrenade</soundInteract>
+		<basePrice>200</basePrice>
+		<techLevel>Midworld</techLevel>
+		<verb>
+      <verbClass>Verb_LaunchProjectile</verbClass>
+      <canMiss>true</canMiss>
+      <hasStandardCommand>true</hasStandardCommand>
+			<label>Thrown Caltrops</label>
+			<description>Sharp! don't touch!</description>
+			<range>7.9</range>
+      <forcedMissRadius>1.0</forcedMissRadius>
+      <warmupTicks>108</warmupTicks>
+			<cooldownTicks>160</cooldownTicks>
+			<noiseRadius>1</noiseRadius>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<fireSound>ThrowGrenade</fireSound>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+				<canTargetBuildings>true</canTargetBuildings>
+				<worldObjectTargetsMustBeAutoAttackable>false</worldObjectTargetsMustBeAutoAttackable>
+			</targetParams>
+			<projectileDef>Proj_Caltrops</projectileDef>
+		</verb>
+	</ThingDef>
+
+
+</ThingDefs>
