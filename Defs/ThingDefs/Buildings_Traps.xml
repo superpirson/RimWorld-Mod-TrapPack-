@@ -1,167 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ThingDefs>
-	<ThingDef Name="BuildingBase" Abstract="True">
-		<category>Building</category>
-		<soundBulletHit>BulletImpactMetal</soundBulletHit>
-		<selectable>true</selectable>
-		<drawerType>MapMeshAndRealTime</drawerType>
-		<surfaceNeeded>Light</surfaceNeeded>
-		<constructionEffect>ConstructMetal</constructionEffect>
-		<repairEffect>Repair</repairEffect>
-	</ThingDef>
-	<ThingDef ParentName="BuildingBase" Name="TrapBase" Abstract="True">
-		<eType>Building_Turret</eType>
+  <ThingDef Name="BuildingBase" Abstract="True">
+    <category>Building</category>
+    <soundBulletHit>BulletImpactMetal</soundBulletHit>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <surfaceNeeded>Light</surfaceNeeded>
+    <constructionEffect>ConstructMetal</constructionEffect>
+    <repairEffect>Repair</repairEffect>
+  </ThingDef>
+  <ThingDef ParentName="BuildingBase" Name="TrapBase" Abstract="True">
+    <eType>Building_Turret</eType>
     <randomizeRotationOnSpawn>true</randomizeRotationOnSpawn>
-		<category>Building</category>
-		<soundInteract>Sounds/mine_explosion</soundInteract>
-		<altitudeLayer>Floor</altitudeLayer>
-		<blockLight>false</blockLight>
-		<drawerType>MapMeshAndRealTime</drawerType>
-		<overdraw>false</overdraw>
-		<staticSunShadowHeight>0.0</staticSunShadowHeight>
-		<fillPercent>1</fillPercent>
-		<size>(1,1)</size>
-		<rotatable>false</rotatable>
-		<designationCategory>Security</designationCategory>
-		<holdsRoof>false</holdsRoof>
-		
-
-		<useStandardHealth>true</useStandardHealth>
-		<maxHealth>100</maxHealth>
-		<flammability>1.0</flammability>
-
-		<selectable>true</selectable>
-		<tickerType>Normal</tickerType>
-	</ThingDef>
-	<!-- end base definitions -->
-	<ThingDef ParentName="BuildingBase" >
-		<defName>Building_Kindling</defName>
-		<label>Kindling</label>
-		<description>just some dry wood, scattered about. this is quite the fire hazard, but it fire can be a very effective deterrent in a battle.</description>
-		<researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
-		<eType>Building_Turret</eType>
-		<thingClass>Building</thingClass>
+    <category>Building</category>
+    <soundInteract>Sounds/mine_explosion</soundInteract>
+    <altitudeLayer>Floor</altitudeLayer>
+    <blockLight>false</blockLight>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <overdraw>false</overdraw>
+    <staticSunShadowHeight>0.0</staticSunShadowHeight>
+    <fillPercent>1</fillPercent>
+    <size>(1,1)</size>
+    <rotatable>false</rotatable>
+    <designationCategory>Security</designationCategory>
+    <holdsRoof>false</holdsRoof>
+    <useStandardHealth>true</useStandardHealth>
+    <maxHealth>100</maxHealth>
+    <flammability>1.0</flammability>
+    <selectable>true</selectable>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+  <!-- end base definitions -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>Building_Kindling</defName>
+    <label>Kindling</label>
+    <description>just some dry wood, scattered about. this is quite the fire hazard, but it fire can be a very effective deterrent in a battle.</description>
+    <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
+    <eType>Building_Turret</eType>
+    <thingClass>Building</thingClass>
     <randomizeRotationOnSpawn>true</randomizeRotationOnSpawn>
-		<category>Building</category>
-		<soundInteract>Sounds/mine_explosion</soundInteract>
-		<altitudeLayer>Floor</altitudeLayer>
-		<blockLight>false</blockLight>
-		<drawerType>MapMeshAndRealTime</drawerType>
-		<overdraw>false</overdraw>
-		<staticSunShadowHeight>0.0</staticSunShadowHeight>
-		<fillPercent>0.0</fillPercent>
-		<size>(1,1)</size>
-		<rotatable>true</rotatable>
-		<designationCategory>Security</designationCategory>
-		<holdsRoof>false</holdsRoof>
-		<workToBuild>10</workToBuild>
-		<useStandardHealth>true</useStandardHealth>
-		<maxHealth>200</maxHealth>
-		<flammability>1.0</flammability>
- 		<placingDraggableDimensions>2</placingDraggableDimensions>
-		<selectable>false</selectable>
-		<textureFolderPath>Things/Kindling/Kindling</textureFolderPath>
-		 <blueprintTexturePath>Things/Kindling/Blueprint_Kindling</blueprintTexturePath>
-		<tickerType>Never</tickerType>
-		<costList>
-			<li>
-				<thingDef>WoodLog</thingDef>
-				<count>1</count>
-			</li>
-		</costList>
-	</ThingDef>
-<ThingDef ParentName="TrapBase">
-		<defName>Building_Metal_Pit_Trap</defName>
-		<label>Pit Trap</label>
-	<surfaceNeeded>GrowSoil</surfaceNeeded>
-		<description>A small pit trap, just large enough to trap a person. Can only be built on non-sand soil. It takes forever to dig out, but it's crippling to anyone who falls in. Mine it to destroy it and free whatever's inside.</description>
-		
-		<thingClass>TrapPack.Building_Pit_Trap</thingClass>
-		<workToBuild>500</workToBuild>
-		<researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
-		<texturePath>Things/Building_Pit_Trap/Building_Pit_Trap</texturePath>
-		<costList>
-			<li>
-				<thingDef>Metal</thingDef>
-				<count>20</count>
-			</li>
-		</costList>
+    <category>Building</category>
+    <soundInteract>Sounds/mine_explosion</soundInteract>
+    <altitudeLayer>Floor</altitudeLayer>
+    <blockLight>false</blockLight>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <overdraw>false</overdraw>
+    <staticSunShadowHeight>0.0</staticSunShadowHeight>
+    <fillPercent>0.0</fillPercent>
+    <size>(1,1)</size>
+    <rotatable>true</rotatable>
+    <designationCategory>Security</designationCategory>
+    <holdsRoof>false</holdsRoof>
+    <workToBuild>10</workToBuild>
+    <useStandardHealth>true</useStandardHealth>
+    <maxHealth>200</maxHealth>
+    <flammability>1.0</flammability>
+    <placingDraggableDimensions>2</placingDraggableDimensions>
+    <selectable>false</selectable>
+    <textureFolderPath>Things/Kindling/Kindling</textureFolderPath>
+    <blueprintTexturePath>Things/Kindling/Blueprint_Kindling</blueprintTexturePath>
+    <tickerType>Never</tickerType>
+    <costList>
+      <li>
+        <thingDef>WoodLog</thingDef>
+        <count>1</count>
+      </li>
+    </costList>
   </ThingDef>
-<ThingDef ParentName="TrapBase">
-		<defName>Building_Mine</defName>
-		<label>Mine Trap</label>
-		<description>A high explosive with a contact sensor.</description>
-		
-		<thingClass>TrapPack.Building_Mine</thingClass>
-		<workToBuild>50</workToBuild>
-		<researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
-		<texturePath>Things/Mine/Mine</texturePath>
-		<costList>
-			<li>
-				<thingDef>UnsetMine</thingDef>
-				<count>1</count>
-			</li>
-		</costList>
+  <ThingDef ParentName="TrapBase">
+    <defName>Building_Metal_Pit_Trap</defName>
+    <label>Pit Trap</label>
+    <surfaceNeeded>GrowSoil</surfaceNeeded>
+    <description>A small pit trap, just large enough to trap a person. Can only be built on non-sand soil. It takes forever to dig out, but it's crippling to anyone who falls in. Mine it to destroy it and free whatever's inside.</description>
+    <thingClass>TrapPack.Building_Pit_Trap</thingClass>
+    <workToBuild>500</workToBuild>
+    <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
+    <texturePath>Things/Building_Pit_Trap/Building_Pit_Trap</texturePath>
+    <costList>
+      <li>
+        <thingDef>Metal</thingDef>
+        <count>20</count>
+      </li>
+    </costList>
   </ThingDef>
-<ThingDef ParentName="TrapBase">
-		<defName>Building_Smart_Mine</defName>
-		<label>Smart Mine Trap</label>
-		<description>A high explosive with a contact sensor. Also has an RFID disarmer to stop it from killing colonists. IT WILL BLOW UP IF STEPED ON BY ANYONE ELSE, friendly or not. (Smart is a relative term)</description>
-		<researchPrerequisite>FOF_Traps_Research</researchPrerequisite>
-		<thingClass>TrapPack.Building_Smart_Mine</thingClass>
-		<workToBuild>50</workToBuild>
-		<texturePath>Things/Smart_Mine/Smart_Mine</texturePath>
-		<textureFolderPath>Things/Smart_Mine/Smart_Mine</textureFolderPath>
-		<costList>
-			<li>
-        		<thingDef>UnsetSmartMine</thingDef>
-        		<count>1</count>
-        	</li>
-		</costList>
+  <ThingDef ParentName="TrapBase">
+    <defName>Building_Mine</defName>
+    <label>Mine Trap</label>
+    <description>A high explosive with a contact sensor.</description>
+    <thingClass>TrapPack.Building_Mine</thingClass>
+    <workToBuild>50</workToBuild>
+    <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
+    <texturePath>Things/Mine/Mine</texturePath>
+    <costList>
+      <li>
+        <thingDef>UnsetMine</thingDef>
+        <count>1</count>
+      </li>
+    </costList>
   </ThingDef>
-<ThingDef ParentName="TrapBase">
-		<defName>Building_Mine_Incend</defName>
-		<label>Incendiary Mine Trap</label>
-		<description>A small high explosive with a contact sensor. Also has some gasoline in it as well, in order to start fires.</description>
-		<researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
-		<thingClass>TrapPack.Building_Mine_Incend</thingClass>
-		<workToBuild>50</workToBuild>
-		<texturePath>Things/Mine_Incend/Mine_Incend</texturePath>
-		<textureFolderPath>Things/Mine_Incend/Mine_Incend</textureFolderPath>
-		<costList>
-			<li>
-				<thingDef>UnsetMineIncend</thingDef>
-				<count>1</count>
-			</li>
-		</costList>
+  <ThingDef ParentName="TrapBase">
+    <defName>Building_Smart_Mine</defName>
+    <label>Smart Mine Trap</label>
+    <description>A high explosive with a contact sensor. Also has an RFID disarmer to stop it from killing colonists. IT WILL BLOW UP IF STEPED ON BY ANYONE ELSE, friendly or not. (Smart is a relative term)</description>
+    <researchPrerequisite>FOF_Traps_Research</researchPrerequisite>
+    <thingClass>TrapPack.Building_Smart_Mine</thingClass>
+    <workToBuild>50</workToBuild>
+    <texturePath>Things/Smart_Mine/Smart_Mine</texturePath>
+    <textureFolderPath>Things/Smart_Mine/Smart_Mine</textureFolderPath>
+    <costList>
+      <li>
+        <thingDef>UnsetSmartMine</thingDef>
+        <count>1</count>
+      </li>
+    </costList>
   </ThingDef>
-<ThingDef ParentName="TrapBase">
-		<defName>Building_Electrified_Floor</defName>
-		<label>Electrified Floor</label>
-		<altitudeLayer>FloorEmplacement</altitudeLayer>
-		<description>power conduit placed underneath a metal panel. It's still pretty deadly, but the average attacker should be able to survive a quick jaunt over it, being stunned in the process. </description>
-		<thingClass>TrapPack.Building_Electrified_Floor</thingClass>
-		<workToBuild>350</workToBuild>
-		<researchPrerequisite>Electric_Traps_Research</researchPrerequisite>
-		<texturePath>Things/Electrified_Floor/Electrified_Floor</texturePath>
-		<soundInteract>Sounds/short_zap</soundInteract>
-		<pathCost>15</pathCost>
-		<costList>
-		<li>
+  <ThingDef ParentName="TrapBase">
+    <defName>Building_Mine_Incend</defName>
+    <label>Incendiary Mine Trap</label>
+    <description>A small high explosive with a contact sensor. Also has some gasoline in it as well, in order to start fires.</description>
+    <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
+    <thingClass>TrapPack.Building_Mine_Incend</thingClass>
+    <workToBuild>50</workToBuild>
+    <texturePath>Things/Mine_Incend/Mine_Incend</texturePath>
+    <textureFolderPath>Things/Mine_Incend/Mine_Incend</textureFolderPath>
+    <costList>
+      <li>
+        <thingDef>UnsetMineIncend</thingDef>
+        <count>1</count>
+      </li>
+    </costList>
+  </ThingDef>
+  <ThingDef ParentName="TrapBase">
+    <defName>Building_Electrified_Floor</defName>
+    <label>Electrified Floor</label>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <description>power conduit placed underneath a metal panel. It's still pretty deadly, but the average attacker should be able to survive a quick jaunt over it, being stunned in the process. </description>
+    <thingClass>TrapPack.Building_Electrified_Floor</thingClass>
+    <workToBuild>350</workToBuild>
+    <researchPrerequisite>Electric_Traps_Research</researchPrerequisite>
+    <texturePath>Things/Electrified_Floor/Electrified_Floor</texturePath>
+    <soundInteract>Sounds/short_zap</soundInteract>
+    <pathCost>15</pathCost>
+    <costList>
+      <li>
         <thingDef>Electronics</thingDef>
         <count>5</count>
-        </li>
-			<li>
-				<thingDef>Metal</thingDef>
-				<count>50</count>
-			</li>
-		</costList>
-		<comps>
+      </li>
+      <li>
+        <thingDef>Metal</thingDef>
+        <count>50</count>
+      </li>
+    </costList>
+    <comps>
       <li>
         <compClass>CompPowerTrader</compClass>
         <startElectricalFires>true</startElectricalFires>
         <basePowerConsumption>50</basePowerConsumption>
       </li>
     </comps>
+  </ThingDef>
+  <ThingDef ParentName="TrapBase">
+    <defName>Building_Firebomb</defName>
+    <label>Firebomb</label>
+    <description>A crude improvised explosive, it produces a small but potent fireball. </description>
+    <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
+    <thingClass>TrapPack.Building_Mine_Incend</thingClass>
+    <workToBuild>200</workToBuild>
+    <texturePath>Things/Mine_Incend/Mine_Incend</texturePath>
+    <textureFolderPath>Things/Mine_Incend/Mine_Incend</textureFolderPath>
+    <costList>
+      <li>
+        <thingDef>FireFruit</thingDef>
+        <count>10</count>
+      </li>
+      <li>
+        <thingDef>WoodLogs</thingDef>
+        <count>1</count>
+      </li>
+    </costList>
   </ThingDef>
 </ThingDefs>
