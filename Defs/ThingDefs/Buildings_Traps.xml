@@ -170,11 +170,11 @@
     <textureFolderPath>Things/Mine_Incend/Mine_Incend</textureFolderPath>
     <costList>
       <li>
-        <thingDef>FireFruit</thingDef>
+        <thingDef>RawFireFruit</thingDef>
         <count>10</count>
       </li>
       <li>
-        <thingDef>WoodLogs</thingDef>
+        <thingDef>WoodLog</thingDef>
         <count>1</count>
       </li>
     </costList>

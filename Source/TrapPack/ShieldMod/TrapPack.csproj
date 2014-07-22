@@ -49,56 +49,44 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\Contents\Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Desktop\RimWorld492Mac.app\Contents\Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\System.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\System.Xml.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml.Linq">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\System.Xml.Linq.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Security">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\System.Security.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Core">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\System.Core.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Configuration">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\System.Configuration.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\Mono.Security.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Posix">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\Mono.Posix.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Boo.Lang">
       <HintPath>..\..\..\..\..\Contents\Data\Managed\Boo.Lang.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-UnityScript-firstpass">
-      <HintPath>..\..\..\..\..\Contents\Data\Managed\Assembly-UnityScript-firstpass.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Desktop\RimWorld492Mac.app\Contents\Data\Managed\Assembly-UnityScript-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\..\..\..\Contents\Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Desktop\RimWorld492Mac.app\Contents\Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\Contents\Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Desktop\RimWorld492Mac.app\Contents\Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
