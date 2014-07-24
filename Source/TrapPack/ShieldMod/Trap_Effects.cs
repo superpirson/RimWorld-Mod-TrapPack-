@@ -11,6 +11,41 @@ using RimWorld;
 //
 namespace TrapPack
 {
+	public class Smoke : Filth{
+		// globals
+		uint ticks_timer = 0;
+		public override void SpawnSetup(){
+			base.SpawnSetup();
+		}
+		
+		public override void Tick(){
+			if (ticks_timer-- % 3000 == 1){
+					this.ThinFilth();
+			}
+			if (ticks_timer % 20 > 0){
+				//Log.Message("ticktimer =" + ticks_timer.ToString());
+				return;
+			}
+			List<Thing> things = new List<Thing>();
+			things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
+			foreach (Thing target in things){
+				if (target is Pawn){
+					//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
+						target.TakeDamage(new DamageInfo( DamageTypeDefOf.Bleeding, 10 , this));
+				}
+			}	
+		}
+		public override string Label{
+			get
+			{
+				
+				StringBuilder stringBuilder = new StringBuilder ();
+				stringBuilder.Append (base.Label);
+				return stringBuilder.ToString ();
+			}
+			
+		}
+	}
 	public class Zap_Effect : Thing{
 		//gloables: 
 		int lifetime = 15;
@@ -19,7 +54,7 @@ namespace TrapPack
 				this.Destroy();
 			}
 		}
-	} 
+	}
 	public class Proj_Caltrops : Projectile{
 		protected override void Impact (Thing hitThing){
 			if (hitThing == null || !(hitThing is Caltrops)){

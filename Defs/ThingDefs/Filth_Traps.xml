@@ -25,7 +25,22 @@
 	<filth>
 		<cleaningWorkToReduceThickness>150</cleaningWorkToReduceThickness>
 	</filth>
+	<ThingDef ParentName="BaseFilth">
+		<defName>Smoke</defName>
+		<label>Smoke</label>
+		<description>Nasty caltrops. The rain and wind will wash them away over time. Clean them to remove them.</description>
+		<tickerType>Normal</tickerType>
+		 <pathCost>120</pathCost>
+		<passability>PassThroughOnly</passability>
+		<thingClass>TrapPack.Smoke</thingClass>
+		<textureFolderPath>Filth/Caltrops/Caltrops</textureFolderPath>
+				<beauty>Ugly</beauty>
+	<filth>
+		<cleaningWorkToReduceThickness>150</cleaningWorkToReduceThickness>
+	</filth>
   </ThingDef>
+  
+  
   <ThingDef ParentName="BaseFilth">
 		<defName>Building_Tripped_Pit_Trap</defName>
 		   <category>Item</category>
