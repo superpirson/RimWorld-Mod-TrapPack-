@@ -33,7 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Building_Traps.cs" />
+    <Compile Include="Building_Mines.cs" />
+    <Compile Include="Building_Pit_Trap.cs" />
+    <Compile Include="Building_Traps_Misc.cs" />
+    <Compile Include="Trap_Effects.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
