@@ -16,6 +16,7 @@ namespace TrapPack
     {
 		// globals
 
+      
 		static DamageTypeDef trap_damage_type;
 		static Building_Pit_Trap(){
 			trap_damage_type = new DamageTypeDef();
@@ -97,7 +98,8 @@ namespace TrapPack
 	}
 
 }
-	//--mines
+/*
+
 	public abstract class Mine : Building
 	{
 		protected static readonly SoundDef fireSound = SoundDef.Named("mine_explosion"); 
@@ -352,9 +354,7 @@ namespace TrapPack
 			{
 				Log.Message("power was null on a tick of a electrofloor, returning.");
 				return;
-			}
-
-			if (!this.powerComp.PowerOn || this.ConnectedToNet.CurrentStoredEnergy() < POWERDRAW * CompPower.WattsToWattDaysPerTick){
+.mf (!this.powerComp.PowerOn || this.ConnectedToNet.CurrentStoredEnergy() < POWERDRAW * CompPower.WattsToWattDaysPerTick){
 				has_power = false; 
 				tick_delay += 10;
 				return;
@@ -471,12 +471,16 @@ namespace TrapPack
 		public override string Label{
 			get
 			{
-
+ 
 				StringBuilder stringBuilder = new StringBuilder ();
 				stringBuilder.Append (base.Label);
 				return stringBuilder.ToString ();
 		}
 	
 	}
+	
 	}
+
+*/
+
 }
