@@ -11,16 +11,32 @@ using RimWorld;
 //
 namespace TrapPack
 {
-	public class Smoke : Filth{
+	
+	public class Smoke : Thing{
 		// globals
-		uint ticks_timer = 0;
+		private uint ticks_timer = 0;
+		public uint thickness = 0;
 		public override void SpawnSetup(){
 			base.SpawnSetup();
 		}
-		
 		public override void Tick(){
-			if (ticks_timer-- % 3000 == 1){
-					this.ThinFilth();
+			if (ticks_timer-- % 100 == 1){
+					if (this.thickness-- == 0){
+					this.Destroy();
+					return;
+				}
+					foreach (IntVec3 pos  in this.Position.AdjacentSquaresCardinalInBounds()){
+					if (UnityEngine.Random.Range(0,10) < 8){
+						Thing found_thing = Find.Map.thingGrid.ThingAt(pos,this.def);
+						if (found_thing == null){
+							Smoke new_smoke = (Smoke)GenSpawn.Spawn(this.def, pos);
+							new_smoke.thickness = this.thickness/=2;
+						}else{
+							Smoke adj_smoke = (Smoke)found_thing;
+
+						}
+					}
+				}
 			}
 			if (ticks_timer % 20 > 0){
 				//Log.Message("ticktimer =" + ticks_timer.ToString());
@@ -31,19 +47,9 @@ namespace TrapPack
 			foreach (Thing target in things){
 				if (target is Pawn){
 					//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
-						target.TakeDamage(new DamageInfo( DamageTypeDefOf.Bleeding, 10 , this));
+						target.TakeDamage(new DamageInfo( DamageTypeDefOf.Bleeding, 10 * (int)this.thickness, this));
 				}
 			}	
-		}
-		public override string Label{
-			get
-			{
-				
-				StringBuilder stringBuilder = new StringBuilder ();
-				stringBuilder.Append (base.Label);
-				return stringBuilder.ToString ();
-			}
-			
 		}
 	}
 	public class Zap_Effect : Thing{
