@@ -107,6 +107,7 @@ namespace TrapPack
 		protected static readonly SoundDef explodeSound = SoundDef.Named("mine_explosion");
 		private static Texture2D texUI_Arm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Arm", true);
 		private static Texture2D texUI_Disarm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Disarm", true);
+		private static Texture2D texUI_Trigger = ContentFinder<Texture2D>.Get("UI/Commands/UI_Trigger", true);
 		private static Texture2D tex_Armed_Effect = ContentFinder<Texture2D>.Get("Things/Armed_Effect", true);
 		private static Material Armed_Mat;
 		// globals
@@ -135,6 +136,16 @@ namespace TrapPack
 			optX.action = Arm_Disarm;
 			optX.groupKey = 313123004;
 			yield return optX;
+
+			Command_Action optT;
+			optT = new Command_Action();
+			optT.icon = texUI_Trigger;
+			optT.disabled = false;
+			optT.defaultDesc = "Triggers the trap immediately.";
+			optT.activateSound = SoundDef.Named("Click");
+			optT.action = Detonate;
+			optT.groupKey = 313123004;
+			yield return optT;
 		}
 		private void Arm_Disarm()
 		{
@@ -145,13 +156,6 @@ namespace TrapPack
 			else{
 				armed = true;
 			}
-		}
-
-		public override void SpawnSetup(){
-			base.SpawnSetup();
-		}
-		public override void Tick(){
-			base.Tick();	
 		}
 		public override void Draw()
 		{
@@ -170,33 +174,12 @@ namespace TrapPack
 				
 				Graphics.DrawMesh (this.DrawMesh, this.DrawPos, quaternion, Armed_Mat, 0);
 			}
-	//		if (changed){
-	//			Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
-	//			changed = false;
-	//		}
-
-	
 		}
-//		public override Material DrawMat(Verse.IntRot rot)
-//		{
-//				//Log.Message(this.def.folderDrawMats.Count.ToString());
-//				if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
-//				{
-//					Log.Error("ERROR, drawmatfolder is null for a mine!");
-//					return null;
-//				}
-//				if (this.def.folderDrawMats.Count == 1)
-//				{
-//					return this.def.folderDrawMats[0];
-//				}
-//				//folderDrawMats is a list filled with textures picked from the folder in alphabeticil order, sinced the armed tex is always followed by _armed, we can assume it is always [1]
-//				if (armed)
-//				{
-//				return this.def.folderDrawMats [1];
-//				}
-//				return this.def.folderDrawMats [0];
-//		}
-	}
+			public virtual void Detonate(){
+			Log.Error(this.ToString() + "  just called an unimplimented detonate method!");
+			}
+		}
+
 
 	public class Building_Mine : Mine
 	{
@@ -212,20 +195,22 @@ namespace TrapPack
 				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
 				foreach (Thing target in things){
 					if (target is Pawn){
-						//--------I used the soundInteract to define the explosion sound.
-						explodeSound.PlayOneShot(this.Position);
-						
-						//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
-						Destroy();
-						Explosion e = default(Explosion);
-						e.center = this.Position;
-						e.dinfo = new DamageInfo( mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
-						e.radius = 1.5f;
-						e.Explode();
+						Detonate();
 					}
 				}
 			}
 			base.Tick();
+		}
+
+		public override void Detonate(){
+			explodeSound.PlayOneShot(this.Position);
+			Destroy();
+			Explosion e = default(Explosion);
+			e.center = this.Position;
+			e.dinfo = new DamageInfo( mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
+			e.radius = 1.5f;
+			e.Explode();
+
 		}
 	}
 	public class Building_Mine_Incend : Mine
@@ -238,21 +223,20 @@ namespace TrapPack
 				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
 				foreach (Thing target in things){
 					if (target is Pawn){
-						//--------I used the soundInteract to define the explosion sound.
-						fireSound.PlayOneShot(this.Position);
-						
-						//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
-						Destroy();
-						Explosion e = default(Explosion);
-						e.center = this.Position;
-						e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(5,20), this);
-						e.radius = UnityEngine.Random.Range(1,2);
-
-						e.Explode();
+						Detonate();
 					}
 				}
 			}
 			base.Tick();
+		}
+		public override void Detonate(){
+			fireSound.PlayOneShot(this.Position);
+			Destroy();
+			Explosion e = default(Explosion);
+			e.center = this.Position;
+			e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(5,20), this);
+			e.radius = UnityEngine.Random.Range(2,4);
+			e.Explode();
 		}
 	}
 	public class Building_Smart_Mine : Mine
@@ -269,19 +253,32 @@ namespace TrapPack
 				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
 				foreach (Thing target in things){
 					if (target is Pawn && target.Faction != this.Faction){
-						//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
-						explodeSound.PlayOneShot(this.Position);
-						//--------I used the soundInteract to define the explosion sound.
-						Destroy();
-						Explosion e = default(Explosion);
-						e.center = this.Position;
-						e.dinfo = new DamageInfo( s_mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
-						e.radius = 1.5f;
-						e.Explode();			
+					Detonate();
 					}
 				}
 			}
 			base.Tick();
+		}
+	public override void Detonate(){
+		explodeSound.PlayOneShot(this.Position);
+		Destroy();
+		Explosion e = default(Explosion);
+		e.center = this.Position;
+		e.dinfo = new DamageInfo( s_mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
+		e.radius = 1.5f;
+		e.Explode();		
+	}
+	}
+	public class Building_Firebomb : Mine
+	{	
+		public override void Detonate(){
+						fireSound.PlayOneShot(this.Position);
+						Destroy();
+						Explosion e = default(Explosion);
+						e.center = this.Position;
+						e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(3,10), this);
+						e.radius = UnityEngine.Random.Range(1,2);
+						e.Explode();
 		}
 	}
 }

@@ -117,7 +117,7 @@
   <ThingDef ParentName="TrapBase">
     <defName>Building_Mine_Incend</defName>
     <label>Incendiary Mine Trap</label>
-    <description>A small high explosive with a contact sensor. Also has some gasoline in it as well, in order to start fires.</description>
+    <description>A small high explosive with a contact sensor, set up to splatter hot firefruit juice for up to four tiles.</description>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Building_Mine_Incend</thingClass>
     <workToBuild>50</workToBuild>
@@ -164,10 +164,9 @@
     <label>Firebomb</label>
     <description>A crude improvised explosive, it produces a small but potent fireball. </description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
-    <thingClass>TrapPack.Building_Mine_Incend</thingClass>
+    <thingClass>TrapPack.Building_Firebomb</thingClass>
     <workToBuild>200</workToBuild>
-    <texturePath>Things/Mine_Incend/Mine_Incend</texturePath>
-    <textureFolderPath>Things/Mine_Incend/Mine_Incend</textureFolderPath>
+    <texturePath>Things/Firebomb/Firebomb</texturePath>
     <costList>
       <li>
         <thingDef>RawFireFruit</thingDef>
@@ -175,6 +174,10 @@
       </li>
       <li>
         <thingDef>WoodLog</thingDef>
+        <count>1</count>
+      </li>
+       <li>
+        <thingDef>Electronics</thingDef>
         <count>1</count>
       </li>
     </costList>
