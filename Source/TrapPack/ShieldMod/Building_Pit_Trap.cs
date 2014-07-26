@@ -25,8 +25,6 @@ namespace TrapPack
 		}
 
 		public override void SpawnSetup(){
-			Smoke newsmoke = (Smoke)GenSpawn.Spawn(ThingDef.Named("Smoke"), this.Position);
-			newsmoke.thickness = 100;
 			base.SpawnSetup();
 		}
         public override void Tick()

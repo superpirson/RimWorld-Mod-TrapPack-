@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-	  <ThingDef Name="BuildingBase" Abstract="True">
-    <category>Building</category>
+<ThingDefs> 
+	  <ThingDef Name="EffectBase" Abstract="True">
+<!--     <category>Building</category> -->
     <soundBulletHit>BulletImpactMetal</soundBulletHit>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
     <surfaceNeeded>Light</surfaceNeeded>
-    <constructionEffect>ConstructMetal</constructionEffect>
-    <repairEffect>Repair</repairEffect>
   </ThingDef>
   
 	<!-- end base definitions -->
 
-		<ThingDef ParentName="BuildingBase">
+		<ThingDef ParentName="EffectBase">
 		<defName>Smoke</defName>
 		<label>Smoke</label>
 		<description>Nasty caltrops. The rain and wind will wash them away over time. Clean them to remove them.</description>
