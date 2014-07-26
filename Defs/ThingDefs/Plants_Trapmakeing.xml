@@ -48,7 +48,7 @@
 		<maxHealth>85</maxHealth>
 		<description>A strange foul-smelling fruit native to the planet. Highly toxic, and seems to be flammable.</description>
 		<beauty>NiceTiny</beauty>
-		<textureFolderPath>Things/Plant/StrawberryPlant</textureFolderPath>
+		<textureFolderPath>Things/Plant/FireFruit/</textureFolderPath>
 		<selectable>true</selectable>
 		<pathCost>10</pathCost>
 		<plant>

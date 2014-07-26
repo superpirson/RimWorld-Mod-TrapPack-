@@ -92,7 +92,7 @@
 		<defName>RawFireFruit</defName>
 		<label>Fire Fruit</label>
 		<description>These nasty berrys are highly flammable and quite toxic.</description>
-		<texturePath>Things/Item/Resource/PlantFoodRaw/Berries</texturePath>
+		<texturePath>Things/Item/RawFireFruit</texturePath>
     <soundInteract>Food_Drop</soundInteract>
     <soundDrop>Food_Drop</soundDrop>
 		<basePrice>10.0</basePrice>
