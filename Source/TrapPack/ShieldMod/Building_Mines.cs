@@ -105,11 +105,11 @@ namespace TrapPack
 	{
 		protected static readonly SoundDef fireSound = SoundDef.Named("mine_explosion"); 
 		protected static readonly SoundDef explodeSound = SoundDef.Named("mine_explosion");
-		private static Texture2D texUI_Arm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Arm", true);
-		private static Texture2D texUI_Disarm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Disarm", true);
-		private static Texture2D texUI_Trigger = ContentFinder<Texture2D>.Get("UI/Commands/UI_Trigger", true);
-		private static Texture2D tex_Armed_Effect = ContentFinder<Texture2D>.Get("Things/Armed_Effect", true);
-		private static Material Armed_Mat;
+		protected static Texture2D texUI_Arm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Arm", true);
+		protected static Texture2D texUI_Disarm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Disarm", true);
+		protected static Texture2D texUI_Trigger = ContentFinder<Texture2D>.Get("UI/Commands/UI_Trigger", true);
+		protected static Texture2D tex_Armed_Effect = ContentFinder<Texture2D>.Get("Things/Armed_Effect", true);
+		protected static Material Armed_Mat;
 		// globals
 		public bool armed = false; 
 		public bool changed = false;
@@ -144,7 +144,7 @@ namespace TrapPack
 			optT.defaultDesc = "Triggers the trap immediately.";
 			optT.activateSound = SoundDef.Named("Click");
 			optT.action = Detonate;
-			optT.groupKey = 313123004;
+			optT.groupKey = 313123005;
 			yield return optT;
 		}
 		private void Arm_Disarm()
@@ -234,8 +234,8 @@ namespace TrapPack
 			Destroy();
 			Explosion e = default(Explosion);
 			e.center = this.Position;
-			e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(5,20), this);
-			e.radius = UnityEngine.Random.Range(2,4);
+			e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(20,30), this);
+			e.radius = UnityEngine.Random.Range(3,4);
 			e.Explode();
 		}
 	}
@@ -271,13 +271,26 @@ namespace TrapPack
 	}
 	public class Building_Firebomb : Mine
 	{	
+		public override IEnumerable<Command> GetCommands()
+		{
+			Command_Action optT;
+			optT = new Command_Action();
+			optT.icon = texUI_Trigger;
+			optT.disabled = false;
+			optT.defaultDesc = "Triggers the trap immediately.";
+			optT.activateSound = SoundDef.Named("Click");
+			optT.action = Detonate;
+			optT.groupKey = 313123005;
+			yield return optT;
+		}
+
 		public override void Detonate(){
 						fireSound.PlayOneShot(this.Position);
 						Destroy();
 						Explosion e = default(Explosion);
 						e.center = this.Position;
-						e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(3,10), this);
-						e.radius = UnityEngine.Random.Range(1,2);
+						e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(2,20), this);
+						e.radius = UnityEngine.Random.Range(0,2);
 						e.Explode();
 		}
 	}

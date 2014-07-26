@@ -117,7 +117,7 @@
   <ThingDef ParentName="TrapBase">
     <defName>Building_Mine_Incend</defName>
     <label>Incendiary Mine Trap</label>
-    <description>A small high explosive with a contact sensor, set up to splatter hot firefruit juice for up to four tiles.</description>
+    <description>A small high explosive with a contact sensor, set up to splatter hot firefruit juice for up to four tiles. Much more consistant than the firebomb.</description>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Building_Mine_Incend</thingClass>
     <workToBuild>50</workToBuild>
@@ -162,7 +162,7 @@
   <ThingDef ParentName="TrapBase">
     <defName>Building_Firebomb</defName>
     <label>Firebomb</label>
-    <description>A crude improvised explosive, it produces a small but potent fireball. </description>
+    <description>A crude improvised explosive, it produces a small and wildly inconsistent fireball.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Building_Firebomb</thingClass>
     <workToBuild>200</workToBuild>

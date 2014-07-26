@@ -101,7 +101,7 @@
     <defName>MakeExplosives</defName>
     <label>Make Explosives</label>
     <description>Disturbingly, these berrys seem to be highly flamable. This refines them into proper explosives, ready for packing in a mine!</description>
-    <jobString>making explosives.</jobString>
+    <jobString>nervously making explosives.</jobString>
     <workAmount>500</workAmount>
     <workEffect>ExtractMetalFromSlag</workEffect>
  <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
@@ -297,6 +297,7 @@
         	 <li>Metal</li>
         <li>Electronics</li>
    		 <li>Explosives</li>
+   		  <li>RawFireFruit</li>
       </thingDefs>
     </fixedIngredientFilter>
     	<skillGains>
