@@ -21,7 +21,15 @@ namespace ThingAddons
 		}
 
 
+public void play(){
+
+}
+public void play(int startFrame, int endFrame){
+
+}
+
+
+
 
 	}
 }
-
