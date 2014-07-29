@@ -184,7 +184,7 @@
       </ThingDef>
        <ThingDef ParentName="TrapBase">
     <defName>Building_Gas_Mine</defName>
-    <label>FireBomb</label>
+    <label>Gas Mine</label>
     <description>A weapon of death more so than fear, this gas bomb releases a cloud of lethal neurotoxin. It cares not if colonists get caught in the cloud, so be careful.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Building_Gas_Mine</thingClass>
