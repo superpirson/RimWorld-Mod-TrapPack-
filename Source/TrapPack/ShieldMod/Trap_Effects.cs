@@ -52,7 +52,7 @@ namespace TrapPack
 			}	
 		}
 	}
-	public class Zap_Effect : Thing{
+	public class Zap_Effect : ThingAddons.AnimatedThing{
 		//gloables: 
 		int lifetime = 15;
 		public override void Tick (){

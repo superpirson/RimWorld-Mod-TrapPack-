@@ -12,11 +12,13 @@ namespace ThingAddons
 { 
 	public  class AnimatedThing : ThingWithComponents
 	{
-		private uint max_frames = 1;
-		private uint tick_count = 0;
+		private int max_frames = 1;
+		private int tick_count = 0;
+		public bool draw_Comps_First = true;
+		public bool cycleing = true;
 		public bool loop = true;
-		public uint current_frame = 0;
-		public uint inter_frame_delay = 1;
+		public int current_frame = 0;
+		public int inter_frame_delay = 1;
 		public override void SpawnSetup(){
 			if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
 			{
@@ -27,18 +29,29 @@ namespace ThingAddons
 			{
 				Log.Warning("Animated thing tried to find texture folder, but found only one texture.");
 			}
-			this.max_frames = (uint)this.def.folderDrawMats.Count;
+			this.max_frames = this.def.folderDrawMats.Count;
 			base.SpawnSetup();
 		}
 
 		public override void Draw ()
 		{
-			if (tick_count++ >= inter_frame_delay){
-				tick_count = 0;
-				if loop 
-				current_frame = (current_frame +1) % max_frames;
+			if (draw_Comps_First){
+				this.Comps_Draw ();
 			}
-			this.Comps_Draw ();
+				if (cycleing && tick_count++ >= inter_frame_delay){
+				tick_count = 0;
+				if (loop ){
+				current_frame = (current_frame +1) % max_frames;
+				}
+				else{
+					current_frame = Math.Max(max_frames, current_frame+1);
+					cycleing = false;
+				}
+				}
+			if (!draw_Comps_First){
+				this.Comps_Draw ();
+			}
+
 		}
 
 		public override Material DrawMat (IntRot rot)
@@ -50,18 +63,13 @@ namespace ThingAddons
 		
 			// ---- the game gets the textures in the texture folder in alphabetical order, I recomend nameing your textures thing1, thing2, thing3 if there are many frames
 
-			return this.def.folderDrawMats[(int)current_frame];
+			return this.def.folderDrawMats[current_frame];
 		}
-
-public void play(){
-
-}
-public void play(int startFrame, int endFrame){
-
-}
-
-
-
-
+		public void play_Once(int start_Frame = 0){
+			current_frame = start_Frame;
+			cycleing = true;
+			loop = false;
+			
+		}
 	}
 }
