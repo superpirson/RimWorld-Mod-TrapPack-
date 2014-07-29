@@ -20,7 +20,7 @@ namespace ThingAddons
 		public bool cycleing = true;
 		public bool loop = true;
 		public int current_frame = 0;
-		public int inter_frame_delay = 1;
+		public int inter_frame_delay = 3;
 		public override void SpawnSetup(){
 			if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
 			{

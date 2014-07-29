@@ -180,7 +180,30 @@ namespace TrapPack
 		e.Explode();		
 	}
 	}
-	public class Building_Firebomb : Mine
+		public class Building_Gas_Mine : Mine
+		{
+			
+			public override void Tick()
+			{
+				if (armed) {
+					List<Thing> things = new List<Thing>();
+					things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
+					foreach (Thing target in things){
+						if (target is Pawn){
+							Detonate();
+						}
+					}
+				}
+				base.Tick();
+			}
+			public override void Detonate(){
+				fireSound.PlayOneShot(this.Position);
+				Destroy();
+				Smoke new_Smoke = (Smoke)GenSpawn.Spawn(ThingDef.Named("Smoke"), this.Position);
+				new_Smoke.thickness = 300;
+			}
+		}
+	public class Building_FireBomb : Mine
 	{	
 		public override IEnumerable<Command> GetCommands()
 		{

@@ -117,7 +117,7 @@
   <ThingDef ParentName="TrapBase">
     <defName>Building_Mine_Incend</defName>
     <label>Incendiary Mine Trap</label>
-    <description>A small high explosive with a contact sensor, set up to splatter hot firefruit juice for up to four tiles. Much more consistant than the firebomb.</description>
+    <description>A small high explosive with a contact sensor, set up to splatter hot firefruit juice for up to four tiles. Much more consistant than the FireBomb.</description>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Building_Mine_Incend</thingClass>
     <workToBuild>50</workToBuild>
@@ -160,13 +160,13 @@
     </comps>
   </ThingDef>
   <ThingDef ParentName="TrapBase">
-    <defName>Building_Firebomb</defName>
-    <label>Firebomb</label>
+    <defName>Building_FireBomb</defName>
+    <label>FireBomb</label>
     <description>A crude improvised explosive, it produces a small and wildly inconsistent fireball.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
-    <thingClass>TrapPack.Building_Firebomb</thingClass>
+    <thingClass>TrapPack.Building_FireBomb</thingClass>
     <workToBuild>200</workToBuild>
-    <texturePath>Things/Firebomb/Firebomb</texturePath>
+      <texturePath>Things/FireBomb/FireBomb</texturePath>
     <costList>
       <li>
         <thingDef>RawFireFruit</thingDef>
@@ -181,4 +181,24 @@
         <count>1</count>
       </li>
     </costList>
+      </ThingDef>
+       <ThingDef ParentName="TrapBase">
+    <defName>Building_Gas_Mine</defName>
+    <label>FireBomb</label>
+    <description>A weapon of death more so than fear, this gas bomb releases a cloud of lethal neurotoxin. It cares not if colonists get caught in the cloud, so be careful.</description>
+    <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
+    <thingClass>TrapPack.Building_Gas_Mine</thingClass>
+    <workToBuild>200</workToBuild>
+    <texturePath>Things/FireBomb/FireBomb</texturePath>
+    <costList>
+      <li>
+        <thingDef>WoodLog</thingDef>
+        <count>1</count>
+      </li>
+       <li>
+        <thingDef>Electronics</thingDef>
+        <count>1</count>
+      </li>
+    </costList>
+      </ThingDef>
 </ThingDefs>
