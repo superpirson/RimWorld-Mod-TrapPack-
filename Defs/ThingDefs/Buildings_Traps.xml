@@ -181,20 +181,4 @@
         <count>1</count>
       </li>
     </costList>
-      </ThingDef>
-     <ThingDef ParentName="TrapBase">
-    <defName>Building_Anizap</defName>
-    <label>anizap</label>
-    <description>  aesf.</description>
-    <thingClass>ThingAddons.AnimatedThing</thingClass>
-    <workToBuild>200</workToBuild>
-    <textureFolderPath>Things/zap</textureFolderPath>
-    <costList>
-        <li>
-        <thingDef>WoodLog</thingDef>
-        <count>1</count>
-      </li>
-    </costList>
-  </ThingDef>
-
 </ThingDefs>

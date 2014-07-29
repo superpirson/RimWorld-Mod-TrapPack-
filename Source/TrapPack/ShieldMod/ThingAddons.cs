@@ -12,6 +12,8 @@ namespace ThingAddons
 { 
 	public  class AnimatedThing : ThingWithComponents
 	{
+		//animations are drawn on top of the thing's textures.
+
 		private int max_frames = 1;
 		private int tick_count = 0;
 		public bool draw_Comps_First = true;
@@ -35,6 +37,8 @@ namespace ThingAddons
 
 		public override void Draw ()
 		{
+
+			base.Draw();
 			if (draw_Comps_First){
 				this.Comps_Draw ();
 			}
