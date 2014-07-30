@@ -134,7 +134,7 @@
     <defName>Building_Electrified_Floor</defName>
     <label>Electrified Floor</label>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
-    <description>power conduit placed underneath a metal panel. It's still pretty deadly, but the average attacker should be able to survive a quick jaunt over it, being stunned in the process. </description>
+    <description> conduit placed underneath a metal panel. It's still pretty deadly, but the average attacker should be able to survive a quick jaunt over it, being stunned in the process. </description>
     <thingClass>TrapPack.Building_Electrified_Floor</thingClass>
     <workToBuild>350</workToBuild>
     <researchPrerequisite>Electric_Traps_Research</researchPrerequisite>

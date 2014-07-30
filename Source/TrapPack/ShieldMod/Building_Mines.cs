@@ -21,6 +21,7 @@ namespace TrapPack
 		protected static Texture2D texUI_Trigger = ContentFinder<Texture2D>.Get("UI/Commands/UI_Trigger", true);
 		protected static Texture2D tex_Armed_Effect = ContentFinder<Texture2D>.Get("Things/Armed_Effect", true);
 		protected static Material Armed_Mat;
+
 		// globals
 		public bool armed = false; 
 		public bool changed = false;
@@ -116,7 +117,7 @@ namespace TrapPack
 		public override void Detonate(){
 			explodeSound.PlayOneShot(this.Position);
 			Destroy();
-			Explosion e = default(Explosion);
+			ExplosionInfo e = default(ExplosionInfo);
 			e.center = this.Position;
 			e.dinfo = new DamageInfo( mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
 			e.radius = 1.5f;
@@ -143,7 +144,7 @@ namespace TrapPack
 		public override void Detonate(){
 			fireSound.PlayOneShot(this.Position);
 			Destroy();
-			Explosion e = default(Explosion);
+			ExplosionInfo e = default(ExplosionInfo);
 			e.center = this.Position;
 			e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(20,30), this);
 			e.radius = UnityEngine.Random.Range(4,5);
@@ -173,7 +174,7 @@ namespace TrapPack
 	public override void Detonate(){
 		explodeSound.PlayOneShot(this.Position);
 		Destroy();
-		Explosion e = default(Explosion);
+		ExplosionInfo e = default(ExplosionInfo);
 		e.center = this.Position;
 		e.dinfo = new DamageInfo( s_mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
 		e.radius = 1.5f;
@@ -221,7 +222,7 @@ namespace TrapPack
 		public override void Detonate(){
 						fireSound.PlayOneShot(this.Position);
 						Destroy();
-						Explosion e = default(Explosion);
+						ExplosionInfo e = default(ExplosionInfo);
 						e.center = this.Position;
 						e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(2,20), this);
 						e.radius = UnityEngine.Random.Range(0,2);

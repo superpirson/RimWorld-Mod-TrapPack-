@@ -1,15 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../ShieldMod/Building_Traps.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../ShieldMod/Trap_Effects.cs">
     <Files>
-      <File FileName="../ShieldMod/Building_Traps.cs" Line="112" Column="72" />
+      <File FileName="../ShieldMod/Building_Traps_Misc.cs" Line="103" Column="83" />
+      <File FileName="../ShieldMod/Trap_Effects.cs" Line="34" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="TrapPack" expanded="True">
             <Node name="References" expanded="True" />
-            <Node name="Building_Traps.cs" selected="True" />
+            <Node name="Trap_Effects.cs" selected="True" />
           </Node>
         </State>
       </Pad>

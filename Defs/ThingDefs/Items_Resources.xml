@@ -3,10 +3,10 @@
 
 
 	<ThingDef Name="ResourceBase" Abstract="True">
-		<thingClass>ThingResource</thingClass>
 		<label>Unspecified resource</label>
 		<category>Item</category>
 		<eType>Item</eType>
+		<thingClass>ThingWithComponents</thingClass>
 		<resourceCountPriority>Middle</resourceCountPriority>
 		<useStandardHealth>true</useStandardHealth>
 		<selectable>true</selectable>
@@ -29,6 +29,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>Electronics</defName>
     <label>Electronics</label>
+
     <description>These are needed for complex traps.</description>
     <textureFolderPath>Things/Electronics/Electronics</textureFolderPath>
     <soundInteract>Standard_Drop</soundInteract>
