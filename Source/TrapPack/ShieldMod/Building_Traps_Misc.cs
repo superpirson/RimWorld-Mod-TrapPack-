@@ -145,6 +145,9 @@ namespace TrapPack
 			}
 			return stringBuilder.ToString();
 		}
+		public override void Draw ()
+		{
+		}
 	}
 
 }

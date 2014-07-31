@@ -37,8 +37,6 @@ namespace ThingAddons
 
 		public override void Draw ()
 		{
-
-			base.Draw();
 			if (draw_Comps_First){
 				this.Comps_Draw ();
 			}
@@ -58,6 +56,10 @@ namespace ThingAddons
 
 		}
 
+		public override void PrintOnto(SectionLayer layer)
+		{
+			base.PrintOnto(layer);
+		}
 		public override Material DrawMat (IntRot rot)
 		{
 			if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)

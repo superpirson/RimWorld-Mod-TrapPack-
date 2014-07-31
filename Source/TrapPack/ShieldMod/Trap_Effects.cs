@@ -12,7 +12,7 @@ using RimWorld;
 namespace TrapPack
 {
 	
-	public class Smoke : AnimatedThing{
+	public class Smoke : ThingAddons.AnimatedThing{
 		// globals
 		public uint thickness = 0;
 		public override void SpawnSetup(){
