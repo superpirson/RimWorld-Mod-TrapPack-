@@ -14,7 +14,10 @@
 		<eType>Wall</eType>
 		<defName>Smoke</defName>
 		<label>Smoke</label>
-		<linkDrawerType>CornerFiller</linkDrawerType>
+  <linkDrawerType>Transmitter</linkDrawerType>
+  		 <linkFlags>
+      <li>Custom1</li>
+   		 </linkFlags>
 		<description>Nasty caltrops. The rain and wind will wash them away over time. Clean them to remove them.</description>
 		<tickerType>Rare</tickerType>
 		 <pathCost>120</pathCost>

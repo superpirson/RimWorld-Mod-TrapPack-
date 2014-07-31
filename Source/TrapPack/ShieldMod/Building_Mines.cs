@@ -71,7 +71,6 @@ namespace TrapPack
 		}
 		public override void Draw()
 		{
-					base.Draw();	
 			if (armed){
 				//from thing's draw code
 				Quaternion quaternion;
@@ -90,7 +89,7 @@ namespace TrapPack
 			public virtual void Detonate(){
 			Log.Error(this.ToString() + "  just called an unimplimented detonate method!");
 			}
-		}
+	}
 
 
 	public class Building_Mine : Mine
@@ -181,29 +180,7 @@ namespace TrapPack
 		e.Explode();		
 	}
 	}
-		public class Building_Gas_Mine : Mine
-		{
-			
-			public override void Tick()
-			{
-				if (armed) {
-					List<Thing> things = new List<Thing>();
-					things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
-					foreach (Thing target in things){
-						if (target is Pawn){
-							Detonate();
-						}
-					}
-				}
-				base.Tick();
-			}
-			public override void Detonate(){
-				fireSound.PlayOneShot(this.Position);
-				Destroy();
-				Smoke new_Smoke = (Smoke)GenSpawn.Spawn(ThingDef.Named("Smoke"), this.Position);
-				new_Smoke.thickness = 300;
-			}
-		}
+
 	public class Building_FireBomb : Mine
 	{	
 		public override IEnumerable<Command> GetCommands()
@@ -229,4 +206,44 @@ namespace TrapPack
 						e.Explode();
 		}
 	}
+	public class Building_Gas_Mine : Mine
+	{
+		public bool spraying = false;
+		protected int ticks_until_next_puff = 0;
+		protected int puff_count = 0;
+		const int max_puffs = 5;
+		public override void Tick()
+		{
+			if (spraying){
+				if (ticks_until_next_puff-- < 0){
+					Log.Message("spraed a puff!");
+					Smoke.try_place_smoke(this.Position.RandomAdjSquare8Way());
+					ticks_until_next_puff = Rand.Range(50,100);
+				
+				if (puff_count++ >= max_puffs){
+					this.Destroy();
+				}
+				}
+				return;
+			}
+			if (armed) {
+				List<Thing> things = new List<Thing>();
+				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
+				foreach (Thing target in things){
+					if (target is Pawn){
+						Detonate();
+					}
+				}
+			}
+			base.Tick();
+		}
+		public override void Detonate(){
+			spraying = true;
+		}
+	}
+
+
+
+
+
 }

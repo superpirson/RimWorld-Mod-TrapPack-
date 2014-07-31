@@ -53,22 +53,24 @@ namespace ThingAddons
 			if (!draw_Comps_First){
 				this.Comps_Draw ();
 			}
-
-		}
+			this.def.drawMat = this.def.folderDrawMats[current_frame];
+		}	
 
 		public override void PrintOnto(SectionLayer layer)
 		{
 			base.PrintOnto(layer);
 		}
+
 		public override Material DrawMat (IntRot rot)
 		{
+			//by default, this function does not get called!
+			Log.Message("drawmat was called!");
 			if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
 			{
 				return this.def.DrawMat (rot);
 			}
 		
 			// ---- the game gets the textures in the texture folder in alphabetical order, I recomend nameing your textures thing1, thing2, thing3 if there are many frames
-
 			return this.def.folderDrawMats[current_frame];
 		}
 		public void play_Once(int start_Frame = 0){
