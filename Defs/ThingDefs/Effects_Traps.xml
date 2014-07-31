@@ -16,7 +16,7 @@
 		<label>Smoke</label>
 		<linkDrawerType>CornerFiller</linkDrawerType>
 		<description>Nasty caltrops. The rain and wind will wash them away over time. Clean them to remove them.</description>
-		<tickerType>Normal</tickerType>
+		<tickerType>Rare</tickerType>
 		 <pathCost>120</pathCost>
 		<passability>PassThroughOnly</passability>
 		<thingClass>TrapPack.Smoke</thingClass>

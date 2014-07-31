@@ -12,15 +12,13 @@ using RimWorld;
 namespace TrapPack
 {
 	
-	public class Smoke : Thing{
+	public class Smoke : AnimatedThing{
 		// globals
-		private uint ticks_timer = 0;
 		public uint thickness = 0;
 		public override void SpawnSetup(){
 			base.SpawnSetup();
 		}
-		public override void Tick(){
-			if (ticks_timer-- % 100 == 1){
+		public override void TickRare(){
 					if (this.thickness-- == 0){
 					this.Destroy();
 					return;
@@ -29,18 +27,15 @@ namespace TrapPack
 					if (UnityEngine.Random.Range(0,10) < 8){
 						Thing found_thing = Find.Map.thingGrid.ThingAt(pos,this.def);
 						if (found_thing == null){
+						// there is no smoke, create a new one with half of ours
 							Smoke new_smoke = (Smoke)GenSpawn.Spawn(this.def, pos);
 							new_smoke.thickness = this.thickness/=2;
 						}else{
+						// we found a smoke, add to it's thickness with 1/3 of ours
 							Smoke adj_smoke = (Smoke)found_thing;
-
+						adj_smoke.thickness += (this.thickness/= 3);
 						}
 					}
-				}
-			}
-			if (ticks_timer % 20 > 0){
-				//Log.Message("ticktimer =" + ticks_timer.ToString());
-				return;
 			}
 			List<Thing> things = new List<Thing>();
 			things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
@@ -50,7 +45,7 @@ namespace TrapPack
 						target.TakeDamage(new DamageInfo( DamageTypeDefOf.Bleeding, 10 * (int)this.thickness, this));
 				}
 			}	
-		}
+	}
 	}
 	public class Zap_Effect : ThingAddons.AnimatedThing{
 		//gloables: 
