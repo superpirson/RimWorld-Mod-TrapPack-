@@ -11,6 +11,7 @@ using RimWorld;
 //
 namespace TrapPack
 {
+
 	//--mines
 	public abstract class Mine : Building
 	{
@@ -209,12 +210,15 @@ namespace TrapPack
 	public class Building_Gas_Mine : Mine
 	{
 		public bool spraying = false;
-		protected int ticks_until_next_puff = 0;
-		protected int puff_count = 0;
-		const int max_puffs = 5;
+		//protected int ticks_until_next_puff = 0;
+	//	protected int puff_count = 0;
+	//	const int max_puffs = 5;
 		public override void Tick()
 		{
-			if (spraying){
+
+
+			/* old code idea, diden't work :(
+			 if (spraying){
 				if (ticks_until_next_puff-- < 0){
 					Log.Message("spraed a puff!");
 					Smoke.try_place_smoke(this.Position.RandomAdjSquare8Way());
@@ -226,6 +230,7 @@ namespace TrapPack
 				}
 				return;
 			}
+			//*/
 			if (armed) {
 				List<Thing> things = new List<Thing>();
 				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
@@ -239,11 +244,13 @@ namespace TrapPack
 		}
 		public override void Detonate(){
 			spraying = true;
+			Smoke.try_place_smoke(this.Position, 1000);
+			this.Destroy();
 		}
 	}
 
 
-
+//*/
 
 
 }

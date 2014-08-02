@@ -19,7 +19,7 @@
       <li>Custom1</li>
    		 </linkFlags>
 		<description>Nasty caltrops. The rain and wind will wash them away over time. Clean them to remove them.</description>
-		<tickerType>Rare</tickerType>
+		<tickerType>Normal</tickerType>
 		 <pathCost>120</pathCost>
 		<passability>PassThroughOnly</passability>
 		<thingClass>TrapPack.Smoke</thingClass>

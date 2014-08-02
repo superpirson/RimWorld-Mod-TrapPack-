@@ -11,20 +11,38 @@ using RimWorld;
 //
 namespace TrapPack
 {
-	
 	public class Smoke : ThingAddons.AnimatedThing{
+		//damage defs
+		static DamageTypeDef Poisoned;
+		static Smoke(){
+			Poisoned = new DamageTypeDef();
+			Poisoned.deathMessage = "{0} was poisoned to death.";
+			Poisoned.hasForcefulImpact = false;
+			Poisoned.makesBlood = false;
+			Poisoned.injury = InjuryDefOf.Burn;
+		}
+
+
 		// globals
 		public int thickness = 0;
+		public uint ticks_untill_next_update = 20;
 		public override void SpawnSetup(){
 			base.SpawnSetup();
 		}
-		public override void TickRare(){
+		public override void Tick(){
+			if (ticks_untill_next_update-- > 0){
+				//return, do nothing untill time is right
+				return;
+			}else{
+				//reload the tick timer with a random number of ticks
+				ticks_untill_next_update += (uint)Rand.Range(10,100);
+			}
 					if (this.thickness-- == 0){
 					this.Destroy();
 					return;
 				}
-					foreach (IntVec3 pos  in this.Position.AdjacentSquaresCardinalInBounds()){
-					if (UnityEngine.Random.Range(0,10) < 8){
+					foreach (IntVec3 pos  in this.Position.AdjacentSquares8Way()){
+					if (Find.PathGrid.Walkable(pos)){
 					this.thickness = try_place_smoke(pos, this.thickness);
 					}
 			}
@@ -33,7 +51,8 @@ namespace TrapPack
 			foreach (Thing target in things){
 				if (target is Pawn){
 					//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
-						target.TakeDamage(new DamageInfo( DamageTypeDefOf.Bleeding, 10 * (int)this.thickness, this));
+						
+					target.TakeDamage(new DamageInfo(Poisoned, (int)this.thickness, this));
 				}
 			}
 	}
@@ -49,7 +68,6 @@ namespace TrapPack
 				adj_smoke.thickness += (thickness/= 3);
 			}
 			return thickness;
-
 		}
 		public override string Label{
 			get
@@ -126,4 +144,6 @@ namespace TrapPack
 	
 	}
 	}
+
+
 }

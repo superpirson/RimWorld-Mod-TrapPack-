@@ -11,6 +11,8 @@ using RimWorld;
 //
 namespace TrapPack
 {
+
+
 	//--pit traps
     public class Building_Pit_Trap : Building
     {
@@ -97,5 +99,5 @@ namespace TrapPack
 	}
 
 }
-
+//*/
 }

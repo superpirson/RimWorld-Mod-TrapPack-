@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<InjuryDefs>
+
+	<InjuryDef>
+		<defName>Poisoned</defName>
+		<label>Poisoned</label>
+		<painPerDamage>0</painPerDamage>
+		<oldLabel>Trauma</oldLabel>
+		<naturallyHealed>true</naturallyHealed>
+		<bleeding>0</bleeding>
+		<becomeOldChance>.3</becomeOldChance>
+		<combine>false</combine>
+		<destroyedLabel>Destroyed</destroyedLabel>
+		<treatedWellLabel>cleaned</treatedWellLabel>
+		<treatedLabel>poorly cleaned</treatedLabel>
+		<innerTreatedWellLabel>detoxified</innerTreatedWellLabel>
+		<innerTreatedLabel>poorly detoxified</innerTreatedLabel>
+		<solidTreatedWellLabel>set</solidTreatedWellLabel>
+		<solidTreatedLabel>poorly set</solidTreatedLabel>
+	</InjuryDef>
+
+</InjuryDefs>
