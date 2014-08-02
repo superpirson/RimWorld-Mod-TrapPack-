@@ -27,21 +27,4 @@
 	</filth>
 	  </ThingDef>
   
-  <ThingDef ParentName="BaseFilth">
-		<defName>Building_Tripped_Pit_Trap</defName>
-		   <category>Filth</category>
-		
-		<label>Tripped Pit Trap</label>
-		<description>A brutal spiked pit trap. It's been uncovered and used, so it's useless as a trap. Clean it to destroy it and free whoever's inside.</description>
-		<thingClass>TrapPack.Building_Tripped_Pit_Trap</thingClass>
-		<texturePath>Filth/Building_Tripped_Pit_Trap</texturePath>
-		    <passability>PassThroughOnly</passability>
-		    <canBeSpawningInventory>false</canBeSpawningInventory>
-		<beauty>Ugly</beauty>
-	<filth>
-		<cleaningWorkToReduceThickness>550</cleaningWorkToReduceThickness>
-	</filth>
-  </ThingDef>
-  
-  
 </ThingDefs>

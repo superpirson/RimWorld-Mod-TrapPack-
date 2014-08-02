@@ -25,12 +25,7 @@ namespace TrapPack
 		private bool has_power = true;
 		private bool armed = false; 
 		uint tick_delay = 0;
-		static DamageTypeDef elec_damage_type;
-		static Building_Electrified_Floor(){
-			elec_damage_type = new DamageTypeDef();
-			elec_damage_type.deathMessage = "{0} was electrocuted.";
-			elec_damage_type.hasForcefulImpact = true;
-		}
+		static DamageTypeDef elec_damage_type = DefDatabase<DamageTypeDef>.GetNamed("elec_damage_type");
 		/// <summary>
 		/// taken from powerswitch mod by Haplo
 		/// This creates new selection buttons with a new graphic

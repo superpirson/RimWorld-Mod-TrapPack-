@@ -14,9 +14,8 @@ namespace ThingAddons
 	{
 		//animations are drawn on top of the thing's textures.
 
-		private int max_frames = 1;
+		private int max_frames = 0;
 		private int tick_count = 0;
-		public bool draw_Comps_First = true;
 		public bool cycleing = true;
 		public bool loop = true;
 		public int current_frame = 0;
@@ -31,29 +30,32 @@ namespace ThingAddons
 			{
 				Log.Warning("Animated thing tried to find texture folder, but found only one texture.");
 			}
-			this.max_frames = this.def.folderDrawMats.Count;
+			this.max_frames = this.def.folderDrawMats.Count -1;
 			base.SpawnSetup();
 		}
-
-		public override void Draw ()
-		{
-			if (draw_Comps_First){
-				this.Comps_Draw ();
-			}
-				if (cycleing && tick_count++ >= inter_frame_delay){
+		public override void Tick(){
+			if (!cycleing){base.Tick();return;}
+			if (tick_count++ >= inter_frame_delay){
 				tick_count = 0;
 				if (loop ){
-				current_frame = (current_frame +1) % max_frames;
+					current_frame++;
+					if( current_frame > max_frames){
+						current_frame = 0;
+					}
 				}
 				else{
-					current_frame = Math.Max(max_frames, current_frame+1);
+					current_frame = Math.Min(max_frames, current_frame+1);
 					cycleing = false;
 				}
-				}
-			if (!draw_Comps_First){
-				this.Comps_Draw ();
 			}
 			this.def.drawMat = this.def.folderDrawMats[current_frame];
+			base.Tick ();
+		}
+		public override void Draw ()
+		{
+		//	Log.Message("thingaddon's Draw was called!");	
+			this.Comps_Draw ();
+			//Log.Message("draw was called!");
 		}	
 
 		public override void PrintOnto(SectionLayer layer)
@@ -64,7 +66,7 @@ namespace ThingAddons
 		public override Material DrawMat (IntRot rot)
 		{
 			//by default, this function does not get called!
-			Log.Message("drawmat was called!");
+			Log.Message("thingaddon's drawmat was called!");
 			if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
 			{
 				return this.def.DrawMat (rot);

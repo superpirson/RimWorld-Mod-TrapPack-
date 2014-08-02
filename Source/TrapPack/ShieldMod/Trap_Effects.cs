@@ -13,14 +13,7 @@ namespace TrapPack
 {
 	public class Smoke : ThingAddons.AnimatedThing{
 		//damage defs
-		static DamageTypeDef Poisoned;
-		static Smoke(){
-			Poisoned = new DamageTypeDef();
-			Poisoned.deathMessage = "{0} was poisoned to death.";
-			Poisoned.hasForcefulImpact = false;
-			Poisoned.makesBlood = false;
-			Poisoned.injury = InjuryDefOf.Burn;
-		}
+		static DamageTypeDef Poisoned = DefDatabase<DamageTypeDef>.GetNamed("Poisoned");
 
 
 		// globals
@@ -32,14 +25,16 @@ namespace TrapPack
 		public override void Tick(){
 			if (ticks_untill_next_update-- > 0){
 				//return, do nothing untill time is right
+				base.Tick ();
 				return;
 			}else{
 				//reload the tick timer with a random number of ticks
-				ticks_untill_next_update += (uint)Rand.Range(10,100);
+				ticks_untill_next_update += (uint)Rand.Range(40,200);
 			}
 					if (this.thickness-- == 0){
 					this.Destroy();
-					return;
+				base.Tick ();	
+				return;
 				}
 					foreach (IntVec3 pos  in this.Position.AdjacentSquares8Way()){
 					if (Find.PathGrid.Walkable(pos)){
@@ -52,22 +47,25 @@ namespace TrapPack
 				if (target is Pawn){
 					//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
 						
-					target.TakeDamage(new DamageInfo(Poisoned, (int)this.thickness, this));
+					target.TakeDamage(new DamageInfo(Poisoned, this.thickness, this, new BodyPartDamageInfo(null, BodyPartDepth.Inside)));
 				}
 			}
+			base.Tick();
 	}
 		public static int try_place_smoke(IntVec3 pos, int thickness = 100){
 			Thing found_thing = Find.Map.thingGrid.ThingAt(pos,ThingDef.Named("Smoke"));
 			if (found_thing == null){
-				// there is no smoke, create a new one with half of ours
+				// there is no smoke, make a new one with 1/8 ours
 				Smoke new_smoke = (Smoke)GenSpawn.Spawn(ThingDef.Named("Smoke"), pos);
-				new_smoke.thickness = thickness/=2;
+				new_smoke.thickness = thickness/ 8;
+				thickness-= thickness/8;
 			}else{
-				// we found a smoke, add to it's thickness with 1/3 of ours
+				// we found a smoke, add to it's thickness with 1/4 of ours
 				Smoke adj_smoke = (Smoke)found_thing;
-				adj_smoke.thickness += (thickness/= 3);
+				adj_smoke.thickness += (thickness/ 4);
+				thickness-= thickness/4;
 			}
-			return thickness;
+			return thickness; 
 		}
 		public override string Label{
 			get
@@ -75,7 +73,7 @@ namespace TrapPack
 				
 				StringBuilder stringBuilder = new StringBuilder ();
 				stringBuilder.Append (base.Label);
-				stringBuilder.Append("thickness: " + this.thickness);
+				stringBuilder.Append(" thickness: " + this.thickness);
 				return stringBuilder.ToString ();
 			}
 			
@@ -87,7 +85,8 @@ namespace TrapPack
 		public override void Tick (){
 			if (lifetime-- < 0){
 				this.Destroy();
-			}
+		}
+			base.Tick();
 		}
 	}
 	public class Proj_Caltrops : Projectile{
@@ -131,7 +130,8 @@ namespace TrapPack
 					}
 					}
 				}	
-			}
+
+		}
 		public override string Label{
 			get
 			{

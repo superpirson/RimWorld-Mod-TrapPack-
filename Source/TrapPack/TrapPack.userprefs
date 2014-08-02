@@ -1,18 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../ShieldMod/Building_Traps_Misc.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../ShieldMod/ThingAddons.cs">
     <Files>
-      <File FileName="../ShieldMod/Building_Traps_Misc.cs" Line="153" Column="5" />
-      <File FileName="../ShieldMod/Trap_Effects.cs" Line="130" Column="5" />
-      <File FileName="../ShieldMod/ThingAddons.cs" Line="13" Column="3" />
-      <File FileName="../ShieldMod/Building_Mines.cs" Line="225" Column="21" />
-      <File FileName="../ShieldMod/Building_Pit_Trap.cs" Line="102" Column="5" />
+      <File FileName="../ShieldMod/Building_Traps_Misc.cs" Line="33" Column="4" />
+      <File FileName="../ShieldMod/Trap_Effects.cs" Line="92" Column="16" />
+      <File FileName="../ShieldMod/ThingAddons.cs" Line="43" Column="26" />
+      <File FileName="../ShieldMod/Building_Mines.cs" Line="212" Column="2" />
+      <File FileName="../ShieldMod/Building_Pit_Trap.cs" Line="66" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="TrapPack" expanded="True">
-            <Node name="Building_Mines.cs" selected="True" />
+            <Node name="References" expanded="True" />
+            <Node name="ThingAddons.cs" selected="True" />
           </Node>
         </State>
       </Pad>

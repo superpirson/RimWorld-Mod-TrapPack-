@@ -95,11 +95,7 @@ namespace TrapPack
 
 	public class Building_Mine : Mine
 	{
-		static DamageTypeDef mine_damage_type;
-		static Building_Mine(){
-			mine_damage_type = new DamageTypeDef();
-			mine_damage_type.deathMessage = "{0} was violently dispersed over 10 KM by a mine.";
-		}
+		static DamageTypeDef mine_damage_type = DefDatabase<DamageTypeDef>.GetNamed("mine_damage_type");
 		public override void Tick()
 		{
 			if (armed) {
@@ -153,11 +149,7 @@ namespace TrapPack
 	}
 	public class Building_Smart_Mine : Mine
 	{
-		static DamageTypeDef s_mine_damage_type;
-		static Building_Smart_Mine(){
-			s_mine_damage_type = new DamageTypeDef();
-			s_mine_damage_type.deathMessage = "{0} was inteligently dispersed over 10 KM by a smart mine.";	
-		}
+		static DamageTypeDef s_mine_damage_type = DefDatabase<DamageTypeDef>.GetNamed("s_mine_damage_type");
 		public override void Tick()
 		{
 			if (armed) {
@@ -213,6 +205,7 @@ namespace TrapPack
 		//protected int ticks_until_next_puff = 0;
 	//	protected int puff_count = 0;
 	//	const int max_puffs = 5;
+
 		public override void Tick()
 		{
 

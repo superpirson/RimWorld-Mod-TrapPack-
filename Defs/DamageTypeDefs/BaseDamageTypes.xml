@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DamageTypes>
+
+  <!-- External violence -->
+
+  <DamageTypeDef>
+    <defName>mine_damage_type</defName>
+    <incapChanceMultiplier>1.2</incapChanceMultiplier>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} was evenly dispersed over 10 KM by a mine.</deathMessage>
+	<injury>Shredded</injury>
+	<battleWound>true</battleWound>
+	<solidInjury>Crack</solidInjury>
+  </DamageTypeDef> 
+    <DamageTypeDef>
+    <defName>s_mine_damage_type</defName>
+    <incapChanceMultiplier>2</incapChanceMultiplier>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} was inteligently dispersed over 10 KM by a smart mine.</deathMessage>
+	<injury>Shredded</injury>
+	<battleWound>true</battleWound>
+	<solidInjury>Crack</solidInjury>
+  </DamageTypeDef> 
+   <DamageTypeDef>
+    <defName>elec_damage_type</defName>
+    <incapChanceMultiplier>0</incapChanceMultiplier>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} was electrocuted.</deathMessage>
+	<injury>Shredded</injury>
+	<battleWound>true</battleWound>
+	<solidInjury>Crack</solidInjury>
+  </DamageTypeDef>
+   
+   <DamageTypeDef>
+    <defName>Poisoned</defName>
+    <incapChanceMultiplier>5</incapChanceMultiplier>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} was poisoned to death.</deathMessage>
+	<injury>Poisoned</injury>
+	<battleWound>true</battleWound>
+	<hasForcefulImpact>false</hasForcefulImpact>
+	<makesBlood>false</makesBlood>
+  </DamageTypeDef> 
+  <DamageTypeDef>
+    <defName>pit_trap_damage_type</defName>
+    <incapChanceMultiplier>0</incapChanceMultiplier>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} fell to their death in a spiked trap</deathMessage>
+	<injury>Shredded</injury>
+	<battleWound>true</battleWound>
+	<hasForcefulImpact>false</hasForcefulImpact>
+	<solidInjury>Crack</solidInjury>
+  </DamageTypeDef> 
+ 
+</DamageTypes>
