@@ -119,6 +119,12 @@
     <surfaceNeeded>Light</surfaceNeeded>
     <designationCategory>Power</designationCategory>
     <constructionEffect>ConstructDig</constructionEffect>
+     <comps>
+      <li>
+        <compClass>CompPowerTransmitter</compClass>
+        <transmitsPower>true</transmitsPower>
+      </li>
+    </comps>
   </ThingDef>
 
   <ThingDef ParentName="BuildingBase">
@@ -138,7 +144,6 @@
     <flammability>0.0</flammability>
     <building>
       <ignoreNeedsPower>true</ignoreNeedsPower>
-      <transmitsPower>true</transmitsPower>
     </building>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <passability>Standable</passability>
@@ -164,6 +169,12 @@
     <surfaceNeeded>Diggable</surfaceNeeded>
     <designationCategory>Power</designationCategory>
     <constructionEffect>ConstructDig</constructionEffect>
+     <comps>
+      <li>
+        <compClass>CompPowerTransmitter</compClass>
+        <transmitsPower>true</transmitsPower>
+      </li>
+    </comps>
   </ThingDef>
 
 	

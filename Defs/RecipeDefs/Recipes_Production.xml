@@ -6,7 +6,7 @@
     <description>UNSET DISC</description>
     <jobString>UNSET JOB STR</jobString>
     <workAmount>20</workAmount>
-    <workEffect>ExtractMetalFromSlag</workEffect>
+    <workEffect>ConstructMetal</workEffect>
  <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
     	<skillGains>
 		<li>
@@ -22,7 +22,7 @@
     <description>makes a bag full of caltrops, ready to be thrown.</description>
     <jobString>Producing caltrops.</jobString>
     <workAmount>2500</workAmount>
-    <workEffect>ExtractMetalFromSlag</workEffect>
+    <workEffect>ConstructMetal</workEffect>
  <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
     <ingredients>
       <li>
@@ -58,7 +58,7 @@
     <description>makes a variety of electronics critical for more advanced traps.</description>
     <jobString>making electronics.</jobString>
     <workAmount>1000</workAmount>
-    <workEffect>ExtractMetalFromSlag</workEffect>
+    <workEffect>ConstructMetal</workEffect>
  <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
     <ingredients>
       <li>
@@ -103,7 +103,7 @@
     <description>Disturbingly, these berrys seem to be highly flamable. This refines them into proper explosives, ready for packing in a mine!</description>
     <jobString>nervously making explosives.</jobString>
     <workAmount>500</workAmount>
-    <workEffect>ExtractMetalFromSlag</workEffect>
+    <workEffect>ConstructMetal</workEffect>
  <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
     <ingredients>
       <li>
@@ -140,7 +140,7 @@
     <description>A real hazard, for both your enemies and your colonists!</description>
     <jobString>making explosives.</jobString>
     <workAmount>500</workAmount>
-    <workEffect>ExtractMetalFromSlag</workEffect>
+    <workEffect>ConstructMetal</workEffect>
  <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
     <ingredients>
       <li>
@@ -195,7 +195,7 @@
     <description>A mine that will NOT kill your colonists! Just remember to disarm it when you have company.</description>
     <jobString>making explosives.</jobString>
     <workAmount>500</workAmount>
-    <workEffect>ExtractMetalFromSlag</workEffect>
+    <workEffect>ConstructMetal</workEffect>
  <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
     <ingredients>
       <li>
@@ -250,7 +250,7 @@
     <description>A real danger in forested or brushy areas, this mine lights fires! It has a minimal explosive charge.</description>
     <jobString>making explosives.</jobString>
     <workAmount>500</workAmount>
-    <workEffect>ExtractMetalFromSlag</workEffect>
+    <workEffect>ConstructMetal</workEffect>
  <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
     <ingredients>
 		<li>

@@ -21,10 +21,10 @@ namespace TrapPack
 
 		const int POWERDRAW = 800000;
 		// globals
+		private CompPowerTrader power_Trader;
 		private bool has_power = true;
 		private bool armed = false; 
 		uint tick_delay = 0;
-		CompPowerTrader powerComp;
 		static DamageTypeDef elec_damage_type;
 		static Building_Electrified_Floor(){
 			elec_damage_type = new DamageTypeDef();
@@ -62,8 +62,8 @@ namespace TrapPack
 		}
 		public override void SpawnSetup(){
 			base.SpawnSetup();
-			this.powerComp = base.GetComp<CompPowerTrader>();
-			if (powerComp == null)
+			power_Trader = this.GetComp<CompPowerTrader>();
+			if (this.PowerComp == null)
 			{
 				Log.Error("TrapsPack: Failed to retrieve power component upon spawn for an electrofied floor!");
 			}
@@ -74,16 +74,16 @@ namespace TrapPack
 		}
 		public override void Tick()
 		{
-			this.powerComp.powerOutput = 0;
+			power_Trader.powerOutput = 0f;
 			if (tick_delay-- > 0){
 				return;
 			}
-			if (powerComp == null)
+			if (power_Trader == null)
 			{
 				Log.Message("power was null on a tick of a electrofloor, returning.");
 				return;
 			}
-			if (!this.powerComp.PowerOn || this.ConnectedToNet.CurrentStoredEnergy() < POWERDRAW * CompPower.WattsToWattDaysPerTick){
+			if (!this.power_Trader.PowerOn || this.power_Trader.powerNet.CurrentStoredEnergy() < POWERDRAW * CompPower.WattsToWattDaysPerTick){
 				has_power = false; 
 				tick_delay += 10;
 				return;
@@ -94,16 +94,16 @@ namespace TrapPack
 			//	Log.Message(this.powerComp.DebugString + "powernet clames to have : "+ this.powerNet.CurrentStoredEnergy().ToString());
 			bool activated = false;
 			if (armed) {
-				this.powerComp.powerOutput = -POWERDRAW/1000;
+				this.power_Trader.powerOutput = -POWERDRAW/1000;
 				List<Thing> things = new List<Thing>();
 				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
 				
 				foreach (Thing target in things){
-					if (target is Pawn && !target.destroyed){
+					if (target is Pawn && !target.Destroyed){
 						//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
-						this.powerComp.powerOutput = -POWERDRAW;
+						this.power_Trader.powerOutput = -POWERDRAW;
 						target.TakeDamage(new DamageInfo( elec_damage_type,2, this));
-						((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this));
+						((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
 						//--------I used the soundInteract to define the explosion sound.
 						explosion_sound.PlayOneShot(this.Position);
 						activated = true;
@@ -145,6 +145,8 @@ namespace TrapPack
 			}
 			return stringBuilder.ToString();
 		}
+		public override void Draw ()
+		{
+		}
 	}
-
 }

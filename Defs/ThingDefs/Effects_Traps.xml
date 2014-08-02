@@ -11,14 +11,19 @@
 	<!-- end base definitions -->
 
 		<ThingDef ParentName="EffectBase">
+		<eType>Wall</eType>
 		<defName>Smoke</defName>
 		<label>Smoke</label>
+  <linkDrawerType>Transmitter</linkDrawerType>
+  		 <linkFlags>
+      <li>Custom1</li>
+   		 </linkFlags>
 		<description>Nasty caltrops. The rain and wind will wash them away over time. Clean them to remove them.</description>
 		<tickerType>Normal</tickerType>
 		 <pathCost>120</pathCost>
 		<passability>PassThroughOnly</passability>
 		<thingClass>TrapPack.Smoke</thingClass>
-		<textureFolderPath>Things/Armed_Effect</textureFolderPath>
+		<textureFolderPath>Things/Smoke/</textureFolderPath>
 				<beauty>Ugly</beauty>
   </ThingDef>
   

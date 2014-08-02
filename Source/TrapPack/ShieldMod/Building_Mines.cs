@@ -11,6 +11,7 @@ using RimWorld;
 //
 namespace TrapPack
 {
+
 	//--mines
 	public abstract class Mine : Building
 	{
@@ -21,6 +22,7 @@ namespace TrapPack
 		protected static Texture2D texUI_Trigger = ContentFinder<Texture2D>.Get("UI/Commands/UI_Trigger", true);
 		protected static Texture2D tex_Armed_Effect = ContentFinder<Texture2D>.Get("Things/Armed_Effect", true);
 		protected static Material Armed_Mat;
+
 		// globals
 		public bool armed = false; 
 		public bool changed = false;
@@ -70,7 +72,6 @@ namespace TrapPack
 		}
 		public override void Draw()
 		{
-					base.Draw();	
 			if (armed){
 				//from thing's draw code
 				Quaternion quaternion;
@@ -89,7 +90,7 @@ namespace TrapPack
 			public virtual void Detonate(){
 			Log.Error(this.ToString() + "  just called an unimplimented detonate method!");
 			}
-		}
+	}
 
 
 	public class Building_Mine : Mine
@@ -116,7 +117,7 @@ namespace TrapPack
 		public override void Detonate(){
 			explodeSound.PlayOneShot(this.Position);
 			Destroy();
-			Explosion e = default(Explosion);
+			ExplosionInfo e = default(ExplosionInfo);
 			e.center = this.Position;
 			e.dinfo = new DamageInfo( mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
 			e.radius = 1.5f;
@@ -143,7 +144,7 @@ namespace TrapPack
 		public override void Detonate(){
 			fireSound.PlayOneShot(this.Position);
 			Destroy();
-			Explosion e = default(Explosion);
+			ExplosionInfo e = default(ExplosionInfo);
 			e.center = this.Position;
 			e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(20,30), this);
 			e.radius = UnityEngine.Random.Range(4,5);
@@ -173,14 +174,15 @@ namespace TrapPack
 	public override void Detonate(){
 		explodeSound.PlayOneShot(this.Position);
 		Destroy();
-		Explosion e = default(Explosion);
+		ExplosionInfo e = default(ExplosionInfo);
 		e.center = this.Position;
 		e.dinfo = new DamageInfo( s_mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
 		e.radius = 1.5f;
 		e.Explode();		
 	}
 	}
-	public class Building_Firebomb : Mine
+
+	public class Building_FireBomb : Mine
 	{	
 		public override IEnumerable<Command> GetCommands()
 		{
@@ -198,11 +200,57 @@ namespace TrapPack
 		public override void Detonate(){
 						fireSound.PlayOneShot(this.Position);
 						Destroy();
-						Explosion e = default(Explosion);
+						ExplosionInfo e = default(ExplosionInfo);
 						e.center = this.Position;
 						e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(2,20), this);
 						e.radius = UnityEngine.Random.Range(0,2);
 						e.Explode();
 		}
 	}
+	public class Building_Gas_Mine : Mine
+	{
+		public bool spraying = false;
+		//protected int ticks_until_next_puff = 0;
+	//	protected int puff_count = 0;
+	//	const int max_puffs = 5;
+		public override void Tick()
+		{
+
+
+			/* old code idea, diden't work :(
+			 if (spraying){
+				if (ticks_until_next_puff-- < 0){
+					Log.Message("spraed a puff!");
+					Smoke.try_place_smoke(this.Position.RandomAdjSquare8Way());
+					ticks_until_next_puff = Rand.Range(50,100);
+				
+				if (puff_count++ >= max_puffs){
+					this.Destroy();
+				}
+				}
+				return;
+			}
+			//*/
+			if (armed) {
+				List<Thing> things = new List<Thing>();
+				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
+				foreach (Thing target in things){
+					if (target is Pawn){
+						Detonate();
+					}
+				}
+			}
+			base.Tick();
+		}
+		public override void Detonate(){
+			spraying = true;
+			Smoke.try_place_smoke(this.Position, 1000);
+			this.Destroy();
+		}
+	}
+
+
+//*/
+
+
 }
