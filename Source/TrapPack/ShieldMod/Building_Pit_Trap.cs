@@ -30,7 +30,7 @@ namespace TrapPack
 				foreach (Thing target in things){
 				if (target is Pawn){
 						//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
-						target.TakeDamage(new DamageInfo( pit_trap_damage_type, 10, this));
+					target.TakeDamage(new DamageInfo( pit_trap_damage_type, 100, this, new BodyPartDamageInfo(BodyPartHeight.Bottom,BodyPartDepth.Outside)));
 					set = false;
 				}
 			}

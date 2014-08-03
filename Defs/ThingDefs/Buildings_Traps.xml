@@ -72,6 +72,7 @@
     <label>Pit Trap</label>
   <drawerType>RealtimeOnly</drawerType>
     <surfaceNeeded>GrowSoil</surfaceNeeded>
+     <pathCost>120</pathCost>
     <description>A small pit trap, just large enough to trap a person. Can only be built on non-sand soil. It takes forever to dig out, but it's crippling to anyone who falls in. Mine it to destroy it and free whatever's inside.</description>
     <thingClass>TrapPack.Building_Pit_Trap</thingClass>
     <workToBuild>500</workToBuild>

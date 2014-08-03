@@ -55,6 +55,7 @@ namespace ThingAddons
 		{
 		//	Log.Message("thingaddon's Draw was called!");	
 			this.Comps_Draw ();
+			base.Draw ();
 			//Log.Message("draw was called!");
 		}	
 
@@ -66,7 +67,7 @@ namespace ThingAddons
 		public override Material DrawMat (IntRot rot)
 		{
 			//by default, this function does not get called!
-			Log.Message("thingaddon's drawmat was called!");
+			//Log.Message("thingaddon's drawmat was called!");
 			if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
 			{
 				return this.def.DrawMat (rot);

@@ -97,7 +97,7 @@ namespace TrapPack
 					if (target is Pawn && !target.Destroyed){
 						//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
 						this.power_Trader.powerOutput = -POWERDRAW;
-						target.TakeDamage(new DamageInfo( elec_damage_type,2, this));
+						target.TakeDamage(new DamageInfo( elec_damage_type,2, this, new BodyPartDamageInfo(null, BodyPartDepth.Inside)));
 						((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
 						//--------I used the soundInteract to define the explosion sound.
 						explosion_sound.PlayOneShot(this.Position);

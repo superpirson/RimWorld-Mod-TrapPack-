@@ -51,23 +51,6 @@
 	<!-- ==================== Frag grenade ========================== -->
 	
 	<ThingDef ParentName="BaseGrenade">
-		<defName>Zap_Effect</defName>
-		<label>Zap Effect</label>
-		<thingClass>TrapPack.Zap_Effect</thingClass>
-		<textureFolderPath>Things/zap</textureFolderPath>
-		<randomizeRotationOnSpawn> True</randomizeRotationOnSpawn>
-		<AltitudeLayer>Projectile</AltitudeLayer>
-					<!-- 
-	<projectile>
-			<postExplosionSpawnThingDef>Caltrops</postExplosionSpawnThingDef>
-			<explosionRadius >0.9</explosionRadius >
-			<damageDef>Bomb</damageDef>
-			<explosionDelay>10</explosionDelay>
-		</projectile>
- -->
-	</ThingDef>
-	
-	<ThingDef ParentName="BaseGrenade">
 		<defName>Proj_Caltrops</defName>
 		<label>Caltrops</label>
 		<thingClass>TrapPack.Proj_Caltrops</thingClass>

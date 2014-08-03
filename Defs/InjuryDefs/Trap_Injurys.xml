@@ -15,5 +15,19 @@
 		<innerTreatedWellLabel>detoxified</innerTreatedWellLabel>
 		<innerTreatedLabel>poorly detoxified</innerTreatedLabel>
 	</InjuryDef>
+	<InjuryDef>
+		<defName>Electrocuted</defName>
+		<label>Electrocuted</label>
+		<painPerDamage>2</painPerDamage>
+		<oldPainPerDamage>.2</oldPainPerDamage>
+		<oldLabel>electrocution trauma</oldLabel>
+		<naturallyHealed>true</naturallyHealed>
+		<bleeding>0</bleeding>
+		<becomeOldChance>.3</becomeOldChance>
+		<combine>true</combine>
+		<destroyedLabel>Fried</destroyedLabel>
+		<innerTreatedWellLabel>treated</innerTreatedWellLabel>
+		<innerTreatedLabel>poorly treated</innerTreatedLabel>
+	</InjuryDef>
 
 </InjuryDefs>

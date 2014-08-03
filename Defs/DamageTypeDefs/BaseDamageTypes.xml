@@ -26,9 +26,9 @@
     <incapChanceMultiplier>0</incapChanceMultiplier>
     <externalViolence>true</externalViolence>
     <deathMessage>{0} was electrocuted.</deathMessage>
-	<injury>Shredded</injury>
+	<injury>Electrocuted</injury>
 	<battleWound>true</battleWound>
-	<solidInjury>Crack</solidInjury>
+	<solidInjury>Electrocuted</solidInjury>
   </DamageTypeDef>
    
    <DamageTypeDef>

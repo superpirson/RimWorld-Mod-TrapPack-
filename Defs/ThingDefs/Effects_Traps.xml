@@ -27,6 +27,16 @@
 		<textureFolderPath>Things/Smoke/</textureFolderPath>
 				<beauty>Ugly</beauty>
   </ThingDef>
+    <ThingDef ParentName="EffectBase">
+		<defName>Zap_Effect</defName>
+		<label>Zap Effect</label>
+		<TickerType>Normal</TickerType>
+		<drawerType>RealtimeOnly</drawerType>
+		<thingClass>TrapPack.Zap_Effect</thingClass>
+		<textureFolderPath>Things/zap</textureFolderPath>
+		<randomizeRotationOnSpawn>True</randomizeRotationOnSpawn>
+		<AltitudeLayer>Projectile</AltitudeLayer>
+	</ThingDef>
   
   
 </ThingDefs>

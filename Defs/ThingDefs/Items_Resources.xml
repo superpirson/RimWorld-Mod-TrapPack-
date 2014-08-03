@@ -44,7 +44,7 @@
     <defName>Explosives</defName>
     <label>Explosives</label>
     <description>These are needed for exploding traps.</description>
-    <textureFolderPath>Things/Explosives</textureFolderPath>
+    <textureFolderPath>Things/Item/Explosives</textureFolderPath>
     <soundInteract>Standard_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
     <basePrice>10</basePrice>
