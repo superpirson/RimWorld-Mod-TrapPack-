@@ -39,7 +39,9 @@ namespace TrapPack
 				}
 					foreach (IntVec3 pos  in this.Position.AdjacentSquares8Way().InRandomOrder()){
 					if (Find.PathGrid.Walkable(pos)){
+					if (this.thickness > 5){
 					this.thickness = try_place_Poison_Gas(pos, this.thickness);
+					}
 					}
 			}
 			List<Thing> things = new List<Thing>();
