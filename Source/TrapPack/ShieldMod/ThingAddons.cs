@@ -19,7 +19,9 @@ namespace ThingAddons
 		public bool cycleing = true;
 		public bool loop = true;
 		public int current_frame = 0;
-		public int inter_frame_delay = 3;
+		//this is how long the animatior should wait before starting to cycle
+		public int wait_ticks = 0;
+		public int inter_frame_delay = 2;
 		public override void SpawnSetup(){
 			if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
 			{
@@ -35,6 +37,11 @@ namespace ThingAddons
 		}
 		public override void Tick(){
 			if (!cycleing){base.Tick();return;}
+			if (wait_ticks > 0){
+				wait_ticks--;
+				base.Tick();
+				return;
+			}
 			if (tick_count++ >= inter_frame_delay){
 				tick_count = 0;
 				if (loop ){
@@ -49,6 +56,7 @@ namespace ThingAddons
 				}
 			}
 			this.def.drawMat = this.def.folderDrawMats[current_frame];
+			Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
 			base.Tick ();
 		}
 		public override void Draw ()

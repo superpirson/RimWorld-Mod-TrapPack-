@@ -62,7 +62,7 @@
     <EType>Building_WorkTable</EType>
     <Label>Explosives Refinery</Label>
     <ThingClass>Building_WorkTable</ThingClass>
-    <Description>it does stuff.</Description>
+    <Description>Used to refine all sorts of dangerous chemicals.</Description>
     <TexturePath>Things/Buildings/ExplosivesRefinery</TexturePath>
     <CostList>
       <li>
@@ -70,7 +70,7 @@
         <count>200</count>
       </li>
     </CostList>
-    <AltitudeLayer>Waist</AltitudeLayer>
+    <AltitudeLayer>BuildingTall</AltitudeLayer>
     <WorkToBuild>2000</WorkToBuild>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <UseStandardHealth>True</UseStandardHealth>

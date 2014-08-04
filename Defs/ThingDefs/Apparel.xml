@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+  <ThingDef Name="ApparelBase" Abstract="True">
+    <thingClass>Apparel</thingClass>
+    <eType>Apparel</eType>
+    <category>Item</category>
+    <selectable>True</selectable>
+    <pathCost>10</pathCost>
+    <useStandardHealth>True</useStandardHealth>
+    <maxHealth>100</maxHealth>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <storeCategories>
+      <li>Apparel</li>
+    </storeCategories>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_Gasmask</defName>
+    <label>Gas Mask</label>
+	<description>Gas can kill you quite quickly if you don't have protection.</description>
+    <texturePath>Things/Pawn/Humanoid/Apparel/PowerArmorHelmet/PowerArmorHelmet</texturePath>
+    <apparel>
+      <damageAbsorption>
+        <li>
+          <injuryDef>Burn</injuryDef>
+          <absorption>0.2</absorption>
+        </li>
+         <li>
+          <injuryDef>Poisoned</injuryDef>
+          <absorption>1.0</absorption>
+        </li>
+      </damageAbsorption>
+      <moveSpeed>-0.04</moveSpeed>
+      <graphicPath>Things/Pawn/Humanoid/Apparel/PowerArmorHelmet/PowerArmorHelmet</graphicPath>
+      <layers>
+        <li>Overhead</li>
+      </layers>
+      <commonality>30</commonality>
+      <tags>
+        <li>Helmet</li>
+      </tags>
+      <bodyPartGroups>
+        <li>FullHead</li>
+        <li>Torso</li> 
+      </bodyPartGroups>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.33,0.33,0.33,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.65,0.65,0.65,1)</only>
+        </li>
+        <li>
+          <weight>6</weight>
+          <min>RGBA(0.3,0.3,0.3,1)</min>
+          <max>RGBA(0.5,0.5,0.5,1)</max>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.9,0.9,0.9,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+  </ThingDef>
+  
+</ThingDefs>

@@ -92,13 +92,12 @@
      
     </linkFlags>
     <category>Building</category>
-    <texturePath>Things/ArmoredPowerConduit_Atlas</texturePath>
+    <texturePath>Things/Armored_Power_Conduit/Armored_Power_Conduit_Atlas</texturePath>
     <blueprintTexturePath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</blueprintTexturePath>
-    <uiIconPath>Things/ArmoredPowerConduit_MenuIcon</uiIconPath>
+    <uiIconPath>Things/Armored_Power_Conduit/Armored_Power_Conduit_MenuIcon</uiIconPath>
     <flammability>0.5</flammability>
     <building>
       <ignoreNeedsPower>true</ignoreNeedsPower>
-      <transmitsPower>true</transmitsPower>
     </building>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <passability>Standable</passability>
@@ -138,9 +137,9 @@
       <li>PowerConduit</li>
     </linkFlags>
     <category>Building</category>
-    <texturePath>Things/SunkenPowerConduit_Atlas</texturePath>
+    <textureFolderPath>Things/Sunken_Power_Conduit/Sunken_Power_Conduit_Atlas</textureFolderPath>
     <blueprintTexturePath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</blueprintTexturePath>
-    <uiIconPath>Things/SunkenPowerConduit_MenuIcon</uiIconPath>
+    <uiIconPath>Things/Sunken_Power_Conduit/Sunken_Power_Conduit_MenuIcon</uiIconPath>
     <flammability>0.0</flammability>
     <building>
       <ignoreNeedsPower>true</ignoreNeedsPower>

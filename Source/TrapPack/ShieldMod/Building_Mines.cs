@@ -237,7 +237,7 @@ namespace TrapPack
 		}
 		public override void Detonate(){
 			spraying = true;
-			Smoke.try_place_smoke(this.Position, 1000);
+			Poison_Gas.try_place_Poison_Gas(this.Position, 1000);
 			this.Destroy();
 		}
 	}

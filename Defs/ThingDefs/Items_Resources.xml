@@ -7,7 +7,6 @@
 		<category>Item</category>
 		<eType>Item</eType>
 		<thingClass>ThingWithComponents</thingClass>
-		<resourceCountPriority>Middle</resourceCountPriority>
 		<useStandardHealth>true</useStandardHealth>
 		<selectable>true</selectable>
 		<maxHealth>100</maxHealth>

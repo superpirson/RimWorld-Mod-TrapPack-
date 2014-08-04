@@ -12,8 +12,8 @@
 
 		<ThingDef ParentName="EffectBase">
 		<eType>Wall</eType>
-		<defName>Smoke</defName>
-		<label>Smoke</label>
+		<defName>Poison_Gas</defName>
+		<label>Poison Gas</label>
   <linkDrawerType>Transmitter</linkDrawerType>
   		 <linkFlags>
       <li>Custom1</li>
@@ -23,9 +23,10 @@
 		<tickerType>Normal</tickerType>
 		 <pathCost>120</pathCost>
 		<passability>PassThroughOnly</passability>
-		<thingClass>TrapPack.Smoke</thingClass>
-		<textureFolderPath>Things/Smoke/</textureFolderPath>
-				<beauty>Ugly</beauty>
+		<thingClass>TrapPack.Poison_Gas</thingClass>
+		<textureFolderPath>Things/Poison_Gas/</textureFolderPath>
+		<beauty>Ugly</beauty>
+		<AltitudeLayer>VisEffects</AltitudeLayer>
   </ThingDef>
     <ThingDef ParentName="EffectBase">
 		<defName>Zap_Effect</defName>

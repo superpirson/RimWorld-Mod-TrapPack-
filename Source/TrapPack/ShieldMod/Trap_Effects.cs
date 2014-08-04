@@ -11,7 +11,7 @@ using RimWorld;
 //
 namespace TrapPack
 {
-	public class Smoke : ThingAddons.AnimatedThing{
+	public class Poison_Gas : ThingAddons.AnimatedThing{
 		//damage defs
 		static DamageTypeDef Poisoned = DefDatabase<DamageTypeDef>.GetNamed("Poisoned");
 
@@ -20,6 +20,7 @@ namespace TrapPack
 		public int thickness = 0;
 		public uint ticks_untill_next_update = 20;
 		public override void SpawnSetup(){
+			this.wait_ticks = Rand.Range(0,100);
 			base.SpawnSetup();
 		}
 		public override void Tick(){
@@ -32,51 +33,57 @@ namespace TrapPack
 				ticks_untill_next_update += (uint)Rand.Range(40,200);
 			}
 					if (this.thickness-- == 0){
-					this.Destroy();
-				base.Tick ();	
+				base.Tick();	
+				this.Destroy();
 				return;
 				}
-					foreach (IntVec3 pos  in this.Position.AdjacentSquares8Way()){
+					foreach (IntVec3 pos  in this.Position.AdjacentSquares8Way().InRandomOrder()){
 					if (Find.PathGrid.Walkable(pos)){
-					this.thickness = try_place_smoke(pos, this.thickness);
+					this.thickness = try_place_Poison_Gas(pos, this.thickness);
 					}
 			}
 			List<Thing> things = new List<Thing>();
 			things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
 			foreach (Thing target in things){
 				if (target is Pawn){
+
 					//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
-						
-					target.TakeDamage(new DamageInfo(Poisoned, this.thickness, this, new BodyPartDamageInfo(null, BodyPartDepth.Inside)));
+					Pawn pawn = (Pawn)target;
+					List<BodyDefPart> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
+					foreach (BodyDefPart part in bodyparts.InRandomOrder()){
+						if (part.def.activities != null &&  part.def.activities.Contains("Breathing_main")){
+							float damage_mod = pawn.apparel.GetDamageAbsorption(part,Poisoned.injury);
+							if (damage_mod < 0.99f){
+								pawn.healthTracker.ApplyDamage(new DamageInfo(Poisoned, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
+							break;
+							}
+						}
+					}
 				}
-			}
+					}
 			base.Tick();
 	}
-		public static int try_place_smoke(IntVec3 pos, int thickness = 100){
-			Thing found_thing = Find.Map.thingGrid.ThingAt(pos,ThingDef.Named("Smoke"));
+		public static int try_place_Poison_Gas(IntVec3 pos, int thickness = 100){
+			Thing found_thing = Find.Map.thingGrid.ThingAt(pos,ThingDef.Named("Poison_Gas"));
 			if (found_thing == null){
-				// there is no smoke, make a new one with 1/8 ours
-				Smoke new_smoke = (Smoke)GenSpawn.Spawn(ThingDef.Named("Smoke"), pos);
-				new_smoke.thickness = thickness/ 8;
+				// there is no Poison_Gas, make a new one with 1/8 ours
+				Poison_Gas new_Poison_Gas = (Poison_Gas)GenSpawn.Spawn(ThingDef.Named("Poison_Gas"), pos);
+				new_Poison_Gas.thickness = thickness/ 8;
 				thickness-= thickness/8;
 			}else{
-				// we found a smoke, add to it's thickness with 1/4 of ours
-				Smoke adj_smoke = (Smoke)found_thing;
-				adj_smoke.thickness += (thickness/ 4);
+				// we found a Poison_Gas, add to it's thickness with 1/4 of ours
+				Poison_Gas adj_Poison_Gas = (Poison_Gas)found_thing;
+				adj_Poison_Gas.thickness += (thickness/ 4);
 				thickness-= thickness/4;
 			}
 			return thickness; 
 		}
-		public override string Label{
-			get
-			{
-				
-				StringBuilder stringBuilder = new StringBuilder ();
-				stringBuilder.Append (base.Label);
-				stringBuilder.Append(" thickness: " + this.thickness);
-				return stringBuilder.ToString ();
-			}
-			
+		public override string GetInspectString()
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append(base.GetInspectString());
+				stringBuilder.Append("Thickness : " + this.thickness);
+			return stringBuilder.ToString();
 		}
 	}
 	public class Zap_Effect : ThingAddons.AnimatedThing{

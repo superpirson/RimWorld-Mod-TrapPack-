@@ -54,7 +54,7 @@
     <workToBuild>10</workToBuild>
     <useStandardHealth>true</useStandardHealth>
     <maxHealth>200</maxHealth>
-    <flammability>1.0</flammability>
+    <flammability>2.0</flammability>
     <placingDraggableDimensions>2</placingDraggableDimensions>
     <selectable>false</selectable>
     <textureFolderPath>Things/Kindling/Kindling</textureFolderPath>
@@ -72,7 +72,7 @@
     <label>Pit Trap</label>
   <drawerType>RealtimeOnly</drawerType>
     <surfaceNeeded>GrowSoil</surfaceNeeded>
-     <pathCost>120</pathCost>
+     <pathCost>20</pathCost>
     <description>A small pit trap, just large enough to trap a person. Can only be built on non-sand soil. It takes forever to dig out, but it's crippling to anyone who falls in. Mine it to destroy it and free whatever's inside.</description>
     <thingClass>TrapPack.Building_Pit_Trap</thingClass>
     <workToBuild>500</workToBuild>
