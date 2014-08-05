@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mine_Defs>
+  <ThingDef Name="MineBase" Abstract="True">
+    <category>Building</category>
+  </ThingDef>
+  <Mine_Def ParentName="MineBase">
+    <defName>Basic_Mine</defName>
+    <label>Basic Mine</label>
+    <description></description>
+	
+    </costList>
+  </Mine_Def>
+  
+</Mine_Defs>

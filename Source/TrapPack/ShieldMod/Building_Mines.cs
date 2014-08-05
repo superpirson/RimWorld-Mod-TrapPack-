@@ -11,25 +11,59 @@ using RimWorld;
 //
 namespace TrapPack
 {
-
+	public class Mine_Def : Def {
+		public ExplosionInfo explosion;
+		public List<IntVec3> trigger_spots;
+		public DamageTypeDef damage_def;
+		public string arm_ui_texture_path;
+		public string disarm_ui_texture_path;
+		public string trigger_ui_texture_path;
+		public string armed_effect_texture_path;
+		
+	}
 	//--mines
-	public abstract class Mine : Building
+	public class Mine : Building
 	{
+		
 		protected static readonly SoundDef fireSound = SoundDef.Named("mine_explosion"); 
 		protected static readonly SoundDef explodeSound = SoundDef.Named("mine_explosion");
-		protected static Texture2D texUI_Arm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Arm", true);
-		protected static Texture2D texUI_Disarm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Disarm", true);
-		protected static Texture2D texUI_Trigger = ContentFinder<Texture2D>.Get("UI/Commands/UI_Trigger", true);
-		protected static Texture2D tex_Armed_Effect = ContentFinder<Texture2D>.Get("Things/Armed_Effect", true);
+		protected  Texture2D texUI_Arm;
+		protected  Texture2D texUI_Disarm;
+		protected  Texture2D texUI_Trigger;
+		protected  Texture2D tex_Armed_Effect;
 		protected static Material Armed_Mat;
-
+		
+		public Mine_Def mine_def;
 		// globals
 		public bool armed = false; 
 		public bool changed = false;
-		 static Mine(){
+		
+		public Mine(){
+			try{
 			Armed_Mat = VerseBase.MatBases.MetaOverlay;
 			Armed_Mat.mainTexture = tex_Armed_Effect;
+			tex_Armed_Effect = ContentFinder<Texture2D>.Get(this.mine_def.armed_effect_texture_path, true);
+			texUI_Trigger = ContentFinder<Texture2D>.Get(this.mine_def.trigger_ui_texture_path, true);
+			texUI_Disarm = ContentFinder<Texture2D>.Get(this.mine_def.disarm_ui_texture_path, true);
+			texUI_Arm = ContentFinder<Texture2D>.Get(this.mine_def.arm_ui_texture_path, true);
+			}
+			catch (NullReferenceException e){
+				Log.Error("Mine object tried to load it's textures from it's minedef and failed, threw : " + e.Message);
+				
+				texUI_Arm = BaseContent.BadTex;
+				texUI_Disarm =BaseContent.BadTex;
+					texUI_Trigger =BaseContent.BadTex;
+						tex_Armed_Effect = BaseContent.BadTex;
+						Armed_Mat =BaseContent.BadMat;
+			}
 		}
+		
+		public override void ExposeData ()
+		{
+			Scribe_Defs.LookDef<Mine_Def> (ref this.mine_def, "def");
+			base.ExposeData();
+		}
+		
 		/// <summary>
 		/// taken from powerswitch mod by Haplo
 		/// This creates new selection buttons with a new graphic
@@ -87,7 +121,7 @@ namespace TrapPack
 				Graphics.DrawMesh (this.DrawMesh, this.DrawPos, quaternion, Armed_Mat, 0);
 			}
 		}
-			public virtual void Detonate(){
+		public virtual void Detonate(){
 			Log.Error(this.ToString() + "  just called an unimplimented detonate method!");
 			}
 	}

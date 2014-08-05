@@ -11,6 +11,7 @@ using RimWorld;
 //
 namespace TrapPack
 {
+
 	public class Poison_Gas : ThingAddons.AnimatedThing{
 		//damage defs
 		static DamageTypeDef Poisoned = DefDatabase<DamageTypeDef>.GetNamed("Poisoned");
