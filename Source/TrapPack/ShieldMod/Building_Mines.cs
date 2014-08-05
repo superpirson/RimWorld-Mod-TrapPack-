@@ -32,32 +32,33 @@ namespace TrapPack
 		protected  Texture2D texUI_Trigger;
 		protected  Texture2D tex_Armed_Effect;
 		protected static Material Armed_Mat;
-		
+	
 		public Mine_Def mine_def;
 		// globals
 		public bool armed = false; 
 		public bool changed = false;
 		
-		public Mine(){
-			try{
+		public override void SpawnSetup(){
+		try{
 			Armed_Mat = VerseBase.MatBases.MetaOverlay;
 			Armed_Mat.mainTexture = tex_Armed_Effect;
 			tex_Armed_Effect = ContentFinder<Texture2D>.Get(this.mine_def.armed_effect_texture_path, true);
 			texUI_Trigger = ContentFinder<Texture2D>.Get(this.mine_def.trigger_ui_texture_path, true);
 			texUI_Disarm = ContentFinder<Texture2D>.Get(this.mine_def.disarm_ui_texture_path, true);
 			texUI_Arm = ContentFinder<Texture2D>.Get(this.mine_def.arm_ui_texture_path, true);
-			}
-			catch (NullReferenceException e){
-				Log.Error("Mine object tried to load it's textures from it's minedef and failed, threw : " + e.Message);
-				
-				texUI_Arm = BaseContent.BadTex;
-				texUI_Disarm =BaseContent.BadTex;
-					texUI_Trigger =BaseContent.BadTex;
-						tex_Armed_Effect = BaseContent.BadTex;
-						Armed_Mat =BaseContent.BadMat;
-			}
 		}
-		
+		catch (NullReferenceException e){
+			Log.Error("Mine object tried to load it's textures from it's minedef and failed, threw : " + e.Message);
+			
+			texUI_Arm = BaseContent.BadTex;
+			texUI_Disarm =BaseContent.BadTex;
+			texUI_Trigger =BaseContent.BadTex;
+			tex_Armed_Effect = BaseContent.BadTex;
+			Armed_Mat = BaseContent.BadMat;
+		}
+			base.SpawnSetup();
+		}
+	
 		public override void ExposeData ()
 		{
 			Scribe_Defs.LookDef<Mine_Def> (ref this.mine_def, "def");

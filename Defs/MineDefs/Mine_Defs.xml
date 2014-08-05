@@ -7,7 +7,12 @@
     <defName>Basic_Mine</defName>
     <label>Basic Mine</label>
     <description></description>
-	
+	<armed_effect_texture_path>Things/Armed_Effect</armed_effect_texture_path>
+	<trigger_ui_texture_path>UI/Commands/UI_Trigger</trigger_ui_texture_path>
+	<disarm_ui_texture_path>UI/Commands/UI_Disarm</disarm_ui_texture_path>
+	<arm_ui_texture_path>UI/Commands/UI_Arm</arm_ui_texture_path>
+	<explosion></explosion>
+	<damage_def>mine_damage_type</damage_def>
     </costList>
   </Mine_Def>
   
