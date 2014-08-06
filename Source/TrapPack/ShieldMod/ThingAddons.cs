@@ -14,6 +14,21 @@ using System.Collections.Generic;
 public class AnimatedThingDef : ThingDef{
 	public List<ThingAddons.Frame> frames;
 	public bool play = true;
+	public override void PostLoad(){
+		if (frames == null){
+			frames = new List<ThingAddons.Frame>();
+		}
+		foreach (ThingAddons.Frame frame in frames){
+			if (frame.tex_name == null){
+				Log.Error("failed to get texture!");
+				continue;
+			}
+			
+	Material material = new Material(VerseBase.MatBases.Cutout);
+	material.mainTexture = ContentFinder<Texture2D>.Get (frame.tex_name, true);
+			frame.material = material;
+	}
+	}
 }
 
 
@@ -26,18 +41,8 @@ namespace ThingAddons
 		public Frame(){
 		}
 		public Material material = Verse.BaseContent.BadMat;
-		private string tex_name_intenal = "err, bad tex string";
-		public string tex_name {
-			get {
-				return tex_name_intenal;
-			}
-			set{
-				tex_name_intenal = value;
-				material = new Material(VerseBase.MatBases.Cutout);
-				material.mainTexture = ContentFinder<Texture2D>.Get (tex_name_intenal, true);
- 			
-			}
-		}
+		public string tex_name ;
+ 		
 		public bool play_through = true;
 		public int frame_number = 0;
 		public int frame_delay = 0;

@@ -59,7 +59,7 @@
   </ThingDef>
   
   
-    <ThingDef ParentName="MineBase">
+    <ThingDef Class="Mine_Def" ParentName="MineBase">
     <defName>Building_Mine</defName>
     <label>Mine Trap</label>
     <description>A high explosive with a contact sensor.</description>
