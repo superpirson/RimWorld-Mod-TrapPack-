@@ -11,7 +11,7 @@ using RimWorld;
 //
 
 //has to be outside namespace for odd resons requred by the game 
-public class Mine_Def : ThingDef {
+public class Mine_Def : AnimatedThingDef {
 
 	public float explosion_min_radius;
 	public float explosion_max_radius;
@@ -26,9 +26,8 @@ public class Mine_Def : ThingDef {
 	public string arm_ui_texture_path;
 	public string disarm_ui_texture_path;
 	public string trigger_ui_texture_path;
-	public string armed_effect_texture_path;
+	//public string armed_effect_texture_path;
 	
-	public bool has_sensor = false;
 	public bool checks_for_frendly = false;
 	public bool can_trigger = true;
 }
@@ -41,14 +40,11 @@ namespace TrapPack
 
 	
 	//--mines
-	public class Mine : Building
-	{
+	public class Mine : ThingAddons.AnimatedBuilding{
+	
 		protected  Texture2D texUI_Arm;
 		protected  Texture2D texUI_Disarm;
 		protected  Texture2D texUI_Trigger;
-		protected  Texture2D tex_Armed_Effect;
-		protected static Material Armed_Mat;
-	
 		public Mine_Def mine_def;
 		// globals
 		public bool armed = false; 
@@ -60,21 +56,16 @@ namespace TrapPack
 				Log.Error("mine def of a mine type was null!");
 		}
 		try{
-			Armed_Mat = VerseBase.MatBases.MetaOverlay;
-			Armed_Mat.mainTexture = tex_Armed_Effect;
-			tex_Armed_Effect = ContentFinder<Texture2D>.Get(this.mine_def.armed_effect_texture_path, true);
 			texUI_Trigger = ContentFinder<Texture2D>.Get(this.mine_def.trigger_ui_texture_path, true);
 			texUI_Disarm = ContentFinder<Texture2D>.Get(this.mine_def.disarm_ui_texture_path, true);
 			texUI_Arm = ContentFinder<Texture2D>.Get(this.mine_def.arm_ui_texture_path, true);
+			
 		}
 		catch (NullReferenceException e){
 			Log.Error("Mine object tried to load it's textures from it's minedef and failed, threw : " + e.Message);
-			
 			texUI_Arm = BaseContent.BadTex;
 			texUI_Disarm =BaseContent.BadTex;
 			texUI_Trigger =BaseContent.BadTex;
-			tex_Armed_Effect = BaseContent.BadTex;
-			Armed_Mat = BaseContent.BadMat;
 		}
 			base.SpawnSetup();
 		}
@@ -82,21 +73,17 @@ namespace TrapPack
 		public override void Tick()
 		{
 			if (armed) {
-				List<Thing> things = new List<Thing>();
-				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
-				foreach (Thing target in things){
-					if (target is Pawn){
-						if (!this.mine_def.checks_for_frendly || target.Faction != this.Faction){
+				foreach (IntVec3 pos in this.mine_def.trigger_spots){
+					foreach (Pawn pawn in Find.Map.thingGrid.ThingsAt(this.Position +pos).OfType<Pawn>()){
+						if (!this.mine_def.checks_for_frendly || pawn.Faction != this.Faction){
 							Detonate();
+							return;
 						}
 					}
 				}
 			}
 			base.Tick();
 		}
-		
-		
-		
 		
 		/// <summary>
 		/// taken from powerswitch mod by Haplo
@@ -105,7 +92,7 @@ namespace TrapPack
 		/// <returns></returns>
 		public override IEnumerable<Command> GetCommands()
 		{
-			if (this.mine_def.has_sensor){
+			if (this.mine_def.trigger_spots.Any<IntVec3>()){
 				
 			Command_Action optX;
 			optX = new Command_Action();
@@ -137,26 +124,11 @@ namespace TrapPack
 			changed = true;
 			if (armed){
 				armed = false;
+			//	this.current_frame = this.fra;
 			}
 			else{
 				armed = true;
-			}
-		}
-		public override void Draw()
-		{
-			if (armed){
-				//from thing's draw code
-				Quaternion quaternion;
-				if (this.def.graphic == null)
-				{
-					quaternion = this.rotation.AsQuat;
-				}
-				else
-				{
-					quaternion = Quaternion.identity;
-				}
-				
-				Graphics.DrawMesh (this.DrawMesh, this.DrawPos, quaternion, Armed_Mat, 0);
+			//	this.current_frame = 1;
 			}
 		}
 		public virtual void Detonate(){
