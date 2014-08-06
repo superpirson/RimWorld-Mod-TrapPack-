@@ -10,7 +10,7 @@
   
 	<!-- end base definitions -->
 
-		<ThingDef ParentName="EffectBase">
+		<ThingDef Class="AnimatedThingDef" ParentName="EffectBase">
 		<eType>Wall</eType>
 		<defName>Poison_Gas</defName>
 		<label>Poison Gas</label>
