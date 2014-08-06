@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mine_Defs>
-  <ThingDef Name="MineBase" Abstract="True">
+<Mines>
+  <Mine_Def Name="MineBase" Abstract="True">
     <category>Building</category>
-  </ThingDef>
+  </Mine_Def>
+  
   <Mine_Def ParentName="MineBase">
     <defName>Basic_Mine</defName>
     <label>Basic Mine</label>
@@ -13,7 +14,6 @@
 	<arm_ui_texture_path>UI/Commands/UI_Arm</arm_ui_texture_path>
 	<explosion></explosion>
 	<damage_def>mine_damage_type</damage_def>
-    </costList>
   </Mine_Def>
   
-</Mine_Defs>
+</Mines>

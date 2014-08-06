@@ -9,24 +9,40 @@ using Verse;
 using RimWorld;
 // used some code from Haplo's PowerSwitch mod, and used sheildmod by Darker as a template
 //
+
+//has to be outside namespace for odd resons requred by the game 
+public class Mine_Def : ThingDef {
+
+	public float explosion_min_radius;
+	public float explosion_max_radius;
+	public float explosion_min_damage;
+	public float explosion_max_damage;
+	public DamageTypeDef damage_def;
+	public SoundDef explode_sound;
+	
+	public List<IntVec3> trigger_spots;
+
+	
+	public string arm_ui_texture_path;
+	public string disarm_ui_texture_path;
+	public string trigger_ui_texture_path;
+	public string armed_effect_texture_path;
+	
+	public bool has_sensor = false;
+	public bool checks_for_frendly = false;
+	public bool can_trigger = true;
+}
+
+
+
 namespace TrapPack
 {
-	public class Mine_Def : Def {
-		public ExplosionInfo explosion;
-		public List<IntVec3> trigger_spots;
-		public DamageTypeDef damage_def;
-		public string arm_ui_texture_path;
-		public string disarm_ui_texture_path;
-		public string trigger_ui_texture_path;
-		public string armed_effect_texture_path;
-		
-	}
+
+
+	
 	//--mines
 	public class Mine : Building
 	{
-		
-		protected static readonly SoundDef fireSound = SoundDef.Named("mine_explosion"); 
-		protected static readonly SoundDef explodeSound = SoundDef.Named("mine_explosion");
 		protected  Texture2D texUI_Arm;
 		protected  Texture2D texUI_Disarm;
 		protected  Texture2D texUI_Trigger;
@@ -39,6 +55,10 @@ namespace TrapPack
 		public bool changed = false;
 		
 		public override void SpawnSetup(){
+			mine_def = (Mine_Def)this.def;
+			if (this.mine_def == null){
+				Log.Error("mine def of a mine type was null!");
+		}
 		try{
 			Armed_Mat = VerseBase.MatBases.MetaOverlay;
 			Armed_Mat.mainTexture = tex_Armed_Effect;
@@ -58,12 +78,25 @@ namespace TrapPack
 		}
 			base.SpawnSetup();
 		}
-	
-		public override void ExposeData ()
+		
+		public override void Tick()
 		{
-			Scribe_Defs.LookDef<Mine_Def> (ref this.mine_def, "def");
-			base.ExposeData();
+			if (armed) {
+				List<Thing> things = new List<Thing>();
+				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
+				foreach (Thing target in things){
+					if (target is Pawn){
+						if (!this.mine_def.checks_for_frendly || target.Faction != this.Faction){
+							Detonate();
+						}
+					}
+				}
+			}
+			base.Tick();
 		}
+		
+		
+		
 		
 		/// <summary>
 		/// taken from powerswitch mod by Haplo
@@ -72,6 +105,8 @@ namespace TrapPack
 		/// <returns></returns>
 		public override IEnumerable<Command> GetCommands()
 		{
+			if (this.mine_def.has_sensor){
+				
 			Command_Action optX;
 			optX = new Command_Action();
 			if (!armed)
@@ -84,7 +119,8 @@ namespace TrapPack
 			optX.action = Arm_Disarm;
 			optX.groupKey = 313123004;
 			yield return optX;
-
+			}
+			if (this.mine_def.can_trigger){	
 			Command_Action optT;
 			optT = new Command_Action();
 			optT.icon = texUI_Trigger;
@@ -94,6 +130,7 @@ namespace TrapPack
 			optT.action = Detonate;
 			optT.groupKey = 313123005;
 			yield return optT;
+			}
 		}
 		private void Arm_Disarm()
 		{
@@ -123,11 +160,17 @@ namespace TrapPack
 			}
 		}
 		public virtual void Detonate(){
-			Log.Error(this.ToString() + "  just called an unimplimented detonate method!");
+			this.Destroy();
+			ExplosionInfo explosion = new ExplosionInfo();
+			explosion.radius = Rand.Range(mine_def.explosion_min_radius, mine_def.explosion_max_radius);
+			explosion.dinfo = new DamageInfo(this.mine_def.damage_def, (int)Rand.Range(mine_def.explosion_min_damage, mine_def.explosion_max_damage), this);
+			explosion.center = this.Position;
+			explosion.explosionSound = this.mine_def.explode_sound;
+			explosion.Explode();
 			}
 	}
 
-
+/*
 	public class Building_Mine : Mine
 	{
 		static DamageTypeDef mine_damage_type = DefDatabase<DamageTypeDef>.GetNamed("mine_damage_type");
@@ -234,31 +277,16 @@ namespace TrapPack
 						e.Explode();
 		}
 	}
+	
+//*/
 	public class Building_Gas_Mine : Mine
 	{
-		public bool spraying = false;
 		//protected int ticks_until_next_puff = 0;
 	//	protected int puff_count = 0;
 	//	const int max_puffs = 5;
 
 		public override void Tick()
 		{
-
-
-			/* old code idea, diden't work :(
-			 if (spraying){
-				if (ticks_until_next_puff-- < 0){
-					Log.Message("spraed a puff!");
-					Smoke.try_place_smoke(this.Position.RandomAdjSquare8Way());
-					ticks_until_next_puff = Rand.Range(50,100);
-				
-				if (puff_count++ >= max_puffs){
-					this.Destroy();
-				}
-				}
-				return;
-			}
-			//*/
 			if (armed) {
 				List<Thing> things = new List<Thing>();
 				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
@@ -271,14 +299,12 @@ namespace TrapPack
 			base.Tick();
 		}
 		public override void Detonate(){
-			spraying = true;
 			Poison_Gas.try_place_Poison_Gas(this.Position, 1000);
 			this.Destroy();
 		}
 	}
 
 
-//*/
 
 
 }
