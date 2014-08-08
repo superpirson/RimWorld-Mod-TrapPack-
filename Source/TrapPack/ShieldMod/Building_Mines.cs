@@ -124,11 +124,11 @@ namespace TrapPack
 			changed = true;
 			if (armed){
 				armed = false;
-			//	this.current_frame = this.fra;
+			this.set_frame("_Disarmed");
 			}
 			else{
 				armed = true;
-			//	this.current_frame = 1;
+				this.set_frame("_Armed");
 			}
 		}
 		public virtual void Detonate(){

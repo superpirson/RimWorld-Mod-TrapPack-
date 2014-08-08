@@ -28,15 +28,35 @@
 		<beauty>Ugly</beauty>
 		<AltitudeLayer>VisEffects</AltitudeLayer>
   </ThingDef>
-    <ThingDef ParentName="EffectBase">
+    <ThingDef Class="AnimatedThingDef" ParentName="EffectBase">
 		<defName>Zap_Effect</defName>
 		<label>Zap Effect</label>
 		<TickerType>Normal</TickerType>
 		<drawerType>RealtimeOnly</drawerType>
 		<thingClass>TrapPack.Zap_Effect</thingClass>
-		<textureFolderPath>Things/zap</textureFolderPath>
+		<textureFolderPath>Things/zap/</textureFolderPath>
 		<randomizeRotationOnSpawn>True</randomizeRotationOnSpawn>
 		<AltitudeLayer>Projectile</AltitudeLayer>
+			
+		<frames>
+		<li>
+		<tex_name>zap1</tex_name>
+		<next_frame>zap2</next_frame>
+		</li>	
+		<li>
+		<tex_name>zap2</tex_name>
+		<next_frame>zap3</next_frame>
+		</li>
+		<li>
+		<tex_name>zap3</tex_name>
+			<next_frame>zap4</next_frame>
+		</li>
+		<li>
+		<tex_name>zap4</tex_name>
+		<next_frame>zap1</next_frame>
+		</li>
+	</frames>
+	
 	</ThingDef>
   
   
