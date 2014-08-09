@@ -26,11 +26,21 @@ public class Mine_Def : AnimatedThingDef {
 	public string arm_ui_texture_path;
 	public string disarm_ui_texture_path;
 	public string trigger_ui_texture_path;
-	public GasDef gas_to_spawn;
+//	public string gas_def_name;
+	public ThingDef gas_to_spawn;
 	public int gas_thickness = 1000;
 	
 	public bool checks_for_frendly = false;
 	public bool can_trigger = true;
+	/*
+	public override void ResolveReferences ()
+	{
+		if (gas_def_name != null){
+			this.gas_to_spawn = DefDatabase<Thi>.GetNamed(gas_def_name);
+		}
+		base.ResolveReferences();
+	}
+	//*/
 }
 
 
@@ -134,17 +144,19 @@ namespace TrapPack
 		}
 		public virtual void Detonate(){
 			this.Destroy();
+			//if our damagedef is not null, we are supposed to explode
+			if (this.mine_def.explosion_max_damage > 0f){
 			ExplosionInfo explosion = new ExplosionInfo();
 			explosion.radius = Rand.Range(mine_def.explosion_min_radius, mine_def.explosion_max_radius);
 			explosion.dinfo = new DamageInfo(this.mine_def.damage_def, (int)Rand.Range(mine_def.explosion_min_damage, mine_def.explosion_max_damage), this);
 			explosion.center = this.Position;
 			explosion.explosionSound = this.mine_def.explode_sound;
 			explosion.Explode();
-			
+			}
 			
 			//spawn gas if we need to
 			if (this.mine_def.gas_to_spawn != null){
-				Gas.try_place_Gas(this.Position, this.mine_def.gas_to_spawn, this.mine_def.gas_thickness);
+				Gas.try_place_Gas(this.Position, (GasDef)this.mine_def.gas_to_spawn, this.mine_def.gas_thickness);
 			}
 			}
 	}

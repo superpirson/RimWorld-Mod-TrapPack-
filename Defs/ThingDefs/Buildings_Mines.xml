@@ -129,8 +129,7 @@
 	<explosion_max_damage>30</explosion_max_damage>
 
   </ThingDef>
-
-  <ThingDef Class="Mine_Def" Name="Dumb_Bomb_Base" ParentName="MineBase">
+ <ThingDef Class="Mine_Def" ParentName="MineBase">
     <defName>Building_FireBomb</defName>
     <label>FireBomb</label>
     <description>A crude improvised explosive, it produces a small and wildly inconsistent fireball.</description>
@@ -163,12 +162,16 @@
 		<explosion_max_damage>10</explosion_max_damage>
         
       </ThingDef>
+  <ThingDef Class="Mine_Def" Name="Dumb_Bomb_Base" Abstract="True" ParentName="MineBase">
+    	<trigger_spots></trigger_spots>
+      </ThingDef>
+      
        <ThingDef Class="Mine_Def" ParentName="Dumb_Bomb_Base">
     <defName>Building_Gas_Mine</defName>
     <label>Gas Mine</label>
     <description>A weapon of death more so than fear, this gas bomb releases a cloud of lethal neurotoxin. It cares not if colonists get caught in the cloud, so be careful.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
-    <thingClass>TrapPack.Building_Mine</thingClass>
+    <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
     <textureFolderPath>Things/FireBomb/</textureFolderPath>
     <costList>
@@ -182,13 +185,14 @@
       </li>
     </costList>
     <gas_to_spawn>Poison_Gas</gas_to_spawn>
+    <explosion_max_damage>0</explosion_max_damage>
       </ThingDef>
        <ThingDef Class="Mine_Def" ParentName="Dumb_Bomb_Base">
     <defName>Building_Nitrogen_Mine</defName>
     <label>Nitrogen Mine</label>
     <description>A neat way to extinguish fires.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
-    <thingClass>TrapPack.Building_Mine</thingClass>
+    <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
     <textureFolderPath>Things/FireBomb/</textureFolderPath>
     <costList>
@@ -202,6 +206,7 @@
       </li>
     </costList>
     <gas_to_spawn>Nitrogen_Gas</gas_to_spawn>
+    <explosion_max_damage>0</explosion_max_damage>
       </ThingDef>
 
   <ThingDef Class="Mine_Def" ParentName="MineBase">

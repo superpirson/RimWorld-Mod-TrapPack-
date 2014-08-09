@@ -88,7 +88,7 @@ namespace TrapPack
 			Thing found_thing = Find.Map.thingGrid.ThingAt<Gas>(pos);
 			if (found_thing == null){
 				// there is no Poison_Gas, make a new one with 1/8 ours
-				Gas new_gas = (Gas)GenSpawn.Spawn(ThingDef.Named("Poison_Gas"), pos);
+				Gas new_gas = (Gas)GenSpawn.Spawn(gas_def, pos);
 				new_gas.thickness = thickness/ 8;
 				thickness-= thickness/8;
 			}else{
