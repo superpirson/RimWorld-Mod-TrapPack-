@@ -26,7 +26,8 @@ public class Mine_Def : AnimatedThingDef {
 	public string arm_ui_texture_path;
 	public string disarm_ui_texture_path;
 	public string trigger_ui_texture_path;
-	//public string armed_effect_texture_path;
+	public GasDef gas_to_spawn;
+	public int gas_thickness = 1000;
 	
 	public bool checks_for_frendly = false;
 	public bool can_trigger = true;
@@ -139,144 +140,13 @@ namespace TrapPack
 			explosion.center = this.Position;
 			explosion.explosionSound = this.mine_def.explode_sound;
 			explosion.Explode();
+			
+			
+			//spawn gas if we need to
+			if (this.mine_def.gas_to_spawn != null){
+				Gas.try_place_Gas(this.Position, this.mine_def.gas_to_spawn, this.mine_def.gas_thickness);
+			}
 			}
 	}
-
-/*
-	public class Building_Mine : Mine
-	{
-		static DamageTypeDef mine_damage_type = DefDatabase<DamageTypeDef>.GetNamed("mine_damage_type");
-		public override void Tick()
-		{
-			if (armed) {
-				List<Thing> things = new List<Thing>();
-				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
-				foreach (Thing target in things){
-					if (target is Pawn){
-						Detonate();
-					}
-				}
-			}
-			base.Tick();
-		}
-
-		public override void Detonate(){
-			explodeSound.PlayOneShot(this.Position);
-			Destroy();
-			ExplosionInfo e = default(ExplosionInfo);
-			e.center = this.Position;
-			e.dinfo = new DamageInfo( mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
-			e.radius = 1.5f;
-			e.Explode();
-
-		}
-	}
-	public class Building_Mine_Incend : Mine
-	{
-
-		public override void Tick()
-		{
-			if (armed) {
-				List<Thing> things = new List<Thing>();
-				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
-				foreach (Thing target in things){
-					if (target is Pawn){
-						Detonate();
-					}
-				}
-			}
-			base.Tick();
-		}
-		public override void Detonate(){
-			fireSound.PlayOneShot(this.Position);
-			Destroy();
-			ExplosionInfo e = default(ExplosionInfo);
-			e.center = this.Position;
-			e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(20,30), this);
-			e.radius = UnityEngine.Random.Range(4,5);
-			e.Explode();
-		}
-	}
-	public class Building_Smart_Mine : Mine
-	{
-		static DamageTypeDef s_mine_damage_type = DefDatabase<DamageTypeDef>.GetNamed("s_mine_damage_type");
-		public override void Tick()
-		{
-			if (armed) {
-				List<Thing> things = new List<Thing>();
-				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
-				foreach (Thing target in things){
-					if (target is Pawn && target.Faction != this.Faction){
-					Detonate();
-					}
-				}
-			}
-			base.Tick();
-		}
-	public override void Detonate(){
-		explodeSound.PlayOneShot(this.Position);
-		Destroy();
-		ExplosionInfo e = default(ExplosionInfo);
-		e.center = this.Position;
-		e.dinfo = new DamageInfo( s_mine_damage_type, (int) UnityEngine.Random.Range(20,140), this);
-		e.radius = 1.5f;
-		e.Explode();		
-	}
-	}
-
-	public class Building_FireBomb : Mine
-	{	
-		public override IEnumerable<Command> GetCommands()
-		{
-			Command_Action optT;
-			optT = new Command_Action();
-			optT.icon = texUI_Trigger;
-			optT.disabled = false;
-			optT.defaultDesc = "Triggers the trap immediately.";
-			optT.activateSound = SoundDef.Named("Click");
-			optT.action = Detonate;
-			optT.groupKey = 313123005;
-			yield return optT;
-		}
-
-		public override void Detonate(){
-						fireSound.PlayOneShot(this.Position);
-						Destroy();
-						ExplosionInfo e = default(ExplosionInfo);
-						e.center = this.Position;
-						e.dinfo = new DamageInfo( DamageTypeDefOf.Flame, (int) UnityEngine.Random.Range(2,20), this);
-						e.radius = UnityEngine.Random.Range(0,2);
-						e.Explode();
-		}
-	}
-	
-//*/
-	public class Building_Gas_Mine : Mine
-	{
-		//protected int ticks_until_next_puff = 0;
-	//	protected int puff_count = 0;
-	//	const int max_puffs = 5;
-
-		public override void Tick()
-		{
-			if (armed) {
-				List<Thing> things = new List<Thing>();
-				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
-				foreach (Thing target in things){
-					if (target is Pawn){
-						Detonate();
-					}
-				}
-			}
-			base.Tick();
-		}
-		public override void Detonate(){
-			Poison_Gas.try_place_Poison_Gas(this.Position, 1000);
-			this.Destroy();
-		}
-	}
-
-
-
 
 }

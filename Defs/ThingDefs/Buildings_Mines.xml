@@ -168,7 +168,7 @@
     <label>Gas Mine</label>
     <description>A weapon of death more so than fear, this gas bomb releases a cloud of lethal neurotoxin. It cares not if colonists get caught in the cloud, so be careful.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
-    <thingClass>TrapPack.Building_Gas_Mine</thingClass>
+    <thingClass>TrapPack.Building_Mine</thingClass>
     <workToBuild>200</workToBuild>
     <textureFolderPath>Things/FireBomb/</textureFolderPath>
     <costList>
@@ -181,6 +181,27 @@
         <count>1</count>
       </li>
     </costList>
+    <gas_to_spawn>Poison_Gas</gas_to_spawn>
+      </ThingDef>
+       <ThingDef Class="Mine_Def" ParentName="Dumb_Bomb_Base">
+    <defName>Building_Nitrogen_Mine</defName>
+    <label>Nitrogen Mine</label>
+    <description>A neat way to extinguish fires.</description>
+    <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
+    <thingClass>TrapPack.Building_Mine</thingClass>
+    <workToBuild>200</workToBuild>
+    <textureFolderPath>Things/FireBomb/</textureFolderPath>
+    <costList>
+      <li>
+        <thingDef>WoodLog</thingDef>
+        <count>1</count>
+      </li>
+       <li>
+        <thingDef>Electronics</thingDef>
+        <count>1</count>
+      </li>
+    </costList>
+    <gas_to_spawn>Nitrogen_Gas</gas_to_spawn>
       </ThingDef>
 
   <ThingDef Class="Mine_Def" ParentName="MineBase">
@@ -210,7 +231,9 @@
     	<trigger_spots>
     	<li>0,0,0</li>
     	<li>0,1,0</li>
-    	<li>0,-1,0</li>    	
+    	<li>0,-1,0</li>   
+    	<li>1,0,0</li>
+    	<li>-1,0,0</li>  	
     	</trigger_spots>
     	
     	<damage_def>Flame</damage_def>

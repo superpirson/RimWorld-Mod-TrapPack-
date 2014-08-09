@@ -10,7 +10,7 @@
   
 	<!-- end base definitions -->
 
-		<ThingDef Class="AnimatedThingDef" ParentName="EffectBase">
+		<ThingDef Class="GasDef" ParentName="EffectBase">
 		<eType>Wall</eType>
 		<defName>Poison_Gas</defName>
 		<label>Poison Gas</label>
@@ -23,11 +23,37 @@
 		<tickerType>Normal</tickerType>
 		 <pathCost>120</pathCost>
 		<passability>PassThroughOnly</passability>
-		<thingClass>TrapPack.Poison_Gas</thingClass>
+		<thingClass>TrapPack.Gas</thingClass>
 		<textureFolderPath>Things/Poison_Gas/</textureFolderPath>
 		<beauty>Ugly</beauty>
 		<AltitudeLayer>VisEffects</AltitudeLayer>
+		<damage_per_tick>2</damage_per_tick>
+		<extinguish_fire>False</extinguish_fire>
+		<damage_type>Poisoned</damage_type>
   </ThingDef>
+  
+  <ThingDef Class="GasDef" ParentName="EffectBase">
+		<eType>Wall</eType>
+		<defName>Nitrogen_Gas</defName>
+		<label>Nitrogen Gas</label>
+  <linkDrawerType>Transmitter</linkDrawerType>
+  		 <linkFlags>
+      <li>Custom2</li>
+   		 </linkFlags>
+   		     <drawerType>MapMeshOnly</drawerType>
+		<description>A mixture of nitrogen and CO2, used to suppress fires. It is safe to inhale.</description>
+		<tickerType>Normal</tickerType>
+		 <pathCost>20</pathCost>
+		<passability>PassThroughOnly</passability>
+		<thingClass>TrapPack.Gas</thingClass>
+		<textureFolderPath>Things/Poison_Gas/</textureFolderPath>
+		<beauty>Ugly</beauty>
+		<AltitudeLayer>VisEffects</AltitudeLayer>
+		<damage_per_tick>0</damage_per_tick>
+				<extinguish_fire>true</extinguish_fire>
+			
+  </ThingDef>
+  
     <ThingDef Class="AnimatedThingDef" ParentName="EffectBase">
 		<defName>Zap_Effect</defName>
 		<label>Zap Effect</label>

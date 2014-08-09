@@ -9,18 +9,27 @@ using Verse;
 using RimWorld;
 // used some code from Haplo's PowerSwitch mod, and used sheildmod by Darker as a template
 //
+
+public class GasDef : AnimatedThingDef {
+	
+	public int damage_per_tick = 0;
+	public bool extinguish_fire = false;
+	public DamageTypeDef damage_type;
+}
+
 namespace TrapPack
 {
 
-	public class Poison_Gas : ThingAddons.AnimatedThing{
+	public class Gas : ThingAddons.AnimatedThing{
 		//damage defs
-		static DamageTypeDef Poisoned = DefDatabase<DamageTypeDef>.GetNamed("Poisoned");
+		//static DamageTypeDef Poisoned = DefDatabase<DamageTypeDef>.GetNamed("Poisoned");
 
-
+		public GasDef gas_def;
 		// globals
 		public int thickness = 0;
 		public uint ticks_untill_next_update = 20;
 		public override void SpawnSetup(){
+			this.gas_def = (GasDef)this.def;
 			this.wait_ticks = Rand.Range(0,100);
 			base.SpawnSetup();
 		}
@@ -33,7 +42,8 @@ namespace TrapPack
 				//reload the tick timer with a random number of ticks
 				ticks_untill_next_update += (uint)Rand.Range(40,200);
 			}
-					if (this.thickness-- == 0){
+			// begin determing if we need to spread
+			if (this.thickness-- == 0){
 				base.Tick();	
 				this.Destroy();
 				return;
@@ -41,43 +51,53 @@ namespace TrapPack
 					foreach (IntVec3 pos  in this.Position.AdjacentSquares8Way().InRandomOrder()){
 					if (Find.PathGrid.Walkable(pos)){
 					if (this.thickness > 5){
-					this.thickness = try_place_Poison_Gas(pos, this.thickness);
+						this.thickness = try_place_Gas(pos,this.gas_def, this.thickness);
 					}
 					}
 			}
+			
+			// begin doing what this gas is supposed to do, be it damage or fire extingusihng
 			List<Thing> things = new List<Thing>();
 			things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
 			foreach (Thing target in things){
-				if (target is Pawn){
-
+			
+			// if we found a pawn, prepare to do damage to it
+				if ( this.gas_def.damage_per_tick > 0 && target is Pawn ){
 					//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
 					Pawn pawn = (Pawn)target;
 					List<BodyDefPart> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
 					foreach (BodyDefPart part in bodyparts.InRandomOrder()){
 						if (part.def.activities != null &&  part.def.activities.Contains("Breathing_main")){
-							float damage_mod = pawn.apparel.GetDamageAbsorption(part,Poisoned.injury);
+							float damage_mod = pawn.apparel.GetDamageAbsorption(part,this.gas_def.damage_type.injury);
 							if (damage_mod < 0.99f){
-								pawn.healthTracker.ApplyDamage(new DamageInfo(Poisoned, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
+								pawn.healthTracker.ApplyDamage(new DamageInfo(this.gas_def.damage_type, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
 							break;
 							}
 						}
 					}
 				}
+				if (this.gas_def.extinguish_fire && target is Fire){
+					Fire fire = (Fire)target;
+					fire.fireSize -= .05f;
+				
+				}
 					}
 			base.Tick();
 	}
-		public static int try_place_Poison_Gas(IntVec3 pos, int thickness = 100){
-			Thing found_thing = Find.Map.thingGrid.ThingAt(pos,ThingDef.Named("Poison_Gas"));
+		public static int try_place_Gas(IntVec3 pos, GasDef gas_def ,int thickness = 100){
+			Thing found_thing = Find.Map.thingGrid.ThingAt<Gas>(pos);
 			if (found_thing == null){
 				// there is no Poison_Gas, make a new one with 1/8 ours
-				Poison_Gas new_Poison_Gas = (Poison_Gas)GenSpawn.Spawn(ThingDef.Named("Poison_Gas"), pos);
-				new_Poison_Gas.thickness = thickness/ 8;
+				Gas new_gas = (Gas)GenSpawn.Spawn(ThingDef.Named("Poison_Gas"), pos);
+				new_gas.thickness = thickness/ 8;
 				thickness-= thickness/8;
 			}else{
-				// we found a Poison_Gas, add to it's thickness with 1/4 of ours
-				Poison_Gas adj_Poison_Gas = (Poison_Gas)found_thing;
-				adj_Poison_Gas.thickness += (thickness/ 4);
+				// we found a gas, check if it is our type and then exchange, add to it's thickness with 1/4 of ours
+				Gas adj_gas = (Gas)found_thing;
+				if (adj_gas.gas_def == gas_def){
+				adj_gas.thickness += (thickness/ 4);
 				thickness-= thickness/4;
+				}
 			}
 			return thickness; 
 		}
