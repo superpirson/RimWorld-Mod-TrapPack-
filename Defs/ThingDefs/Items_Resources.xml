@@ -55,7 +55,7 @@
     <defName>UnsetMine</defName>
     <label>Unset Mine</label>
     <description>These are needed for exploding traps.</description>
-    <textureFolderPath>Things/Mine/Unset_</textureFolderPath>
+    <textureFolderPath>Things/Item/Unset_Mine</textureFolderPath>
     <soundInteract>Standard_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
     <basePrice>10</basePrice>
@@ -67,7 +67,7 @@
     <defName>UnsetSmartMine</defName>
     <label>Unset Smart Mine</label>
     <description>These are needed for exploding traps.</description>
-    <textureFolderPath>Things/Smart_Mine/Unset_</textureFolderPath>
+    <textureFolderPath>Things/Item/Unset_Smart_Mine</textureFolderPath>
     <soundInteract>Standard_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
     <basePrice>10</basePrice>
@@ -79,7 +79,7 @@
     <defName>UnsetMineIncend</defName>
     <label>Unset Incendiary Mine</label>
     <description>These are needed for exploding traps.</description>
-    <textureFolderPath>Things/Mine_Incend/Unset_</textureFolderPath>
+    <textureFolderPath>Things/Item/Unset_Mine_Incend</textureFolderPath>
     <soundInteract>Standard_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
     <basePrice>10</basePrice>
