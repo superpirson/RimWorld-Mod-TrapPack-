@@ -12,6 +12,7 @@ using RimWorld;
 
 public class GasDef : AnimatedThingDef {
 	
+	
 	public int damage_per_tick = 0;
 	public bool extinguish_fire = false;
 	public DamageTypeDef damage_type;

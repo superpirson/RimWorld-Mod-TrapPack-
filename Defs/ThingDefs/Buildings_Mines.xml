@@ -36,12 +36,6 @@
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>50</workToBuild>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
-    <costList>
-      <li>
-        <thingDef>UnsetMine</thingDef>
-        <count>1</count>
-      </li>
-    </costList>
     <trigger_spots>
     <li>0,0,0</li>
     </trigger_spots>
@@ -164,16 +158,17 @@
       </ThingDef>
   <ThingDef Class="Mine_Def" Name="Dumb_Bomb_Base" Abstract="True" ParentName="MineBase">
     	<trigger_spots></trigger_spots>
+    	<randomizeRotationOnSpawn>false</randomizeRotationOnSpawn>
       </ThingDef>
       
        <ThingDef Class="Mine_Def" ParentName="Dumb_Bomb_Base">
-    <defName>Building_Gas_Mine</defName>
-    <label>Gas Mine</label>
-    <description>A weapon of death more so than fear, this gas bomb releases a cloud of lethal neurotoxin. It cares not if colonists get caught in the cloud, so be careful.</description>
+    <defName>Poison_Gas_Bomb</defName>
+    <label>Poison Gas Bomb</label>
+    <description>A weapon of death more so than fear, this gas bomb releases a cloud of lethal poison gas. The gas is quite unforgiving to colonists who get caught in the cloud, so you may want a gas mask.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
-    <textureFolderPath>Things/FireBomb/</textureFolderPath>
+    <textureFolderPath>Things/Poison_Gas_Bomb/</textureFolderPath>
     <costList>
       <li>
         <thingDef>WoodLog</thingDef>
@@ -188,13 +183,13 @@
     <explosion_max_damage>0</explosion_max_damage>
       </ThingDef>
        <ThingDef Class="Mine_Def" ParentName="Dumb_Bomb_Base">
-    <defName>Building_Nitrogen_Mine</defName>
-    <label>Nitrogen Mine</label>
-    <description>A neat way to extinguish fires.</description>
+    <defName>Nitrogen_Gas_Bomb</defName>
+    <label>Nitrogen Gas Bomb</label>
+    <description>This gas is safe to inhale, and quickly puts out fires.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
-    <textureFolderPath>Things/FireBomb/</textureFolderPath>
+    <textureFolderPath>Things/Nitrogen_Gas_Bomb/</textureFolderPath>
     <costList>
       <li>
         <thingDef>WoodLog</thingDef>
@@ -210,13 +205,13 @@
       </ThingDef>
 
   <ThingDef Class="Mine_Def" ParentName="MineBase">
-    <defName>Building_Directed_Explosive</defName>
-    <label>Directed Explosive</label>
-    <description>Aall.</description>
+    <defName>Shaped_Charge_Frag</defName>
+    <label>Shaped Frag Charge</label>
+    <description>A deadly metal surprise awaits anyone who trips the laser rangefinder on this litte bomb.</description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
-      <textureFolderPath>Things/FireBomb/</textureFolderPath>
+      <textureFolderPath>Things/Shaped_Charge_Frag/</textureFolderPath>
     <costList>
       <li>
         <thingDef>RawFireFruit</thingDef>
@@ -234,16 +229,15 @@
     </costList>
     	
     	<trigger_spots>
-    	<li>0,0,0</li>
-    	<li>0,1,0</li>
-    	<li>0,-1,0</li>   
-    	<li>1,0,0</li>
-    	<li>-1,0,0</li>  	
+    	<li>0,0,0</li> 	
+    	<li>1,0,0</li> 
+    	<li>2,0,0</li> 
+    	<li>3,0,0</li> 
     	</trigger_spots>
     	
-    	<damage_def>Flame</damage_def>
-        <explosion_min_radius>3.1</explosion_min_radius>
-        <explosion_max_radius>3.4</explosion_max_radius>
+    	<damage_def>Bomb</damage_def>
+        <explosion_min_radius>1.1</explosion_min_radius>
+        <explosion_max_radius>2.4</explosion_max_radius>
         <explosion_min_damage>0</explosion_min_damage>
 		<explosion_max_damage>10</explosion_max_damage>
         

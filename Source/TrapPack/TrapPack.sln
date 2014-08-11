@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrapPack", "ShieldMod\TrapPack.csproj", "{EC7AE9A3-FBC6-4DB6-94E3-0581CC52F34E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrapPack", "TrapPack\TrapPack.csproj", "{EC7AE9A3-FBC6-4DB6-94E3-0581CC52F34E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,7 +16,11 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		BaseDirectory = TrapPack
-		StartupItem = ShieldMod\TrapPack.csproj
+		StartupItem = TrapPack\TrapPack.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
