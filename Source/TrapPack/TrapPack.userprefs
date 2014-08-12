@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Building_Mines.cs">
+    <Files>
+      <File FileName="Building_Mines.cs" Line="154" Column="24" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="TrapPack" expanded="True">
-            <Node name="References" selected="True" />
+            <Node name="Building_Mines.cs" selected="True" />
           </Node>
         </State>
       </Pad>
