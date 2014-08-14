@@ -49,6 +49,9 @@
      <li>AssembleMine</li>
     <li>AssembleSmartMine</li>
       <li>AssembleMineIncend</li>
+     <li>AssembleShapedChargeFrag</li>
+      <li>AssembleNitrogenGasBomb</li>
+      <li>AssemblePoisonGasBomb</li>
     </recipes>
     <inspectorTabs>
       <li>ITab_Bills</li>
@@ -85,6 +88,7 @@
     <constructionEffect>ConstructMetal</constructionEffect>
     <recipes>
      <li>MakeExplosives</li>
+     <li>MakePoison</li>
     </recipes>
     <inspectorTabs>
       <li>ITab_Bills</li>

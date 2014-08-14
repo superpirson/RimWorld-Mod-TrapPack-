@@ -21,7 +21,7 @@
     <staticSunShadowHeight>0.0</staticSunShadowHeight>
     <fillPercent>1</fillPercent>
     <size>(1,1)</size>
-    <rotatable>false</rotatable>
+    <rotatable>true</rotatable>
     <designationCategory>Security</designationCategory>
     <holdsRoof>false</holdsRoof>
     <useStandardHealth>true</useStandardHealth>
@@ -45,8 +45,8 @@
 	<disarm_ui_texture_path>UI/Commands/UI_Disarm</disarm_ui_texture_path>
 	<arm_ui_texture_path>UI/Commands/UI_Arm</arm_ui_texture_path>
 	<damage_def>mine_damage_type</damage_def>
-	<explosion_min_radius>2.0</explosion_min_radius>
-    <explosion_max_radius>2.0</explosion_max_radius>
+	<explosion_min_radius>1.0</explosion_min_radius>
+    <explosion_max_radius>1.4</explosion_max_radius>
 	<explosion_min_damage>40</explosion_min_damage>
 	<explosion_max_damage>100</explosion_max_damage>
 	<explode_sound>mine_explosion</explode_sound>
@@ -97,8 +97,6 @@
     </costList>
 	<damage_def>s_mine_damage_type</damage_def>
 	<checks_for_frendly>true</checks_for_frendly>
-	   <explosion_min_radius>2.0</explosion_min_radius>
-        <explosion_max_radius>2.0</explosion_max_radius>
   </ThingDef>
   
   <ThingDef Class="Mine_Def" ParentName="MineBase">
@@ -117,11 +115,11 @@
     </costList>
 	<damage_def>Flame</damage_def>
 	
-   <explosion_min_radius>5.5</explosion_min_radius>
-        <explosion_max_radius>7.5</explosion_max_radius>
+   <explosion_min_radius>2.5</explosion_min_radius>
+        <explosion_max_radius>4.5</explosion_max_radius>
  	 <explosion_min_damage>10</explosion_min_damage>
 	<explosion_max_damage>30</explosion_max_damage>
-
+<thing_to_spawn>Puddle_Fuel</thing_to_spawn>
   </ThingDef>
  
   <ThingDef Class="Mine_Def" ParentName="MineBase">
@@ -134,15 +132,7 @@
       <textureFolderPath>Things/Shaped_Charge_Frag/</textureFolderPath>
     <costList>
       <li>
-        <thingDef>RawFireFruit</thingDef>
-        <count>10</count>
-      </li>
-      <li>
-        <thingDef>WoodLog</thingDef>
-        <count>1</count>
-      </li>
-       <li>
-        <thingDef>Electronics</thingDef>
+        <thingDef>UnsetShapedChargeFrag</thingDef>
         <count>1</count>
       </li>
   
@@ -153,6 +143,7 @@
     	<li>1,0,0</li> 
     	<li>2,0,0</li> 
     	<li>3,0,0</li> 
+    	<li>4,0,0</li> 
     	</trigger_spots>
     	
     	<damage_def>Bomb</damage_def>
@@ -160,7 +151,8 @@
         <explosion_max_radius>2.4</explosion_max_radius>
         <explosion_min_damage>0</explosion_min_damage>
 		<explosion_max_damage>10</explosion_max_damage>
-        
+        <projectile_to_launch>Bullet_PumpShotgun</projectile_to_launch>
+        <projectile_count>3</projectile_count>
       </ThingDef>
 
 </ThingDefs>

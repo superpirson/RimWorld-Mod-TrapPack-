@@ -79,10 +79,10 @@ namespace TrapPack
 				Log.Message("power was null on a tick of a electrofloor, returning.");
 				return;
 			}
-			if (power_Trader.ConnectedToNet == null){
+			if (power_Trader.PowerNet == null){
 				Log.Message("powernet was null!");
 			}
-			if (!this.power_Trader.PowerOn || this.power_Trader.ConnectedToNet.CurrentStoredEnergy() < POWERDRAW * CompPower.WattsToWattDaysPerTick){
+			if (!this.power_Trader.PowerOn || this.power_Trader.PowerNet.CurrentStoredEnergy() < POWERDRAW * CompPower.WattsToWattDaysPerTick){
 				// attempt to refresh, so on the next tick we got something
 				this.power_Trader = this.GetComp<CompPowerTrader>();
 				has_power = false; 

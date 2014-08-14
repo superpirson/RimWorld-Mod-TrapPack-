@@ -17,6 +17,15 @@ public class AnimatedThingDef : ThingDef{
 	//last_frame is used only to keep track of the animation order if the frames are not explictildy defed
 	public bool play = true;
 	public override void PostLoad(){
+		//do the blueprint text:
+		this.blueprintMat = new Material(VerseBase.MatBases.Blueprint);
+		if (this.blueprintTexturePath != null){
+			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.Get (this.blueprintTexturePath, true);
+		}
+		else{
+			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.Get (this.textureFolderPath , true);
+		}
+	
 		frame_hashmap = new Hashtable();
 		if (frames == null){
 			frames = new List<ThingAddons.Frame>();

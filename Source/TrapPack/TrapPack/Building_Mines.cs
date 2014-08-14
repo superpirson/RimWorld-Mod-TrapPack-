@@ -16,9 +16,12 @@ public class Mine_Def : AnimatedThingDef {
 	public float explosion_min_radius;
 	public float explosion_max_radius;
 	public float explosion_min_damage;
-	public float explosion_max_damage;
+	public float explosion_max_damage = 0f;
 	public DamageTypeDef damage_def;
 	public SoundDef explode_sound;
+	public ThingDef thing_to_spawn;
+	public ThingDef projectile_to_launch = null;
+	public int projectile_count;
 	
 	public List<IntVec3> trigger_spots;
 
@@ -85,7 +88,8 @@ namespace TrapPack
 		{
 			if (armed) {
 				foreach (IntVec3 pos in this.mine_def.trigger_spots){
-					foreach (Pawn pawn in Find.Map.thingGrid.ThingsAt(this.Position +pos).OfType<Pawn>()){
+					IntVec3 corrected_pos = pos.RotatedBy(this.rotation);
+					foreach (Pawn pawn in Find.Map.thingGrid.ThingsAt(this.Position +corrected_pos).OfType<Pawn>()){
 						if (!this.mine_def.checks_for_frendly || pawn.Faction != this.Faction){
 							Detonate();
 							return;
@@ -143,7 +147,7 @@ namespace TrapPack
 			}
 		}
 		public virtual void Detonate(){
-			this.Destroy();
+			this.health = 0;
 			//if our damagedef is not null, we are supposed to explode
 			if (this.mine_def.explosion_max_damage > 0f){
 			ExplosionInfo explosion = new ExplosionInfo();
@@ -151,7 +155,17 @@ namespace TrapPack
 			explosion.dinfo = new DamageInfo(this.mine_def.damage_def, (int)Rand.Range(mine_def.explosion_min_damage, mine_def.explosion_max_damage), this);
 			explosion.center = this.Position;
 			explosion.explosionSound = this.mine_def.explode_sound;
+				explosion.postExplosionSpawnThingDef = this.mine_def.thing_to_spawn;
+				explosion.explosionSpawnChance = .5f;
 			explosion.Explode();
+			}
+			if (this.mine_def.projectile_to_launch != null){
+				foreach (IntVec3 targ in this.mine_def.trigger_spots){
+				for ( int i = 0; i< this.mine_def.projectile_count; i++){
+					Projectile proj = (Projectile)GenSpawn.Spawn(this.mine_def.projectile_to_launch, this.Position);
+						proj.Launch(this, new TargetPack(targ.RotatedBy(this.rotation)+this.Position));
+				}
+				}
 			}
 			
 			//spawn gas if we need to

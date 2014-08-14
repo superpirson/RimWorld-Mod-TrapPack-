@@ -66,10 +66,11 @@
   
     </costList>
     	<damage_def>Flame</damage_def>
-        <explosion_min_radius>1.1</explosion_min_radius>
-        <explosion_max_radius>3.4</explosion_max_radius>
+        <explosion_min_radius>0.5</explosion_min_radius>
+        <explosion_max_radius>2.4</explosion_max_radius>
         <explosion_min_damage>0</explosion_min_damage>
 		<explosion_max_damage>10</explosion_max_damage>
+		<thing_to_spawn>Puddle_Fuel</thing_to_spawn>
       </ThingDef>
 
       
@@ -83,16 +84,14 @@
     <textureFolderPath>Things/Poison_Gas_Bomb/</textureFolderPath>
     <costList>
       <li>
-        <thingDef>WoodLog</thingDef>
-        <count>1</count>
-      </li>
-       <li>
-        <thingDef>Electronics</thingDef>
+        <thingDef>UnsetPoisonGasBomb</thingDef>
         <count>1</count>
       </li>
     </costList>
     <gas_to_spawn>Poison_Gas</gas_to_spawn>
-    <explosion_max_damage>0</explosion_max_damage>
+        <gas_thickness>10000</gas_thickness>
+        <explosion_min_damage>0</explosion_min_damage>
+    <explosion_max_damage>1</explosion_max_damage>
       </ThingDef>
        <ThingDef Class="Mine_Def" ParentName="Dumb_Bomb_Base">
     <defName>Nitrogen_Gas_Bomb</defName>
@@ -104,15 +103,13 @@
     <textureFolderPath>Things/Nitrogen_Gas_Bomb/</textureFolderPath>
     <costList>
       <li>
-        <thingDef>WoodLog</thingDef>
-        <count>1</count>
-      </li>
-       <li>
-        <thingDef>Electronics</thingDef>
+        <thingDef>UnsetNitrogenGasBomb</thingDef>
         <count>1</count>
       </li>
     </costList>
     <gas_to_spawn>Nitrogen_Gas</gas_to_spawn>
-    <explosion_max_damage>0</explosion_max_damage>
+    <gas_thickness>30000</gas_thickness>
+    <explosion_min_damage>0</explosion_min_damage>
+    <explosion_max_damage>1</explosion_max_damage>
       </ThingDef>
 </ThingDefs>

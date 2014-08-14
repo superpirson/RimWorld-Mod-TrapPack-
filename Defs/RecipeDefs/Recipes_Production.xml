@@ -133,7 +133,42 @@
 		</li>
 	</skillGains>
   </RecipeDef>
-  
+  <RecipeDef ParentName="RecipeBase">
+    <defName>MakePoison</defName>
+    <label>Make Poison</label>
+    <description>By using the trace elements present in the the local species of berry, we can manufacture a deadly poison!</description>
+    <jobString>nervously making poison.</jobString>
+    <workAmount>500</workAmount>
+    <workEffect>ConstructMetal</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>RawBerries</li>
+        	</thingDefs>
+        </filter>
+        <count>25</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>Poison</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>RawBerries</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
 <RecipeDef ParentName="RecipeBase">
     <defName>AssembleMine</defName>
     <label>Assemble Mine</label>
@@ -307,6 +342,159 @@
 		</li>
 	</skillGains>
   </RecipeDef>
+  <RecipeDef ParentName="RecipeBase">
+    <defName>AssembleShapedChargeFrag</defName>
+    <label>Assemble Shaped Charge Frag Mine</label>
+    <description>This mine explodes if anyone enters the four squares in front of it.</description>
+    <jobString>making explosives.</jobString>
+    <workAmount>500</workAmount>
+    <workEffect>ConstructMetal</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+		<li>
+        <filter>
+          <thingDefs>
+            <li>Metal</li>
+        	</thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Explosives</li>
+        	</thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Electronics</li>
+        	</thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>UnsetShapedChargeFrag</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        	 <li>Metal</li>
+        <li>Electronics</li>
+   		 <li>Explosives</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
   
+  <RecipeDef ParentName="RecipeBase">
+    <defName>AssembleNitrogenGasBomb</defName>
+    <label>Assemble Nitrogen Gas Bomb</label>
+    <description>This bomb dissipates nitrogen gas, and can be used to rapidly extinguish fires.</description>
+    <jobString>making explosives.</jobString>
+    <workAmount>500</workAmount>
+    <workEffect>ConstructMetal</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Explosives</li>
+        	</thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Electronics</li>
+        	</thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>UnsetNitrogenGasBomb</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Electronics</li>
+   		 <li>Explosives</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
+  <RecipeDef ParentName="RecipeBase">
+    <defName>AssemblePoisonGasBomb</defName>
+    <label>Assemble Poison Gas Bomb</label>
+    <description>This horrible bomb dissipates toxic gas capable of killing droves of villainous enemies... or unlucky colonists.</description>
+    <jobString>making explosives.</jobString>
+    <workAmount>500</workAmount>
+    <workEffect>ConstructMetal</workEffect>
+ <sustainerSoundDef>Recipe_ExtractMetalFromSlag</sustainerSoundDef>
+    <ingredients>
+          <li>
+        <filter>
+          <thingDefs>
+            <li>Poison</li>
+        	</thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Explosives</li>
+        	</thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+         <li>
+        <filter>
+          <thingDefs>
+            <li>Electronics</li>
+        	</thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <products>
+      <li>
+        <thingDef>UnsetPoisonGasBomb</thingDef>
+        <count>1</count>
+      </li>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Electronics</li>
+   		 <li>Explosives</li>
+   		 <li>Poison</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    	<skillGains>
+		<li>
+		<skill>Crafting</skill>
+		<xp>100</xp>
+		</li>
+	</skillGains>
+  </RecipeDef>
 
 </RecipeDefs>

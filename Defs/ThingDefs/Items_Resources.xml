@@ -31,7 +31,7 @@
     <defName>Electronics</defName>
     <label>Electronics</label>
     <description>These are needed for most complex traps.</description>
-    <textureFolderPath>Things/Electronics/Electronics</textureFolderPath>
+    <textureFolderPath>Things/Item/Electronics/</textureFolderPath>
     <basePrice>20</basePrice>
     <storeCategories>
       <li>Manufactured</li>
@@ -49,11 +49,21 @@
     </storeCategories>
   </ThingDef>
     <ThingDef ParentName="ResourceBase">
+    <defName>Poison</defName>
+    <label>Poison</label>
+    <description>it's used for killing.</description>
+    <textureFolderPath>Things/Item/Explosives</textureFolderPath>
+    <basePrice>10</basePrice>
+    <storeCategories>
+      <li>Manufactured</li>
+    </storeCategories>
+  </ThingDef>
+    <ThingDef ParentName="ResourceBase">
     <defName>UnsetMine</defName>
     <label>Unset Mine</label>
     <description>This is a fully functional Mine, however it can not be set without the proper research into explosive traps.</description>
     <textureFolderPath>Things/Item/Unset_Mine_Standard</textureFolderPath>
-    <basePrice>10</basePrice>
+    <basePrice>40</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -63,7 +73,7 @@
     <label>Unset Smart Mine</label>
     <description>This is a fully functional Mine, however it can not be set without the proper research into intelligent traps.</description>
     <textureFolderPath>Things/Item/Unset_Smart_Mine</textureFolderPath>
-    <basePrice>10</basePrice>
+    <basePrice>80</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -73,7 +83,7 @@
     <label>Unset Incendiary Mine</label>
     <description>This is a fully functional Mine, however it can not be set without the proper research into explosive traps.</description>
     <textureFolderPath>Things/Item/Unset_Mine_Incend</textureFolderPath>
-    <basePrice>10</basePrice>
+    <basePrice>50</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -83,7 +93,7 @@
     <label>Unset Shaped Charge Frag</label>
     <description>This is a fully functional Shaped Charge, however it can not be set without the proper research into explosive traps..</description>
     <textureFolderPath>Things/Item/Unset_Shaped_Charge</textureFolderPath>
-    <basePrice>10</basePrice>
+    <basePrice>50</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -93,7 +103,7 @@
     <label>Unset Nitrogen Gas Bomb</label>
     <description>A small gas bomb equipped to deploy nitrogen for fire suppression.</description>
     <textureFolderPath>Things/Item/Unset_Nitrogen_Gas_Bomb</textureFolderPath>
-    <basePrice>10</basePrice>
+    <basePrice>20</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -101,9 +111,9 @@
      <ThingDef ParentName="ResourceBase">
     <defName>UnsetPoisonGasBomb</defName>
     <label>Unset Poison Gas Bomb</label>
-    <description>A small gas bomb equipped to deploy poison for combat and defense.</description>
+    <description>A small gas bomb equipped to deploy poison for combat and dw.</description>
     <textureFolderPath>Things/Item/Unset_Poison_Gas_Bomb</textureFolderPath>
-    <basePrice>10</basePrice>
+    <basePrice>100</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
