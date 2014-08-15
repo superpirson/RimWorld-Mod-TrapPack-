@@ -78,7 +78,7 @@
     <defName>Poison_Gas_Bomb</defName>
     <label>Poison Gas Bomb</label>
     <description>A weapon of death more so than fear, this gas bomb releases a cloud of lethal poison gas. The gas is quite unforgiving to colonists who get caught in the cloud, so you may want a gas mask.</description>
-    <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
+    <researchPrerequisite>Gas_Dispersion_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
     <textureFolderPath>Things/Poison_Gas_Bomb/</textureFolderPath>
@@ -97,7 +97,7 @@
     <defName>Nitrogen_Gas_Bomb</defName>
     <label>Nitrogen Gas Bomb</label>
     <description>This gas is safe to inhale, and quickly puts out fires.</description>
-    <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
+    <researchPrerequisite>Gas_Dispersion_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
     <textureFolderPath>Things/Nitrogen_Gas_Bomb/</textureFolderPath>

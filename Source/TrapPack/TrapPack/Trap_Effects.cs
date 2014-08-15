@@ -69,7 +69,10 @@ namespace TrapPack
 					List<BodyDefPart> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
 					foreach (BodyDefPart part in bodyparts.InRandomOrder()){
 						if (part.def.activities != null &&  part.def.activities.Contains("Breathing_main")){
-							float damage_mod = pawn.apparel.GetDamageAbsorption(part,this.gas_def.damage_type.injury);
+							float damage_mod = 0;
+							if (pawn.apparel != null){
+								damage_mod = pawn.apparel.GetDamageAbsorption(part,this.gas_def.damage_type.injury);
+							}
 							if (damage_mod < 0.99f){
 								pawn.healthTracker.ApplyDamage(new DamageInfo(this.gas_def.damage_type, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
 							break;
@@ -79,7 +82,7 @@ namespace TrapPack
 				}
 				if (this.gas_def.extinguish_fire && target is Fire){
 					Fire fire = (Fire)target;
-					fire.fireSize -= .05f;
+					fire.fireSize -= .05f * this.thickness;
 				
 				}
 					}

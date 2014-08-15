@@ -27,6 +27,13 @@
 	 <totalCost>20000</totalCost>
    <prerequisites><li>Basic_Traps_Research</li></prerequisites>
 	</ResearchProjectDef>
+		<ResearchProjectDef>
+		<defName>Gas_Dispersion_Research</defName>
+		<label>Gas Dispersion Research</label>
+		<description> This includes research into effective ways of storing gases, for use in extinguishing fires and poisoning   </description>
+	 <totalCost>50000</totalCost>
+   <prerequisites><li>Basic_Traps_Research</li></prerequisites>
+	</ResearchProjectDef>
 	<ResearchProjectDef>
 		<defName>FOF_Traps_Research</defName>
 		<label>Intelligent Traps Research</label>

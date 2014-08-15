@@ -108,7 +108,7 @@
     <thingClass>TrapPack.Building_Pit_Trap</thingClass>
     <workToBuild>500</workToBuild>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
-    <textureFolderPath>Things/Building_Pit_Trap/</textureFolderPath>
+    <texturePath>Things/Building_Pit_Trap/Building_Pit_Trap</texturePath>
     <costList>
       <li>
         <thingDef>Metal</thingDef>

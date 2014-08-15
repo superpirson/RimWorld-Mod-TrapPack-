@@ -17,13 +17,16 @@ public class AnimatedThingDef : ThingDef{
 	//last_frame is used only to keep track of the animation order if the frames are not explictildy defed
 	public bool play = true;
 	public override void PostLoad(){
+		base.PostLoad();
 		//do the blueprint text:
 		this.blueprintMat = new Material(VerseBase.MatBases.Blueprint);
-		if (this.blueprintTexturePath != null){
+		if (!this.blueprintTexturePath.NullOrEmpty()){
+			Log.Message("makeing a blueprint drawmat useing tex at " + this.blueprintTexturePath);
 			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.Get (this.blueprintTexturePath, true);
 		}
 		else{
-			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.Get (this.textureFolderPath , true);
+			Log.Message("trying to autogen a blueprint mat");
+			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.GetAllInFolder(this.textureFolderPath).RandomElement();
 		}
 	
 		frame_hashmap = new Hashtable();
@@ -41,7 +44,37 @@ public class AnimatedThingDef : ThingDef{
 			frame.material = material;
 			frame_hashmap.Add (frame.tex_name, frame);
 	}
-		base.PostLoad();
+		if (this.frames.Count <= 0){
+			if (this.folderDrawMats == null || this.folderDrawMats.Count <= 0)
+			{
+				Log.Error("Animated thing tried to find texture folder, but it was empty/null!");
+				return;
+			}
+			else if (this.folderDrawMats.Count == 1)
+			{
+				Log.Warning("Animated thing tried to find texture folder, but found only one texture.");
+				this.frames.Add(new ThingAddons.Frame(this.folderDrawMats[0]));
+				this.play = false;
+			}
+			else{
+				int i = 0;
+				foreach (Material mat in this.folderDrawMats){
+					ThingAddons.Frame quick_fix_frame = new ThingAddons.Frame(mat);
+					quick_fix_frame.tex_name = ("Unamed frame " + i.ToString());
+					
+					this.frames.Insert(i, quick_fix_frame);
+					quick_fix_frame.next_frame = this.frames[0].tex_name;
+					//set the prev frame's next_frame to this
+					if (i != 0){
+						this.frames[i-1].next_frame = quick_fix_frame.tex_name;
+					}
+					this.frame_hashmap.Add("Unamed frame " + i.ToString(), quick_fix_frame);
+					i++;
+				}
+			}
+		}
+	
+		
 	}	
 }
 
@@ -65,8 +98,6 @@ namespace ThingAddons
 	
 	public  class AnimatedThing : ThingWithComponents
 	{
-		//this is an exact copy of animatedThing, but a it extends buildings
-		//animations are drawn on top of the thing's textures
 		private int tick_count = 0;
 		protected AnimatedThingDef animated_thing_def;
 		public Frame current_frame;
@@ -76,10 +107,9 @@ namespace ThingAddons
 		
 		
 		public void set_frame(string new_frame){
-		try{
 			current_frame = (Frame)this.animated_thing_def.frame_hashmap[new_frame];
-			}catch (NullReferenceException e){
-				Log.Message("exception, tried to set frame to " + new_frame + " but found null! exception: " + e.Message);
+			if (current_frame == null){
+				Log.Message("exception, tried to set frame to " + new_frame + " but found null!");
 				current_frame = new Frame();
 			}
 			this.def.drawMat = current_frame.material;
@@ -95,40 +125,8 @@ namespace ThingAddons
 				this.animated_thing_def = new AnimatedThingDef();
 				this.animated_thing_def.texturePath = this.def.texturePath;
 			}
-			
-			
-			if (this.animated_thing_def.frames.Count <= 0){
-				if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
-				{
-					Log.Error("Animated thing tried to find texture folder, but it was empty/null!");
-					return;
-				}
-				else if (this.def.folderDrawMats.Count == 1)
-				{
-					Log.Warning("Animated thing tried to find texture folder, but found only one texture.");
-					this.animated_thing_def.frames.Add(new Frame(this.def.folderDrawMats[0]));
-					this.current_frame = this.animated_thing_def.frames[0];
-					this.animated_thing_def.play = false;
-				}
-				else{
-				int i = 0;
-					foreach (Material mat in this.def.folderDrawMats){
-						Frame quick_fix_frame = new Frame(mat);
-						quick_fix_frame.tex_name = ("Unamed frame " + i.ToString());
-						
-						this.animated_thing_def.frames.Insert(i, quick_fix_frame);
-						quick_fix_frame.next_frame = this.animated_thing_def.frames[0].tex_name;
-						//set the prev frame's next_frame to this
-						if (i != 0){
-						this.animated_thing_def.frames[i-1].next_frame = quick_fix_frame.tex_name;
-						}
-						this.animated_thing_def.frame_hashmap.Add("Unamed frame " + i.ToString(), quick_fix_frame);
-						i++;
-					}
-				}
-			}
 			this.current_frame = this.animated_thing_def.frames[0];
-		
+			
 			base.SpawnSetup();
 		}	
 		public override void Tick(){
@@ -192,38 +190,6 @@ namespace ThingAddons
 				// make a new animated object for just this context
 				this.animated_thing_def = new AnimatedThingDef();
 				this.animated_thing_def.texturePath = this.def.texturePath;
-			}
-			
-			
-			if (this.animated_thing_def.frames.Count <= 0){
-				if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
-				{
-					Log.Error("Animated thing tried to find texture folder, but it was empty/null!");
-					return;
-				}
-				else if (this.def.folderDrawMats.Count == 1)
-				{
-					Log.Warning("Animated thing tried to find texture folder, but found only one texture.");
-					this.animated_thing_def.frames.Add(new Frame(this.def.folderDrawMats[0]));
-					this.current_frame = this.animated_thing_def.frames[0];
-					this.animated_thing_def.play = false;
-				}
-				else{
-					int i = 0;
-					foreach (Material mat in this.def.folderDrawMats){
-						Frame quick_fix_frame = new Frame(mat);
-						quick_fix_frame.tex_name = ("Unamed frame " + i.ToString());
-						
-						this.animated_thing_def.frames.Insert(i, quick_fix_frame);
-						quick_fix_frame.next_frame = this.animated_thing_def.frames[0].tex_name;
-						//set the prev frame's next_frame to this
-						if (i != 0){
-							this.animated_thing_def.frames[i-1].next_frame = quick_fix_frame.tex_name;
-						}
-						this.animated_thing_def.frame_hashmap.Add("Unamed frame " + i.ToString(), quick_fix_frame);
-						i++;
-					}
-				}
 			}
 			this.current_frame = this.animated_thing_def.frames[0];
 			

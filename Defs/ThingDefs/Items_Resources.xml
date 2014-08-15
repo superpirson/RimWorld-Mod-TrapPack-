@@ -52,7 +52,7 @@
     <defName>Poison</defName>
     <label>Poison</label>
     <description>it's used for killing.</description>
-    <textureFolderPath>Things/Item/Explosives</textureFolderPath>
+    <textureFolderPath>Things/Item/Poison</textureFolderPath>
     <basePrice>10</basePrice>
     <storeCategories>
       <li>Manufactured</li>

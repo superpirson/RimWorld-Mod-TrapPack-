@@ -46,7 +46,7 @@
 		 <pathCost>20</pathCost>
 		<passability>PassThroughOnly</passability>
 		<thingClass>TrapPack.Gas</thingClass>
-		<textureFolderPath>Things/Poison_Gas/</textureFolderPath>
+		<textureFolderPath>Things/Nitrogen_Gas/</textureFolderPath>
 		<beauty>Ugly</beauty>
 		<AltitudeLayer>VisEffects</AltitudeLayer>
 		<damage_per_tick>0</damage_per_tick>
