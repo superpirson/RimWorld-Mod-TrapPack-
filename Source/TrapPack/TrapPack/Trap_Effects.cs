@@ -82,13 +82,17 @@ namespace TrapPack
 				}
 				if (this.gas_def.extinguish_fire && target is Fire){
 					Fire fire = (Fire)target;
+				if (fire.fireSize > .05f){
 					fire.fireSize -= .05f * this.thickness;
-				
+				}
+					else{
+						fire.Destroy();
+					}
 				}
 					}
 			base.Tick();
 	}
-		public static int try_place_Gas(IntVec3 pos, GasDef gas_def ,int thickness = 100){
+		public static int try_place_Gas(IntVec3 pos, GasDef gas_def,int thickness = 100){
 			Thing found_thing = Find.Map.thingGrid.ThingAt<Gas>(pos);
 			if (found_thing == null){
 				// there is no Poison_Gas, make a new one with 1/8 ours

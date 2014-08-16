@@ -54,9 +54,13 @@
 	<frames>
   		<li>
 		<tex_name>_Disarmed</tex_name>
+		<frame_delay>20</frame_delay>
+		<next_frame>_Armed</next_frame>
 		</li>
 	<li>
 		<tex_name>_Armed</tex_name>
+		<frame_delay>5</frame_delay>
+		<next_frame>_Disarmed</next_frame>
 		</li>	
 	</frames>
   </ThingDef>
@@ -126,33 +130,75 @@
     <defName>Shaped_Charge_Frag</defName>
     <label>Shaped Charge Frag</label>
     <description>A deadly metal surprise awaits anyone who trips the laser rangefinder on this litte bomb.</description>
-    <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
+    <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
       <textureFolderPath>Things/Shaped_Charge_Frag/</textureFolderPath>
+       <Passability>Impassable</Passability>
     <costList>
-      <li>
-        <thingDef>UnsetShapedChargeFrag</thingDef>
+       <li>
+        <thingDef>Electronics</thingDef>
         <count>1</count>
       </li>
-  
+        <li>
+        <thingDef>Explosives</thingDef>
+        <count>4</count>
+      </li>
+        <li>
+        <thingDef>Metal</thingDef>
+        <count>50</count>
+      </li>
     </costList>
     	
     	<trigger_spots>
-    	<li>0,0,0</li> 	
     	<li>1,0,0</li> 
     	<li>2,0,0</li> 
     	<li>3,0,0</li> 
     	<li>4,0,0</li> 
+    	 <li>5,0,0</li> 
+    	 <li>6,0,0</li> 
     	</trigger_spots>
     	
     	<damage_def>Bomb</damage_def>
         <explosion_min_radius>1.1</explosion_min_radius>
-        <explosion_max_radius>2.4</explosion_max_radius>
+        <explosion_max_radius>1.4</explosion_max_radius>
+        <explosion_min_damage>0</explosion_min_damage>
+		<explosion_max_damage>10</explosion_max_damage>
+        <projectile_to_launch>Bullet_PumpShotgun</projectile_to_launch>
+        <projectile_count>2</projectile_count>
+      </ThingDef>
+<ThingDef Class="Mine_Def" ParentName="MineBase">
+ <defName>Claymore</defName>
+    <label>Claymore Mine</label>
+    <description>An ancient but deadly fragmentation mine.</description>
+    <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
+    <thingClass>TrapPack.Mine</thingClass>
+    <workToBuild>200</workToBuild>
+      <textureFolderPath>Things/Claymore/</textureFolderPath>
+    <costList>
+      <li>
+        <thingDef>UnsetClaymore</thingDef>
+        <count>1</count>
+      </li>
+    </costList>
+    	
+    	<trigger_spots>
+    	<li>1,0,0</li> 
+    	<li>2,0,0</li> 
+    	<li>1,0,1</li> 
+    	<li>2,0,1</li> 
+    	<li>1,0,-1</li> 
+    	<li>2,0,-1</li> 
+    	</trigger_spots>
+    	
+    	<damage_def>Bomb</damage_def>
+        <explosion_min_radius>1.1</explosion_min_radius>
+        <explosion_max_radius>1.4</explosion_max_radius>
         <explosion_min_damage>0</explosion_min_damage>
 		<explosion_max_damage>10</explosion_max_damage>
         <projectile_to_launch>Bullet_PumpShotgun</projectile_to_launch>
         <projectile_count>3</projectile_count>
+      
       </ThingDef>
 
 </ThingDefs>

@@ -140,10 +140,12 @@ namespace TrapPack
 			if (armed){
 				armed = false;
 			this.set_frame("_Disarmed");
+				this.animated_thing_def.play = false;
 			}
 			else{
 				armed = true;
 				this.set_frame("_Armed");
+				this.animated_thing_def.play = true;
 			}
 		}
 		public virtual void Detonate(){

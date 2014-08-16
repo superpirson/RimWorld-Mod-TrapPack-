@@ -89,11 +89,11 @@
     </storeCategories>
   </ThingDef>
      <ThingDef ParentName="ResourceBase">
-    <defName>UnsetShapedChargeFrag</defName>
-    <label>Unset Shaped Charge Frag</label>
-    <description>This is a fully functional Shaped Charge, however it can not be set without the proper research into explosive traps..</description>
-    <textureFolderPath>Things/Item/Unset_Shaped_Charge</textureFolderPath>
-    <basePrice>50</basePrice>
+    <defName>UnsetClaymore</defName>
+    <label>Unset Claymore</label>
+    <description>This is a fully functional Claymore, however it can not be set without the proper research into explosive traps..</description>
+    <textureFolderPath>Things/Item/Unset_Claymore</textureFolderPath>
+    <basePrice>60</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>

@@ -343,9 +343,9 @@
 	</skillGains>
   </RecipeDef>
   <RecipeDef ParentName="RecipeBase">
-    <defName>AssembleShapedChargeFrag</defName>
-    <label>Assemble Shaped Charge Frag Mine</label>
-    <description>This mine explodes if anyone enters the four squares in front of it.</description>
+    <defName>AssembleClaymore</defName>
+    <label>Assemble Claymore Mine</label>
+    <description>This mine explodes if anyone enters the six squares in front of it.</description>
     <jobString>making explosives.</jobString>
     <workAmount>500</workAmount>
     <workEffect>ConstructMetal</workEffect>
@@ -378,7 +378,7 @@
     </ingredients>
     <products>
       <li>
-        <thingDef>UnsetShapedChargeFrag</thingDef>
+        <thingDef>UnsetClaymore</thingDef>
         <count>1</count>
       </li>
     </products>
