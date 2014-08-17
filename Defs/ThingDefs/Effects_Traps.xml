@@ -3,7 +3,7 @@
 	  <ThingDef Name="EffectBase" Abstract="True">
 <!--     <category>Building</category> -->
     <soundBulletHit>BulletImpactMetal</soundBulletHit>
-    <selectable>true</selectable>
+    <selectable>false</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
     <surfaceNeeded>Light</surfaceNeeded>
   </ThingDef>
@@ -16,7 +16,7 @@
 		<label>Poison Gas</label>
   <linkDrawerType>Transmitter</linkDrawerType>
   		 <linkFlags>
-      <li>Custom1</li>
+      <li>Custom6</li>
    		 </linkFlags>
    		     <drawerType>MapMeshOnly</drawerType>
 		<description>Nasty caltrops. The rain and wind will wash them away over time. Clean them to remove them.</description>
@@ -38,7 +38,7 @@
 		<label>Nitrogen Gas</label>
   <linkDrawerType>Transmitter</linkDrawerType>
   		 <linkFlags>
-      <li>Custom2</li>
+      <li>Custom6</li>
    		 </linkFlags>
    		     <drawerType>MapMeshOnly</drawerType>
 		<description>A mixture of nitrogen and CO2, used to suppress fires. It is safe to inhale.</description>
