@@ -52,7 +52,8 @@ namespace TrapPack
 					foreach (IntVec3 pos  in this.Position.AdjacentSquares8Way().InRandomOrder()){
 					if (Find.PathGrid.Walkable(pos)){
 					if (this.thickness > 5){
-						this.thickness = try_place_Gas(pos,this.gas_def, this.thickness);
+					try_place_Gas(pos,this.gas_def, this);
+					
 					}
 					}
 			}
@@ -92,11 +93,30 @@ namespace TrapPack
 					}
 			base.Tick();
 	}
-		public static int try_place_Gas(IntVec3 pos, GasDef gas_def,int thickness = 100){
+		/// <summary>
+		/// trys to place gas, checking to see if there is gas of the same gasdef present. checks with:
+		/// <code>
+		/// if (placer != null && placer is Gas){
+		///	thickness = ((Gas)placer).thickness;
+		///}
+		/// </code>
+		/// to assure that the thickness is used in considering dissapation. also transfers faction ownership.
+		/// </summary>
+		/// <param name="pos">where to place the gas</param>
+		/// <param name="gasdef">gasdef to place</param>
+		/// <param name="placer">thing to use for ownership. also uses placer's thickness if placer is a gas.</param>
+		public static void try_place_Gas(IntVec3 pos, GasDef gas_def, Thing placer = null){
 			Thing found_thing = Find.Map.thingGrid.ThingAt<Gas>(pos);
+			int thickness = 0;
+			if (placer != null && placer is Gas){
+				thickness = ((Gas)placer).thickness;
+			}
 			if (found_thing == null){
 				// there is no Poison_Gas, make a new one with 1/8 ours
 				Gas new_gas = (Gas)GenSpawn.Spawn(gas_def, pos);
+				if (placer != null){
+				new_gas.SetFactionDirect(placer.Faction);
+				}
 				new_gas.thickness = thickness/ 8;
 				thickness-= thickness/8;
 			}else if (!found_thing.Destroyed){
@@ -107,7 +127,9 @@ namespace TrapPack
 				thickness-= thickness/4;
 				}
 			}
-			return thickness; 
+			if (placer != null && placer is Gas){
+				((Gas)placer).thickness = thickness;
+			}
 		}
 		public override string GetInspectString()
 		{
