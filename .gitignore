@@ -5,6 +5,7 @@
 *.o
 *.so
 *.dll.mdb
+!TrapsPack.dll
 
 # OS generated files #
 ######################
