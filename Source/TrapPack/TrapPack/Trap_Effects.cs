@@ -105,7 +105,7 @@ namespace TrapPack
 		/// <param name="pos">where to place the gas</param>
 		/// <param name="gasdef">gasdef to place</param>
 		/// <param name="placer">thing to use for ownership. also uses placer's thickness if placer is a gas.</param>
-		public static void try_place_Gas(IntVec3 pos, GasDef gas_def, Thing placer = null){
+		public static void try_place_Gas(IntVec3 pos, GasDef gas_def, Gas placer = null){
 			Thing found_thing = Find.Map.thingGrid.ThingAt<Gas>(pos);
 			int thickness = 0;
 			if (placer != null && placer is Gas){
@@ -129,6 +129,25 @@ namespace TrapPack
 			}
 			if (placer != null && placer is Gas){
 				((Gas)placer).thickness = thickness;
+			}
+		}
+		public static void try_place_Gas(IntVec3 pos, GasDef gas_def, int thickness = 100, Faction placer = null){
+			Thing found_thing = Find.Map.thingGrid.ThingAt<Gas>(pos);
+			if (found_thing == null){
+				// there is no Poison_Gas, make a new one with 1/8 ours
+				Gas new_gas = (Gas)GenSpawn.Spawn(gas_def, pos);
+				if (placer != null){
+					new_gas.SetFactionDirect(placer);
+				}
+				new_gas.thickness = thickness/ 8;
+				thickness-= thickness/8;
+			}else if (!found_thing.Destroyed){
+				// we found a gas, check if it is our type and then exchange, add to it's thickness with 1/4 of ours
+				Gas adj_gas = (Gas)found_thing;
+				if (adj_gas.gas_def == gas_def){
+					adj_gas.thickness += (thickness/ 4);
+					thickness-= thickness/4;
+				}
 			}
 		}
 		public override string GetInspectString()

@@ -198,7 +198,26 @@
 		<explosion_max_damage>10</explosion_max_damage>
         <projectile_to_launch>Bullet_PumpShotgun</projectile_to_launch>
         <projectile_count>3</projectile_count>
-      
       </ThingDef>
+      
+        <ThingDef Class="Mine_Def" ParentName="MineBase">
+    <defName>Glitterworld_Trap</defName>
+    <label>Glitterworld Trap</label>
+    <description>The faded instructions on the device are vague at best as to it's effects. There is one clearly readable line of text which states "EVACUATE IMMEDIATELY ONCE PLACED."</description>
+        <textureFolderPath>Things/Glitterworld_Trap/</textureFolderPath>
+    <thingClass>TrapPack.Glitterworld_Trap</thingClass>
+    <workToBuild>50</workToBuild>
+ <costList>
+	<li>
+    <thingDef>UnsetMine</thingDef>
+	<count>1</count>
+    </li>
+     </costList>
+  </ThingDef>
+  
+  
+      
+      
+      
 
 </ThingDefs>

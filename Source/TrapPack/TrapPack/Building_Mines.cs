@@ -46,8 +46,6 @@ public class Mine_Def : AnimatedThingDef {
 	//*/
 }
 
-
-
 namespace TrapPack
 {
 
@@ -172,9 +170,86 @@ namespace TrapPack
 			
 			//spawn gas if we need to
 			if (this.mine_def.gas_to_spawn != null){
-				Gas.try_place_Gas(this.Position, (GasDef)this.mine_def.gas_to_spawn, this);
+				Gas.try_place_Gas(this.Position, (GasDef)this.mine_def.gas_to_spawn, this.mine_def.gas_thickness, this.Faction);
 			}
 			}
+	}
+	
+	public class Glitterworld_Trap : Mine{
+		public override void Detonate ()
+		{
+			this.Destroy();
+			int rand_int = Rand.Range(0,8);
+			switch (rand_int){
+				case 0:
+				Find.History.AddGameEvent("The glitterworld trap seems to have vanished without doing anything.", GameEventType.Good, true);
+				break;
+				case 1:
+				Find.History.AddGameEvent("The glitterworld trap seems to have vanished without doing anything.", GameEventType.Good, true);
+				foreach (Pawn pawn in Find.ListerPawns.PawnsHostileToColony){
+					if (pawn.gender == Gender.Male){
+						pawn.gender = Gender.Female;
+					}
+					else if (pawn.gender == Gender.Female){
+						pawn.gender = Gender.Male;
+					}
+				}
+				break;
+				case 2:
+				Find.History.AddGameEvent("The glitterworld trap seems to have identified and frozen all hostile entities in stasis.", GameEventType.Good, true);
+				foreach (Pawn pawn in Find.ListerPawns.PawnsHostileToColony){
+					pawn.stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,300, this), false);
+				}
+				break;
+				
+				case 3:
+				Find.History.AddGameEvent("The glitterworld trap seems to have triggerd some sort of psychic weapon on some enemies. Some of them may have gone insane.", GameEventType.Good, true);
+				foreach (Pawn pawn in Find.ListerPawns.PawnsHostileToColony){
+					if (Rand.Range(0,2) != 0){
+						pawn.psychology.mood.CurLevel = 0;
+					}
+				}
+				break;
+			case 4:
+				Find.History.AddGameEvent("The glitterworld trap seems to have frozen everyone in stasis!", GameEventType.BadUrgent, true);
+				foreach (Pawn pawn in Find.ListerPawns.AllPawns){
+					pawn.stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,500, this), false);
+				}
+				break;
+				
+			case 5:
+				Find.History.AddGameEvent("The glitterworld trap seems to have created a gigantic explosion!", GameEventType.BadUrgent, true);
+				ExplosionInfo explosion = new ExplosionInfo();
+				explosion.radius = Rand.Range(5, 20);
+				explosion.dinfo = new DamageInfo(DamageTypeDefOf.Bomb, (int)Rand.Range(200, 1000), this);
+				explosion.center = this.Position;
+				explosion.explosionSound = this.mine_def.explode_sound;
+				explosion.Explode();
+				break;
+				
+			case 6:
+				Find.History.AddGameEvent("The glitterworld trap seems to have emmited some sort of substance!", GameEventType.BadUrgent, true);
+					Gas.try_place_Gas(this.Position, (GasDef)GasDef.Named("Poison_Gas"), Rand.Range(20000, 90000));
+				break;
+			case 7:
+				Find.History.AddGameEvent("The glitterworld trap seems to have identified and killed every enemy in sight! What horrific tecnology!", GameEventType.Good, true);
+				List<Pawn> pawn_list = Find.ListerPawns.PawnsHostileToColony.ToList();
+				foreach (Pawn pawn in pawn_list){
+				pawn.TakeDamage(new DamageInfo(DamageTypeDefOf.Bomb, 5000, this));
+				}
+					
+				break;
+			case 8:
+				Find.History.AddGameEvent("The glitterworld trap seems to have caused random enemies to vanish!", GameEventType.Good, true);
+				foreach (Pawn pawn in Find.ListerPawns.PawnsHostileToColony){
+					if (Rand.Range(0,10) < 3){
+					pawn.Destroy();
+					}
+				}
+				break;
+			}
+		}
+	
 	}
 
 }
