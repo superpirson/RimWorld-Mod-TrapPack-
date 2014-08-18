@@ -175,6 +175,7 @@
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
       <textureFolderPath>Things/Claymore/</textureFolderPath>
+       <blueprintTexturePath>Things/Claymore/Blueprint_Claymore</blueprintTexturePath>
     <costList>
       <li>
         <thingDef>UnsetClaymore</thingDef>
