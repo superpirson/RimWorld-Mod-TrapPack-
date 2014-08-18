@@ -203,7 +203,7 @@
         <ThingDef Class="Mine_Def" ParentName="MineBase">
     <defName>Glitterworld_Trap</defName>
     <label>Glitterworld Trap</label>
-    <description>The faded instructions on the device are vague at best as to it's effects. There is one clearly readable line of text which states "EVACUATE IMMEDIATELY ONCE PLACED."</description>
+    <description>The faded instructions on the device are vague at best as to it's effects. There is one clearly readable line of text which states "EVACUATE IMMEDIATELY ONCE ARMED."</description>
         <textureFolderPath>Things/Glitterworld_Trap/</textureFolderPath>
     <thingClass>TrapPack.Glitterworld_Trap</thingClass>
     <workToBuild>50</workToBuild>

@@ -232,7 +232,7 @@ namespace TrapPack
 					Gas.try_place_Gas(this.Position, (GasDef)GasDef.Named("Poison_Gas"), Rand.Range(20000, 90000));
 				break;
 			case 7:
-				Find.History.AddGameEvent("The glitterworld trap seems to have identified and killed every enemy in sight! What horrific tecnology!", GameEventType.Good, true);
+				Find.History.AddGameEvent("Through some unknown mechanism, The glitterworld trap seems to have identified and killed every enemy in sight! What horrific tecnology!", GameEventType.Good, true);
 				List<Pawn> pawn_list = Find.ListerPawns.PawnsHostileToColony.ToList();
 				foreach (Pawn pawn in pawn_list){
 				pawn.TakeDamage(new DamageInfo(DamageTypeDefOf.Bomb, 5000, this));
@@ -240,7 +240,7 @@ namespace TrapPack
 					
 				break;
 			case 8:
-				Find.History.AddGameEvent("The glitterworld trap seems to have caused random enemies to vanish!", GameEventType.Good, true);
+				Find.History.AddGameEvent("Through some unknown mechanism, The glitterworld trap seems to have caused random enemies to vanish!", GameEventType.Good, true);
 				foreach (Pawn pawn in Find.ListerPawns.PawnsHostileToColony){
 					if (Rand.Range(0,10) < 3){
 					pawn.Destroy();
