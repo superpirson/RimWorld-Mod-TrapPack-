@@ -78,7 +78,7 @@
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <UseStandardHealth>True</UseStandardHealth>
     <maxHealth>50</maxHealth>
-    <Size>(3,2)</Size>
+    <Size>(4,3)</Size>
     <Overdraw>False</Overdraw>
     <DesignationCategory>Production</DesignationCategory>
     <Passability>Impassable</Passability>
