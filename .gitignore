@@ -6,6 +6,8 @@
 *.so
 !TrapsPack.dll
 
+TrapPack.userprefs
+
 # OS generated files #
 ######################
 .DS_Store
