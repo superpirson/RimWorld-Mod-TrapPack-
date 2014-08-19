@@ -2,7 +2,7 @@
 <InjuryDefs>
 
 	<InjuryDef>
-		<defName>Poisoned</defName>
+		<defName>ExtendedInjuriesPoisoned</defName>
 		<label>Poisoned</label>
 		<painPerDamage>0</painPerDamage>
 		<oldPainPerDamage>1</oldPainPerDamage>
@@ -16,7 +16,7 @@
 		<innerTreatedLabel>poorly detoxified</innerTreatedLabel>
 	</InjuryDef>
 	<InjuryDef>
-		<defName>Electrocuted</defName>
+		<defName>ExtendedInjuriesElectrocuted</defName>
 		<label>Electrocuted</label>
 		<painPerDamage>2</painPerDamage>
 		<oldPainPerDamage>.2</oldPainPerDamage>
