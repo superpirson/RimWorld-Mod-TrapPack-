@@ -175,7 +175,7 @@ namespace ThingAddons
 		public void set_frame(string new_frame){
 				current_frame = (Frame)this.animated_thing_def.frame_hashmap[new_frame];
 			if (current_frame == null){
-				Log.Message("exception, tried to set frame to " + new_frame + " but found null!");
+				Log.Error("error, tried to set frame to " + new_frame + " but found null!");
 				current_frame = new Frame();
 			}
 			this.def.drawMat = current_frame.material;

@@ -24,7 +24,10 @@ public class Mine_Def : AnimatedThingDef {
 	public int projectile_count;
 	
 	public List<IntVec3> trigger_spots;
+	public int random_sense_radius = 0;
+	public List<IntVec3> hit_spots;
 
+	public ThingDef trigger_thing = null;
 	
 	public string arm_ui_texture_path;
 	public string disarm_ui_texture_path;
@@ -89,17 +92,35 @@ namespace TrapPack
 			if (armed) {
 				foreach (IntVec3 pos in this.mine_def.trigger_spots){
 					IntVec3 corrected_pos = pos.RotatedBy(this.rotation);
-					foreach (Pawn pawn in Find.Map.thingGrid.ThingsAt(this.Position +corrected_pos).OfType<Pawn>()){
-						if (!this.mine_def.checks_for_frendly || pawn.Faction != this.Faction){
+					foreach (Thing thing in Find.Map.thingGrid.ThingsAt(this.Position +corrected_pos)){
+						if (this.mine_def.trigger_thing == null ||  this.mine_def.trigger_thing.defName.CompareTo(thing.def.defName) == 0){
+							if (!this.mine_def.checks_for_frendly || thing.Faction != this.Faction){
 							Detonate();
 							return;
 						}
+						}
 					}
 				}
+				
+				//this is a random sensing mine, do a random check in some direction
+				if (this.mine_def.random_sense_radius > 0){
+				//pick a random squaire
+					int radius = this.mine_def.random_sense_radius;
+					IntVec3 tile = new IntVec3(Rand.Range(-radius,radius),0,Rand.Range(-radius, radius));
+					//Log.Message("chose tile at " + tile.ToString());
+						foreach (Thing thing in Find.Map.thingGrid.ThingsAt(this.Position + tile)){
+	
+						if (this.mine_def.trigger_thing == null ||  this.mine_def.trigger_thing.defName.CompareTo(thing.def.defName) == 0){
+							if (!this.mine_def.checks_for_frendly || thing.Faction != this.Faction){
+								Detonate();
+								return;
+							}
+						}
+				}
+			}
 			}
 			base.Tick();
 		}
-		
 		/// <summary>
 		/// taken from powerswitch mod by Haplo
 		/// This creates new selection buttons with a new graphic
@@ -107,7 +128,7 @@ namespace TrapPack
 		/// <returns></returns>
 		public override IEnumerable<Command> GetCommands()
 		{
-			if (this.mine_def.trigger_spots.Any<IntVec3>()){
+			if (this.mine_def.random_sense_radius > 0 || this.mine_def.trigger_spots.Any<IntVec3>()){
 				
 			Command_Action optX;
 			optX = new Command_Action();
@@ -162,7 +183,7 @@ namespace TrapPack
 			explosion.Explode();
 			}
 			if (this.mine_def.projectile_to_launch != null){
-				foreach (IntVec3 targ in this.mine_def.trigger_spots){
+				foreach (IntVec3 targ in this.mine_def.hit_spots){
 				for ( int i = 0; i< this.mine_def.projectile_count; i++){
 					Projectile proj = (Projectile)GenSpawn.Spawn(this.mine_def.projectile_to_launch, this.Position);
 						proj.Launch(this, new TargetPack(targ.RotatedBy(this.rotation)+this.Position));
