@@ -29,5 +29,19 @@
 		<innerTreatedWellLabel>treated</innerTreatedWellLabel>
 		<innerTreatedLabel>poorly treated</innerTreatedLabel>
 	</InjuryDef>
+		<InjuryDef>
+		<defName>ExtendedInjuriesInfection</defName>
+		<label>Infection</label>
+		<painPerDamage>1</painPerDamage>
+		<oldPainPerDamage>.1</oldPainPerDamage>
+		<oldLabel>infection scaring</oldLabel>
+		<naturallyHealed>false</naturallyHealed>
+		<bleeding>0</bleeding>
+		<becomeOldChance>.4</becomeOldChance>
+		<combine>false</combine>
+		<destroyedLabel>necrotic</destroyedLabel>
+		<innerTreatedWellLabel>medicated</innerTreatedWellLabel>
+		<innerTreatedLabel>cured</innerTreatedLabel>
+	</InjuryDef>
 
 </InjuryDefs>
