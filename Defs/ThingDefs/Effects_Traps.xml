@@ -26,7 +26,7 @@
 		<thingClass>TrapPack.Gas</thingClass>
 		<textureFolderPath>Things/Poison_Gas/</textureFolderPath>
 		<beauty>Ugly</beauty>
-		<AltitudeLayer>VisEffects</AltitudeLayer>
+		<AltitudeLayer>Weather</AltitudeLayer>
 		<damage_per_tick>2</damage_per_tick>
 		<extinguish_fire>False</extinguish_fire>
 		<damage_type>Poisoned</damage_type>
@@ -44,11 +44,10 @@
 		<description>A mixture of nitrogen and CO2, used to suppress fires. It is safe to inhale.</description>
 		<tickerType>Normal</tickerType>
 		 <pathCost>20</pathCost>
-		<passability>PassThroughOnly</passability>
 		<thingClass>TrapPack.Gas</thingClass>
 		<textureFolderPath>Things/Nitrogen_Gas/</textureFolderPath>
 		<beauty>Ugly</beauty>
-		<AltitudeLayer>VisEffects</AltitudeLayer>
+		<AltitudeLayer>Weather</AltitudeLayer>
 		<damage_per_tick>0</damage_per_tick>
 				<extinguish_fire>true</extinguish_fire>
 			

@@ -70,17 +70,17 @@ namespace TrapPack
 					//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
 					Pawn pawn = (Pawn)target;
 					List<BodyDefPart> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
+					float damage_mod = 0;
+					BodyDefPart protected_part = bodyparts.Find((BodyDefPart protected_part_can) => protected_part_can.def.activities != null && protected_part_can.def.activities.Contains("Eating_source"));
+					if (protected_part != null && pawn.apparel != null){	
+						damage_mod = pawn.apparel.GetDamageAbsorption(protected_part,this.gas_def.damage_type.injury);
+					}
+					//Log.Message("got a damage mod of " + damage_mod.ToString());
 					foreach (BodyDefPart part in bodyparts.InRandomOrder()){
-						if (part.def.activities != null &&  part.def.activities.Contains("Breathing_main")){
-							float damage_mod = 0;
-							if (pawn.apparel != null){
-								BodyDefPart protected_part = bodyparts.Find(protected_part_can => protected_part_can.def.activities.Contains("Breathing_main"));
-								if (protected_part != null){
-								damage_mod = pawn.apparel.GetDamageAbsorption(protected_part,this.gas_def.damage_type.injury);
-								}
-							}
+						if (part.def.activities != null &&  (part.def.activities.Contains("Breathing") || part.def.activities.Contains("Breathing_main") || part.def.activities.Contains("Breathing_way"))){
 							if (damage_mod < 0.99f){
-								pawn.healthTracker.ApplyDamage(new DamageInfo(this.gas_def.damage_type, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
+								//Log.Message("trying to apply damage! ");
+									pawn.healthTracker.ApplyDamage(new DamageInfo(this.gas_def.damage_type, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
 							break;
 							}
 						}
