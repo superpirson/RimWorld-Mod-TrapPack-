@@ -35,7 +35,7 @@
           <absorption>0.2</absorption>
         </li>
          <li>
-          <injuryDef>Poisoned</injuryDef>
+          <injuryDef>ExtendedInjuriesPoisoned</injuryDef>
           <absorption>1.0</absorption>
         </li>
       </damageAbsorption>
@@ -49,8 +49,7 @@
         <li>Helmet</li>
       </tags>
       <bodyPartGroups>
-        <li>FullHead</li>
-        <li>Torso</li> 
+        <li>FullHead</li> 
       </bodyPartGroups>
     </apparel>
     <colorGenerator Class="ColorGenerator_Options">

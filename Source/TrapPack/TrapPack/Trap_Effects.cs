@@ -16,6 +16,8 @@ public class GasDef : AnimatedThingDef {
 	public int damage_per_tick = 0;
 	public bool extinguish_fire = false;
 	public DamageTypeDef damage_type;
+	public float new_gas_dispersion_rate = .2f;
+	public float found_gas_dispersion_rate = .4f;
 }
 
 namespace TrapPack
@@ -72,7 +74,10 @@ namespace TrapPack
 						if (part.def.activities != null &&  part.def.activities.Contains("Breathing_main")){
 							float damage_mod = 0;
 							if (pawn.apparel != null){
-								damage_mod = pawn.apparel.GetDamageAbsorption(part,this.gas_def.damage_type.injury);
+								BodyDefPart protected_part = bodyparts.Find(protected_part_can => protected_part_can.def.activities.Contains("Breathing_main"));
+								if (protected_part != null){
+								damage_mod = pawn.apparel.GetDamageAbsorption(protected_part,this.gas_def.damage_type.injury);
+								}
 							}
 							if (damage_mod < 0.99f){
 								pawn.healthTracker.ApplyDamage(new DamageInfo(this.gas_def.damage_type, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
@@ -94,21 +99,16 @@ namespace TrapPack
 			base.Tick();
 	}
 		/// <summary>
-		/// trys to place gas, checking to see if there is gas of the same gasdef present. checks with:
-		/// <code>
-		/// if (placer != null && placer is Gas){
-		///	thickness = ((Gas)placer).thickness;
-		///}
-		/// </code>
+		/// trys to place gas, checking to see if there is gas of the same gasdef present. uses your current gas and it's disapation rate to determine if gas needs to be dispersed
 		/// to assure that the thickness is used in considering dissapation. also transfers faction ownership.
 		/// </summary>
 		/// <param name="pos">where to place the gas</param>
 		/// <param name="gasdef">gasdef to place</param>
 		/// <param name="placer">thing to use for ownership. also uses placer's thickness if placer is a gas.</param>
-		public static void try_place_Gas(IntVec3 pos, GasDef gas_def, Thing placer = null){
+		public static void try_place_Gas(IntVec3 pos, GasDef gas_def, Gas placer = null){
 			Thing found_thing = Find.Map.thingGrid.ThingAt<Gas>(pos);
-			int thickness = 0;
-			if (placer != null && placer is Gas){
+			int thickness = 1000;
+			if (placer != null ){
 				thickness = ((Gas)placer).thickness;
 			}
 			if (found_thing == null){
@@ -117,28 +117,50 @@ namespace TrapPack
 				if (placer != null){
 				new_gas.SetFactionDirect(placer.Faction);
 				}
-				new_gas.thickness = thickness/ 8;
-				thickness-= thickness/8;
+				new_gas.thickness = (int)(thickness * placer.gas_def.new_gas_dispersion_rate);
+				thickness-= (int)(thickness* placer.gas_def.new_gas_dispersion_rate);
 			}else if (!found_thing.Destroyed){
 				// we found a gas, check if it is our type and then exchange, add to it's thickness with 1/4 of ours
 				Gas adj_gas = (Gas)found_thing;
 				if (adj_gas.gas_def == gas_def){
-				adj_gas.thickness += (thickness/ 4);
-				thickness-= thickness/4;
+					adj_gas.thickness += (int)(thickness* placer.gas_def.found_gas_dispersion_rate);
+					thickness-= (int)(thickness* placer.gas_def.found_gas_dispersion_rate);
 				}
 			}
 			if (placer != null && placer is Gas){
 				((Gas)placer).thickness = thickness;
 			}
 		}
-		public override string GetInspectString()
-		{
-			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append(base.GetInspectString());
-				stringBuilder.Append("Thickness : " + this.thickness);
-			return stringBuilder.ToString();
+		public static void try_place_Gas(IntVec3 pos, GasDef gas_def, int thickness = 1000, Faction faction = null){
+			Thing found_thing = Find.Map.thingGrid.ThingAt<Gas>(pos);
+			if (found_thing == null){
+				// there is no Poison_Gas, make a new one with 1/8 ours
+				Gas new_gas = (Gas)GenSpawn.Spawn(gas_def, pos);
+				if (faction != null){
+					new_gas.SetFactionDirect(faction);
+				}
+				new_gas.thickness = thickness;
+				thickness-= thickness;
+			}else if (!found_thing.Destroyed){
+				// we found a gas, check if it is our type and then exchange, add to it's thickness with 1/4 of ours
+				Gas adj_gas = (Gas)found_thing;
+				if (adj_gas.gas_def == gas_def){
+					adj_gas.thickness += (int)(thickness* gas_def.found_gas_dispersion_rate);
+					thickness-= (int)(thickness* gas_def.found_gas_dispersion_rate);
+				}
+			}
 		}
+		 public override string Label{
+		get
+			{
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.Append(base.Label);
+				stringBuilder.Append(" Thickness : " + this.thickness);
+				return stringBuilder.ToString();
+			}
 	}
+	}
+	
 	public class Zap_Effect : ThingAddons.AnimatedThing{
 		//gloables: 
 		int lifetime = 15;

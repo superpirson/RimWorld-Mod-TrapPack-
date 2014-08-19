@@ -26,9 +26,9 @@
     <incapChanceMultiplier>0</incapChanceMultiplier>
     <externalViolence>true</externalViolence>
     <deathMessage>{0} was electrocuted.</deathMessage>
-	<injury>Electrocuted</injury>
+	<injury>ExtendedInjuriesElectrocuted</injury>
 	<battleWound>true</battleWound>
-	<solidInjury>Electrocuted</solidInjury>
+	<solidInjury>ExtendedInjuriesElectrocuted</solidInjury>
   </DamageTypeDef>
    
    <DamageTypeDef>
@@ -36,7 +36,7 @@
     <incapChanceMultiplier>5</incapChanceMultiplier>
     <externalViolence>true</externalViolence>
     <deathMessage>{0} was poisoned to death.</deathMessage>
-	<injury>Poisoned</injury>
+	<injury>ExtendedInjuriesPoisoned</injury>
 	<battleWound>true</battleWound>
 	<hasForcefulImpact>false</hasForcefulImpact>
 	<makesBlood>false</makesBlood>

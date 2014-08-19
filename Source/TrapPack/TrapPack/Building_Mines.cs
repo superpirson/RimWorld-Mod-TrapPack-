@@ -172,7 +172,7 @@ namespace TrapPack
 			
 			//spawn gas if we need to
 			if (this.mine_def.gas_to_spawn != null){
-				Gas.try_place_Gas(this.Position, (GasDef)this.mine_def.gas_to_spawn, this);
+				Gas.try_place_Gas(this.Position, (GasDef)this.mine_def.gas_to_spawn, this.mine_def.gas_thickness, this.Faction);
 			}
 			}
 	}
