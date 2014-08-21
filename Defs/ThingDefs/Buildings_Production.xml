@@ -78,12 +78,12 @@
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <UseStandardHealth>True</UseStandardHealth>
     <maxHealth>50</maxHealth>
-    <Size>(4,3)</Size>
+    <Size>(3,2)</Size>
     <Overdraw>False</Overdraw>
     <DesignationCategory>Production</DesignationCategory>
     <Passability>Impassable</Passability>
     <hasInteractionSquare>True</hasInteractionSquare>
-    <interactionSquareOffset>(1,0,-2)</interactionSquareOffset>
+    <interactionSquareOffset>(1,0,0)</interactionSquareOffset>
     <itemSurface>false</itemSurface>
     <constructionEffect>ConstructMetal</constructionEffect>
     <recipes>
