@@ -49,6 +49,19 @@ public class Mine_Def : AnimatedThingDef {
 	//*/
 }
 
+public class PlacementRestricter_Next_To_Wall : PlacementRestricter{
+	public override AcceptanceReport CanPlaceWithRestriction (EntityDef checkingDef, IntVec3 loc, IntRot rot)
+	{
+		foreach (Thing thing in Find.ThingGrid.ThingsAt(loc + IntVec3.north.RotatedBy(rot))){
+			if (thing.def.eType == EntityType.Wall){
+			return true;
+			}
+		}
+		
+		return "Must Be Next To Wall";
+	}
+}
+
 
 
 namespace TrapPack

@@ -50,7 +50,6 @@
     <trigger_spots>
     <li>0,0,0</li>
     </trigger_spots>
-    
     <checks_for_frendly>false</checks_for_frendly>
 	<trigger_ui_texture_path>UI/Commands/UI_Trigger</trigger_ui_texture_path>
 	<disarm_ui_texture_path>UI/Commands/UI_Disarm</disarm_ui_texture_path>
@@ -186,6 +185,63 @@
 		<explosion_max_damage>10</explosion_max_damage>
         <projectile_to_launch>Bullet_PumpShotgun</projectile_to_launch>
         <projectile_count>2</projectile_count>
+      </ThingDef>
+      
+      
+      <ThingDef Class="Mine_Def" ParentName="MineBase">
+    <defName>Wall_Arrow_Trap</defName>
+    <label>Wall Arrow Trap</label>
+     <overdraw>true</overdraw>
+     <placementRestricters>
+		<li>PlacementRestricter_Next_To_Wall</li>
+     </placementRestricters>
+     <altitudeLayer>BuildingTall</altitudeLayer>
+    <description>A !bomb.</description>
+   <!--  <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite> -->
+    <thingClass>TrapPack.Mine</thingClass>
+    <workToBuild>200</workToBuild>
+      <textureFolderPath>Things/Arrow_Trap_Atlas/</textureFolderPath>
+       <Passability>Impassable</Passability>
+       
+    <costList>
+       <li>
+        <thingDef>Electronics</thingDef>
+        <count>1</count>
+      </li>
+        <li>
+        <thingDef>Explosives</thingDef>
+        <count>4</count>
+      </li>
+        <li>
+        <thingDef>Metal</thingDef>
+        <count>50</count>
+      </li>
+    </costList>
+    	
+    	<trigger_spots>
+    	<li>0,0,-1</li> 
+    	<li>0,0,-2</li> 
+    	<li>0,0,-3</li> 
+    	<li>0,0,-4</li> 
+    	 <li>0,0,-5</li> 
+    	 <li>0,0,-6</li> 
+    	</trigger_spots>
+    	<hit_spots>
+     	<li>0,0,-1</li> 
+    	<li>0,0,-2</li> 
+    	<li>0,0,-3</li> 
+    	<li>0,0,-4</li> 
+    	 <li>0,0,-5</li> 
+    	 <li>0,0,-6</li>  
+    	</hit_spots>
+    	
+    	<damage_def>Bomb</damage_def>
+        <explosion_min_radius>1.1</explosion_min_radius>
+        <explosion_max_radius>1.4</explosion_max_radius>
+        <explosion_min_damage>0</explosion_min_damage>
+		<explosion_max_damage>10</explosion_max_damage>
+        <projectile_to_launch>Arrow_Great</projectile_to_launch>
+        <projectile_count>1</projectile_count>
       </ThingDef>
 <ThingDef Class="Mine_Def" ParentName="MineBase">
  <defName>Claymore</defName>
