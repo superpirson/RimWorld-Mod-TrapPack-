@@ -200,7 +200,7 @@
    <!--  <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite> -->
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
-      <textureFolderPath>Things/Arrow_Trap_Atlas/</textureFolderPath>
+      <textureFolderPath>Things/Arrow_Trap/</textureFolderPath>
        <Passability>Impassable</Passability>
        
     <costList>
