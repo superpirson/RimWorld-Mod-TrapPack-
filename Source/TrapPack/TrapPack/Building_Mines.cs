@@ -27,7 +27,7 @@ public class Mine_Def : AnimatedThingDef {
 	public int random_sense_radius = 0;
 	public List<IntVec3> hit_spots;
 
-	public ThingDef trigger_thing = null;
+	public Type trigger_type = null;
 	
 	public string arm_ui_texture_path;
 	public string disarm_ui_texture_path;
@@ -84,7 +84,15 @@ namespace TrapPack
 			texUI_Disarm =BaseContent.BadTex;
 			texUI_Trigger =BaseContent.BadTex;
 		}
-			base.SpawnSetup();
+		/*	if (!(this.mine_def.trigger_spots == null || this.mine_def.trigger_spots.Count ==0)){
+			//default to disarmed:
+			armed = false;
+			this.set_frame("_Disarmed");
+			this.animated_thing_def.play = false;
+		}
+		*/
+			
+				base.SpawnSetup();
 		}
 		
 		public override void Tick()
@@ -93,8 +101,9 @@ namespace TrapPack
 				foreach (IntVec3 pos in this.mine_def.trigger_spots){
 					IntVec3 corrected_pos = pos.RotatedBy(this.rotation);
 					foreach (Thing thing in Find.Map.thingGrid.ThingsAt(this.Position +corrected_pos)){
-						if (this.mine_def.trigger_thing == null ||  this.mine_def.trigger_thing.defName.CompareTo(thing.def.defName) == 0){
+						if (this.mine_def.trigger_type != null &&  thing.GetType() ==  this.mine_def.trigger_type){
 							if (!this.mine_def.checks_for_frendly || thing.Faction != this.Faction){
+								//Log.Message("found a " + thing.ToString() + "  whitch was a  "+ thing.def.defName);
 							Detonate();
 							return;
 						}
@@ -110,7 +119,7 @@ namespace TrapPack
 					//Log.Message("chose tile at " + tile.ToString());
 						foreach (Thing thing in Find.Map.thingGrid.ThingsAt(this.Position + tile)){
 	
-						if (this.mine_def.trigger_thing == null ||  this.mine_def.trigger_thing.defName.CompareTo(thing.def.defName) == 0){
+						if (this.mine_def.trigger_type != null &&  thing.GetType() ==  this.mine_def.trigger_type){
 							if (!this.mine_def.checks_for_frendly || thing.Faction != this.Faction){
 								Detonate();
 								return;
@@ -128,7 +137,7 @@ namespace TrapPack
 		/// <returns></returns>
 		public override IEnumerable<Command> GetCommands()
 		{
-			if (this.mine_def.random_sense_radius > 0 || this.mine_def.trigger_spots.Any<IntVec3>()){
+			if ((this.mine_def.random_sense_radius > 0 || this.mine_def.trigger_spots.Any<IntVec3>()) && this.mine_def.trigger_type != null){
 				
 			Command_Action optX;
 			optX = new Command_Action();
@@ -155,18 +164,44 @@ namespace TrapPack
 			yield return optT;
 			}
 		}
+		public override void DrawExtraSelectionOverlays ()
+		{
+			if (!(this.mine_def.trigger_spots == null || this.mine_def.trigger_spots.Count ==0)){
+			List<IntVec3> draw_trig_pos = new List<IntVec3>();
+			foreach (IntVec3 pos in this.mine_def.trigger_spots){
+					if (!pos.Equals(IntVec3.zero)){
+				draw_trig_pos.Add(pos.RotatedBy(this.rotation) + this.Position);
+				}
+			}
+				GenDraw.DrawFieldEdges(draw_trig_pos, Color.red);
+				
+			}
+			if (!(this.mine_def.hit_spots == null || this.mine_def.hit_spots.Count ==0)){
+			List<IntVec3> draw_hit_pos = new List<IntVec3>();
+			foreach (IntVec3 pos in this.mine_def.hit_spots){
+					if (!pos.Equals(IntVec3.zero)){
+				draw_hit_pos.Add(pos.RotatedBy(this.rotation) + this.Position);
+				}
+				}
+			GenDraw.DrawFieldEdges(draw_hit_pos, Color.white);
+			}
+			//Log.Message("tried to draw selection overlays");
+			base.DrawExtraSelectionOverlays();
+		}
+		
+		
 		private void Arm_Disarm()
 		{
 			changed = true;
 			if (armed){
 				armed = false;
 			this.set_frame("_Disarmed");
-				this.animated_thing_def.play = false;
+				this.play = false;
 			}
 			else{
 				armed = true;
 				this.set_frame("_Armed");
-				this.animated_thing_def.play = true;
+				this.play = true;
 			}
 		}
 		public virtual void Detonate(){

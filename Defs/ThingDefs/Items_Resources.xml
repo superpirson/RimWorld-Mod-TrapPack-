@@ -41,7 +41,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>Explosives</defName>
     <label>Explosives</label>
-    <description>These are needed for exploding traps.</description>
+    <description>These are needed for exploding traps. It's been refined and made stable, so it won't explode if damaged.</description>
     <textureFolderPath>Things/Item/Explosives</textureFolderPath>
     <basePrice>10</basePrice>
     <storeCategories>
@@ -122,7 +122,7 @@
 	<ThingDef ParentName="ResourceBase">
 		<defName>RawFireFruit</defName>
 		<label>Fire Fruit</label>
-		<description>These nasty berrys are highly flammable and quite toxic.</description>
+		<description>These nasty berrys are highly flammable and quite toxic. UNSTABLE! These berrys will explode if damaged!</description>
 		<texturePath>Things/Item/RawFireFruit</texturePath>
     <soundInteract>Food_Drop</soundInteract>
     <soundDrop>Food_Drop</soundDrop>
@@ -130,6 +130,15 @@
 		<storeCategories>
 			<li>ResourcesRaw</li>
 		</storeCategories>
+			<maxHealth>25</maxHealth>
+		<comps>
+    	  <li>
+        	<compClass>CompExplosive</compClass>
+       		 <explosiveRadius>2.9</explosiveRadius>
+        	<explosiveDamageType>Bomb</explosiveDamageType>
+       		 <wickTicks>20</wickTicks>
+      		</li>
+      </comps>
 	</ThingDef>
 
 

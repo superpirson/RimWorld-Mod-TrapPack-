@@ -18,7 +18,7 @@
     <blockLight>false</blockLight>
     <drawerType>RealtimeOnly</drawerType>
     <overdraw>false</overdraw>
-    <staticSunShadowHeight>0.0</staticSunShadowHeight>
+        <staticSunShadowHeight>0.0</staticSunShadowHeight>
     <fillPercent>1</fillPercent>
     <size>(1,1)</size>
     <rotatable>true</rotatable>
@@ -29,6 +29,17 @@
     <flammability>1.0</flammability>
     <selectable>true</selectable>
     <tickerType>Normal</tickerType>
+	<comps>
+      <li>
+        <compClass>CompGlower</compClass>
+        <glowRadius>1.9</glowRadius>
+        <glowColor>
+        <r>255</r>
+        <g>100</g>
+        <b>50</b>
+        </glowColor>
+      </li>
+      </comps>
   </ThingDef>
   
   <ThingDef Class="Mine_Def" Name="MineBase" ParentName="TrapBase" Abstract="True">
@@ -63,6 +74,7 @@
 		<next_frame>_Disarmed</next_frame>
 		</li>	
 	</frames>
+	    <trigger_type>Pawn</trigger_type>
   </ThingDef>
   
   

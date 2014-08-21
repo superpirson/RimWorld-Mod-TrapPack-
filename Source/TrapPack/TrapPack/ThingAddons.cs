@@ -14,8 +14,9 @@ using System.Collections.Generic;
 public class AnimatedThingDef : ThingDef{
 	public Hashtable frame_hashmap;
 	public List<ThingAddons.Frame> frames;
-	//last_frame is used only to keep track of the animation order if the frames are not explictildy defed
 	public bool play = true;
+	//last_frame is used only to keep track of the animation order if the frames are not explictildy defed
+
 	public override void PostLoad(){
 		base.PostLoad();
 		//do the blueprint text:
@@ -54,7 +55,6 @@ public class AnimatedThingDef : ThingDef{
 			{
 				Log.Warning("Animated thing tried to find texture folder, but found only one texture.");
 				this.frames.Add(new ThingAddons.Frame(this.folderDrawMats[0]));
-				this.play = false;
 			}
 			else{
 				int i = 0;
@@ -98,6 +98,7 @@ namespace ThingAddons
 	
 	public  class AnimatedThing : ThingWithComponents
 	{
+		public bool play = true;
 		private int tick_count = 0;
 		protected AnimatedThingDef animated_thing_def;
 		public Frame current_frame;
@@ -126,7 +127,7 @@ namespace ThingAddons
 				this.animated_thing_def.texturePath = this.def.texturePath;
 			}
 			this.current_frame = this.animated_thing_def.frames[0];
-			
+			this.play = this.animated_thing_def.play;
 			base.SpawnSetup();
 		}	
 		public override void Tick(){
@@ -141,7 +142,7 @@ namespace ThingAddons
 			tick_count = 0;
 			
 			
-			if (current_frame.next_frame != null && this.animated_thing_def.play){
+			if (current_frame.next_frame != null && this.play){
 				this.set_frame(this.current_frame.next_frame);
 			}
 			base.Tick ();
@@ -164,7 +165,8 @@ namespace ThingAddons
 		//animations are drawn on top of the thing's textures
 		//this is an exact copy of animatedThing, but a it extends buildings
 		//animations are drawn on top of the thing's textures
-		private int tick_count = 0;
+		public bool play = true;
+			private int tick_count = 0;
 		protected AnimatedThingDef animated_thing_def;
 		public Frame current_frame;
 		
@@ -192,7 +194,7 @@ namespace ThingAddons
 				this.animated_thing_def.texturePath = this.def.texturePath;
 			}
 			this.current_frame = this.animated_thing_def.frames[0];
-			
+			this.play = this.animated_thing_def.play;
 			base.SpawnSetup();
 		}	
 		public override void Tick(){
@@ -207,7 +209,7 @@ namespace ThingAddons
 			tick_count = 0;
 			
 			
-			if (current_frame.next_frame != null && this.animated_thing_def.play){
+			if (current_frame.next_frame != null && this.play){
 				this.set_frame(this.current_frame.next_frame);
 			}
 			base.Tick ();

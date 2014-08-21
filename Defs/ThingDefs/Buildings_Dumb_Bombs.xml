@@ -45,7 +45,7 @@
       <ThingDef Class="Mine_Def" ParentName="Dumb_Bomb_Base">
     <defName>Building_FireBomb</defName>
     <label>FireBomb</label>
-    <description>A crude improvised explosive, it produces a small and wildly inconsistent fireball.</description>
+    <description>A crude improvised explosive, it produces a small and wildly inconsistent fireball. UNSTABLE! This bomb will explode if damaged! </description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
@@ -71,6 +71,14 @@
         <explosion_min_damage>0</explosion_min_damage>
 		<explosion_max_damage>10</explosion_max_damage>
 		<thing_to_spawn>Puddle_Fuel</thing_to_spawn>
+			<comps>
+    	  <li>
+        	<compClass>CompExplosive</compClass>
+       		 <explosiveRadius>0.9</explosiveRadius>
+        	<explosiveDamageType>Bomb</explosiveDamageType>
+       		 <wickTicks>20</wickTicks>
+      		</li>
+      </comps>
       </ThingDef>
 
       
@@ -108,7 +116,8 @@
       </li>
     </costList>
      <random_sense_radius>3</random_sense_radius>
-    <trigger_thing>Fire</trigger_thing>
+      <specialDisplayRadius>3.9</specialDisplayRadius>
+    <trigger_type>Fire</trigger_type>
     <gas_to_spawn>Nitrogen_Gas</gas_to_spawn>
     <gas_thickness>8000</gas_thickness>
     <explosion_min_damage>0</explosion_min_damage>

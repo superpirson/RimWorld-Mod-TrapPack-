@@ -51,6 +51,7 @@
 		<textureFolderPath>Things/Plant/FireFruit/</textureFolderPath>
 		<selectable>true</selectable>
 		<pathCost>10</pathCost>
+
 		<plant>
       <shootsSeeds>false</shootsSeeds>
       <harvestTag>Food</harvestTag>
