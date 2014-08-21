@@ -83,7 +83,7 @@
     <DesignationCategory>Production</DesignationCategory>
     <Passability>Impassable</Passability>
     <hasInteractionSquare>True</hasInteractionSquare>
-    <interactionSquareOffset>(1,0,0)</interactionSquareOffset>
+    <interactionSquareOffset>(1,0,-1)</interactionSquareOffset>
     <itemSurface>false</itemSurface>
     <constructionEffect>ConstructMetal</constructionEffect>
     <recipes>
