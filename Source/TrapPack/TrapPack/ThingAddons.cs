@@ -74,6 +74,9 @@ public class AnimatedThingDef : ThingDef{
 				}
 				}catch (Exception e){
 					Log.Error("hi, this was my fault. damn. (error loading quick fix frames for object " + this.defName +" ) threw a    " + e.Message);
+					this.frames.Clear();
+					this.frames.Add(new ThingAddons.Frame(BaseContent.BadMat));	
+					this.frame_hashmap.Add("Unamed frame error" , frames[0]);
 				return;
 				
 				}
