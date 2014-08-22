@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DefPackage-Trap_Trader_Kinds>
+
+	<TraderKindDef>
+		<defName>Defense_Supplier</defName>
+		<label>defense supplier</label>
+		<tradesWeapons>True</tradesWeapons>
+		<sellsWeapons>True</sellsWeapons>
+		<commodityDefs>
+			<li>
+				<itemDef>Silver</itemDef>
+				<amountMin>1000</amountMin>
+				<amountMax>3000</amountMax>
+			</li>
+			<li>
+				<itemDef>Explosives</itemDef>
+				<dropPriceModifier>Cheap</dropPriceModifier>
+				<amountMin>500</amountMin>
+				<amountMax>7500</amountMax>
+			</li>
+	   <li>
+        <itemDef>Medicine</itemDef>
+        <amountMin>40</amountMin>
+        <amountMax>60</amountMax>
+      </li>
+      <li>
+        <itemDef>MealSurvivalPack</itemDef>
+        <amountMin>100</amountMin>
+        <amountMax>200</amountMax>
+      </li>
+      <li>
+        <itemDef>UnsetMine</itemDef>
+        <amountMin>20</amountMin>
+        <amountMax>80</amountMax>
+      </li>
+      <li>
+        <itemDef>UnsetClaymore</itemDef>
+        <dropPriceModifier>Expensive</dropPriceModifier>
+        <amountMin>5</amountMin>
+        <amountMax>20</amountMax>
+      </li>  
+        <li>
+        <itemDef>UnsetNitrogenGasBomb</itemDef>
+        <dropPriceModifier>Expensive</dropPriceModifier>
+        <amountMin>5</amountMin>
+        <amountMax>20</amountMax>
+      </li>
+              <li>
+        <itemDef>UnsetSmartMine</itemDef>
+        <dropPriceModifier>Expensive</dropPriceModifier>
+        <amountMin>5</amountMin>
+        <amountMax>20</amountMax>
+      </li>
+		</commodityDefs>
+	</TraderKindDef>
+
+</DefPackage-Trap_Trader_Kinds>

@@ -32,7 +32,7 @@
     <label>Electronics</label>
     <description>These are needed for most complex traps.</description>
     <textureFolderPath>Things/Item/Electronics/</textureFolderPath>
-    <basePrice>20</basePrice>
+    <basePrice>15</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -43,7 +43,7 @@
     <label>Explosives</label>
     <description>These are needed for exploding traps. It's been refined and made stable, so it won't explode if damaged.</description>
     <textureFolderPath>Things/Item/Explosives</textureFolderPath>
-    <basePrice>10</basePrice>
+    <basePrice>30</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -53,7 +53,7 @@
     <label>Poison</label>
     <description>it's used for killing.</description>
     <textureFolderPath>Things/Item/Poison</textureFolderPath>
-    <basePrice>10</basePrice>
+    <basePrice>20</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -63,7 +63,7 @@
     <label>Unset Mine</label>
     <description>This is a fully functional Mine, however it can not be set without the proper research into explosive traps.</description>
     <textureFolderPath>Things/Item/Unset_Mine_Standard</textureFolderPath>
-    <basePrice>40</basePrice>
+    <basePrice>60</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -73,7 +73,7 @@
     <label>Unset Smart Mine</label>
     <description>This is a fully functional Mine, however it can not be set without the proper research into intelligent traps.</description>
     <textureFolderPath>Things/Item/Unset_Smart_Mine</textureFolderPath>
-    <basePrice>80</basePrice>
+    <basePrice>100</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -83,7 +83,7 @@
     <label>Unset Incendiary Mine</label>
     <description>This is a fully functional Mine, however it can not be set without the proper research into explosive traps.</description>
     <textureFolderPath>Things/Item/Unset_Mine_Incend</textureFolderPath>
-    <basePrice>50</basePrice>
+    <basePrice>70</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -93,7 +93,7 @@
     <label>Unset Claymore</label>
     <description>This is a fully functional Claymore, however it can not be set without the proper research into explosive traps..</description>
     <textureFolderPath>Things/Item/Unset_Claymore</textureFolderPath>
-    <basePrice>60</basePrice>
+    <basePrice>90</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -113,7 +113,7 @@
     <label>Unset Poison Gas Bomb</label>
     <description>A small gas bomb equipped to deploy poison for combat and dw.</description>
     <textureFolderPath>Things/Item/Unset_Poison_Gas_Bomb</textureFolderPath>
-    <basePrice>100</basePrice>
+    <basePrice>150</basePrice>
     <storeCategories>
       <li>Manufactured</li>
     </storeCategories>
@@ -126,7 +126,7 @@
 		<texturePath>Things/Item/RawFireFruit</texturePath>
     <soundInteract>Food_Drop</soundInteract>
     <soundDrop>Food_Drop</soundDrop>
-		<basePrice>10.0</basePrice>
+		<basePrice>15.0</basePrice>
 		<storeCategories>
 			<li>ResourcesRaw</li>
 		</storeCategories>
