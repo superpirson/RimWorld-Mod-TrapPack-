@@ -14,7 +14,7 @@ namespace TrapPack
 
 
 	//--pit traps
-	public class Building_Pit_Trap : Building
+	public class Building_Pit_Trap : ThingAddons.AnimatedBuilding
     {
 		// globals
 		bool set = true;
@@ -23,6 +23,7 @@ namespace TrapPack
         public override void Tick()
         {
 			if (!set){
+				base.Tick();   
 				return;
 			}
 			List<Thing> things = new List<Thing>();
@@ -33,27 +34,12 @@ namespace TrapPack
 					target.TakeDamage(new DamageInfo( pit_trap_damage_type, Rand.Range(0,20), this, new BodyPartDamageInfo(BodyPartHeight.Bottom,BodyPartDepth.Outside)));
 					target.TakeDamage(new DamageInfo(DamageTypeDefOf.Stun, 100, this));
 					set = false;
+					this.set_frame("_Unset");
 				}
 			}
 			base.Tick();       
 		}
-		public override Material DrawMat (IntRot rot)
-		{
-			//Log.Message("pittrap's drawmat was invoked!");
-			if (this.def.folderDrawMats == null || this.def.folderDrawMats.Count <= 0)
-			{
-				return this.def.DrawMat (rot);
-			}
-			if (this.def.folderDrawMats.Count == 1)
-			{
-				return this.def.folderDrawMats [0];
-			}
-			if (set){
-				return this.def.folderDrawMats [0];
-			}else{
-			return this.def.folderDrawMats [1];
-			}
-		}
+		
     }
 
 //*/

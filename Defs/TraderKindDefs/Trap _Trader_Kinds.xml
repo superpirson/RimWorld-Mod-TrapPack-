@@ -34,6 +34,12 @@
         <amountMax>80</amountMax>
       </li>
       <li>
+        <itemDef>UnsetSmartMine</itemDef>
+        <dropPriceModifier>Expensive</dropPriceModifier>
+        <amountMin>5</amountMin>
+        <amountMax>20</amountMax>
+      </li>
+      <li>
         <itemDef>UnsetClaymore</itemDef>
         <dropPriceModifier>Expensive</dropPriceModifier>
         <amountMin>5</amountMin>
@@ -45,13 +51,8 @@
         <amountMin>5</amountMin>
         <amountMax>20</amountMax>
       </li>
-              <li>
-        <itemDef>UnsetSmartMine</itemDef>
-        <dropPriceModifier>Expensive</dropPriceModifier>
-        <amountMin>5</amountMin>
-        <amountMax>20</amountMax>
-      </li>
 		</commodityDefs>
 	</TraderKindDef>
+	
 
 </DefPackage-Trap_Trader_Kinds>

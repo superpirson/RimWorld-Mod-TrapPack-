@@ -99,6 +99,7 @@
     <building>
       <ignoreNeedsPower>true</ignoreNeedsPower>
     </building>
+     <fillPercent>0.2</fillPercent>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <passability>Standable</passability>
     <maxHealth>150</maxHealth>
@@ -146,7 +147,7 @@
     </building>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <passability>Standable</passability>
-    <maxHealth>300</maxHealth>
+    <maxHealth>500</maxHealth>
     <description>A set of electrical cables deeply sunken into the ground and covered with strong headstones. Flameproof and nearly indestructible. Great for areas that see a lot of combat.</description>
     <fillPercent>0.01</fillPercent>
     <placingDraggableDimensions>1</placingDraggableDimensions>

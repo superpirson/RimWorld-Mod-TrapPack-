@@ -68,14 +68,14 @@
     	<damage_def>Flame</damage_def>
         <explosion_min_radius>0.5</explosion_min_radius>
         <explosion_max_radius>2.4</explosion_max_radius>
-        <explosion_min_damage>0</explosion_min_damage>
-		<explosion_max_damage>10</explosion_max_damage>
+        <explosion_min_damage>10</explosion_min_damage>
+		<explosion_max_damage>30</explosion_max_damage>
 		<thing_to_spawn>Puddle_Fuel</thing_to_spawn>
 			<comps>
     	  <li>
         	<compClass>CompExplosive</compClass>
        		 <explosiveRadius>0.9</explosiveRadius>
-        	<explosiveDamageType>Bomb</explosiveDamageType>
+        	<explosiveDamageType>Flame</explosiveDamageType>
        		 <wickTicks>20</wickTicks>
       		</li>
       </comps>

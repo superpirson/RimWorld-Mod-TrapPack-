@@ -17,45 +17,102 @@ namespace TrapPack
 		protected static readonly SoundDef zapSound = SoundDef.Named("short_zap");
 		protected static readonly SoundDef explosion_sound = SoundDef.Named ("Explosion_Bomb");
 		private static Texture2D texUI_Arm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Arm", true);
+		private static Texture2D texUI_Overcharge = ContentFinder<Texture2D>.Get("UI/Commands/UI_Overcharge", true);
+		private static Texture2D texUI_Pain = ContentFinder<Texture2D>.Get("UI/Commands/UI_Pain", true);
 		private static Texture2D texUI_Disarm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Disarm", true);
 
 		const int POWERDRAW = 800000;
+		public enum Floor_Mode
+		{
+			disarmed,
+			kill,
+			pain,
+			overcharge,
+		}
+		
+		Floor_Mode current_floor_mode;
 		// globals
 		private CompPowerTrader power_Trader;
 		private bool has_power = true;
-		private bool armed = false; 
 		uint tick_delay = 0;
 		static DamageTypeDef elec_damage_type = DefDatabase<DamageTypeDef>.GetNamed("elec_damage_type");
 		/// <summary>
 		/// taken from powerswitch mod by Haplo
 		/// This creates new selection buttons with a new graphic
 		/// </summary>
+		
+		
 		/// <returns></returns>
 		public override IEnumerable<Command> GetCommands()
 		{
-			Command_Action optX;
-			optX = new Command_Action();
-			if (!armed)
-				optX.icon = texUI_Arm;
-			else
-				optX.icon = texUI_Disarm;
-			optX.disabled = false;
-			optX.defaultDesc = "Arms floor. The floor draws a lot of power when armed, so watch out!";
-			optX.activateSound = SoundDef.Named("Click");
-			optX.action = Arm_Disarm;
-			optX.groupKey = 313123004;
-			yield return optX;
-			base.GetCommands();
-		}
-		private void Arm_Disarm()
-		{
-			if (armed){
-				armed = false;
+
+			Command_Action kill;
+				kill = new Command_Action();
+				kill.icon = texUI_Arm;
+			if (current_floor_mode == Floor_Mode.kill){
+				kill.disabled = true;
+			}	else{
+				kill.disabled = false;
+				}
+				kill.defaultDesc = "Arms floor. The floor draws a lot of power when armed, so watch out!";
+				kill.activateSound = SoundDef.Named("Click");
+			kill.action = () => (this.current_floor_mode = Floor_Mode.kill);
+				kill.groupKey = 313123004;
+			yield return kill;
+			
+			Command_Action disarm;
+				disarm = new Command_Action();
+				disarm.icon = texUI_Disarm;
+			if (current_floor_mode == Floor_Mode.disarmed){
+				disarm.disabled = true;
 			}
 			else{
-				armed = true;
+				disarm.disabled = false;
 			}
-		}
+				disarm.defaultDesc = "Disarms the floor, making it safe to walk on again.";
+				disarm.activateSound = SoundDef.Named("Click");
+			disarm.action= () => (this.current_floor_mode = Floor_Mode.disarmed);
+				disarm.groupKey = 313123005;
+			yield return disarm;
+			
+
+			Command_Action pain;
+				pain = new Command_Action();
+			pain.icon = texUI_Pain;
+			if (current_floor_mode == Floor_Mode.pain){
+				pain.disabled = true;
+			}
+			else{
+				pain.disabled = false;
+			}
+			pain.defaultDesc = "Sets the floor to only ouput non-lethal shocks.";
+				pain.activateSound = SoundDef.Named("Click");
+			pain.action= () => (this.current_floor_mode = Floor_Mode.pain);
+				pain.groupKey = 313123006;
+			yield return pain;
+			
+			Command_Action overcharge;
+				overcharge = new Command_Action();
+			overcharge.icon = texUI_Overcharge;
+			if (current_floor_mode == Floor_Mode.overcharge){
+				overcharge.disabled = true;
+			}
+			else{
+				overcharge.disabled = false;
+			}
+				overcharge.defaultDesc = "Overcharges the trap. RUN!";
+				overcharge.activateSound = SoundDef.Named("Click");
+			overcharge.action = () => (this.current_floor_mode = Floor_Mode.overcharge);
+				overcharge.groupKey = 313123007;
+			yield return overcharge;
+			
+			
+		
+			
+			
+			
+			base.GetCommands();
+			}
 		public override void SpawnSetup(){
 			base.SpawnSetup();
 			power_Trader = this.GetComp<CompPowerTrader>();
@@ -95,7 +152,7 @@ namespace TrapPack
 			}
 			//	Log.Message(this.powerComp.DebugString + "powernet clames to have : "+ this.powerNet.CurrentStoredEnergy().ToString());
 			bool activated = false;
-			if (armed) {
+			if (this.current_floor_mode != Floor_Mode.disarmed) {
 				this.power_Trader.powerOutput = -POWERDRAW/1000;
 				List<Thing> things = new List<Thing>();
 				things.AddRange(Find.Map.thingGrid.ThingsAt(this.Position));
@@ -106,15 +163,34 @@ namespace TrapPack
 						this.power_Trader.powerOutput = -POWERDRAW;
 						Pawn pawn = (Pawn)target;
 						List<BodyDefPart> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
-						foreach (BodyDefPart part in bodyparts.InRandomOrder()){
-							if (part.def.activities != null &&  part.def.activities.Contains("BloodPumping")){
-								pawn.TakeDamage(new DamageInfo(elec_damage_type, 1, this, new BodyPartDamageInfo(part, false)));
-								break;
+						
+						//decide what to do to our poor victiam!
+						switch (this.current_floor_mode){
+							case Floor_Mode.kill:
+							foreach (BodyDefPart part in bodyparts.InRandomOrder()){
+								if (part.def.activities != null &&  part.def.activities.Contains("BloodPumping")){
+									pawn.TakeDamage(new DamageInfo(elec_damage_type, 1, this, new BodyPartDamageInfo(part, false)));
+									break;
+								}
 							}
+							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
+							explosion_sound.PlayOneShot(this.Position);
+							break;
+							case Floor_Mode.overcharge:
+							BodyDefPart targit_part = bodyparts.RandomElement();
+							pawn.TakeDamage(new DamageInfo(elec_damage_type, 10, this, new BodyPartDamageInfo(targit_part, false)));
+							this.TakeDamage(new DamageInfo(DamageTypeDefOf.Breakdown, 5, this));
+							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
+							
+							explosion_sound.PlayOneShot(this.Position);
+							break;
+							case Floor_Mode.pain:
+							pawn.healthTracker.bodyModel.ExtraPain = 50;
+							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,2, this), false);
+							zapSound.PlayOneShot(this.Position);
+							break;
 						}
-						((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
-
-						explosion_sound.PlayOneShot(this.Position);
+						
 						activated = true;
 					}
 				}

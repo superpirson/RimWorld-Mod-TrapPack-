@@ -98,22 +98,31 @@
   </ThingDef>
   
   
-  <ThingDef  ParentName="TrapBase">
+  <ThingDef Class="AnimatedThingDef" ParentName="TrapBase">
     <defName>Building_Pit_Trap</defName>
     <label>Pit Trap</label>
   <drawerType>RealtimeOnly</drawerType>
     <surfaceNeeded>GrowSoil</surfaceNeeded>
      <pathCost>20</pathCost>
-    <description>A small pit trap, just large enough to trap a person. Can only be built on non-sand soil. It takes forever to dig out, but it's crippling to anyone who falls in. Mine it to destroy it and free whatever's inside.</description>
+    <description>A small pit trap, just large enough to trap a person. Can only be built on non-sand soil. It takes forever to dig out, but it's crippling to anyone who falls in.</description>
     <thingClass>TrapPack.Building_Pit_Trap</thingClass>
     <workToBuild>500</workToBuild>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
-    <texturePath>Things/Building_Pit_Trap/Building_Pit_Trap</texturePath>
+    <textureFolderPath>Things/Building_Pit_Trap/</textureFolderPath>
     <costList>
       <li>
         <thingDef>Metal</thingDef>
-        <count>20</count>
+        <count>10</count>
       </li>
     </costList>
+        <play>false</play>
+    	<frames>
+		<li>
+		<tex_name>_Set</tex_name>
+		</li>	
+		<li>
+		<tex_name>_Unset</tex_name>
+		</li>
+	</frames>
   </ThingDef>
 </ThingDefs>

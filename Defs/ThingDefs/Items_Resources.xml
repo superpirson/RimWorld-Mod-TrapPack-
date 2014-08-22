@@ -3,10 +3,11 @@
 
 
 	<ThingDef Name="ResourceBase" Abstract="True">
+		<thingClass>ThingWithComponents</thingClass>
 		<label>Unspecified resource</label>
 		<category>Item</category>
 		<eType>Item</eType>
-		<thingClass>ThingWithComponents</thingClass>
+		<resourceReadoutPriority>Middle</resourceReadoutPriority>
 		<useStandardHealth>true</useStandardHealth>
 		<selectable>true</selectable>
 		<maxHealth>100</maxHealth>
@@ -19,11 +20,10 @@
 		<beauty>Ugly</beauty>
 		<alwaysHaulable>true</alwaysHaulable>
 		<drawGUIOverlay>true</drawGUIOverlay>
-		   <soundInteract>Standard_Drop</soundInteract>
-    <soundDrop>Standard_Drop</soundDrop>
 		<rotatable>false</rotatable>
 		<pathCost>15</pathCost>
 	</ThingDef>
+	
 <!-- 	end bases  -->
 	
 	

@@ -232,6 +232,9 @@ namespace TrapPack
 				explosion.explosionSpawnChance = .5f;
 			explosion.Explode();
 			}
+			else{
+				this.Destroy(DestroyMode.Deconstruct);
+			}
 			if (this.mine_def.projectile_to_launch != null){
 				foreach (IntVec3 targ in this.mine_def.hit_spots){
 				for ( int i = 0; i< this.mine_def.projectile_count; i++){
