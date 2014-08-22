@@ -209,10 +209,6 @@
         <count>1</count>
       </li>
         <li>
-        <thingDef>Explosives</thingDef>
-        <count>4</count>
-      </li>
-        <li>
         <thingDef>Metal</thingDef>
         <count>50</count>
       </li>
@@ -236,10 +232,10 @@
     	</hit_spots>
     	
     	<damage_def>Bomb</damage_def>
-        <explosion_min_radius>1.1</explosion_min_radius>
-        <explosion_max_radius>1.4</explosion_max_radius>
+        <explosion_min_radius>0.1</explosion_min_radius>
+        <explosion_max_radius>0.4</explosion_max_radius>
         <explosion_min_damage>0</explosion_min_damage>
-		<explosion_max_damage>10</explosion_max_damage>
+		<explosion_max_damage>0</explosion_max_damage>
         <projectile_to_launch>Arrow_Great</projectile_to_launch>
         <projectile_count>1</projectile_count>
       </ThingDef>

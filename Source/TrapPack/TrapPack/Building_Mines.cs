@@ -49,6 +49,8 @@ public class Mine_Def : AnimatedThingDef {
 	//*/
 }
 
+
+
 public class PlacementRestricter_Next_To_Wall : PlacementRestricter{
 	public override AcceptanceReport CanPlaceWithRestriction (EntityDef checkingDef, IntVec3 loc, IntRot rot)
 	{

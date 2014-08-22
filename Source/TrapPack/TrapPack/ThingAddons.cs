@@ -57,6 +57,7 @@ public class AnimatedThingDef : ThingDef{
 				this.frames.Add(new ThingAddons.Frame(this.folderDrawMats[0]));
 			}
 			else{
+			try{
 				int i = 0;
 				foreach (Material mat in this.folderDrawMats){
 					ThingAddons.Frame quick_fix_frame = new ThingAddons.Frame(mat);
@@ -70,6 +71,11 @@ public class AnimatedThingDef : ThingDef{
 					}
 					this.frame_hashmap.Add("Unamed frame " + i.ToString(), quick_fix_frame);
 					i++;
+				}
+				}catch (Exception e){
+					Log.Error("hi, this was my fault. damn. (error loading quick fix frames for object " + this.defName +" ) threw a    " + e.Message);
+				return;
+				
 				}
 			}
 		}
