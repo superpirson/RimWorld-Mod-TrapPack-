@@ -16,12 +16,13 @@ namespace TrapPack
 	{
 		protected static readonly SoundDef zapSound = SoundDef.Named("short_zap");
 		protected static readonly SoundDef explosion_sound = SoundDef.Named ("Explosion_Bomb");
-		private static Texture2D texUI_Arm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Arm", true);
+		private static Texture2D texUI_Kill = ContentFinder<Texture2D>.Get("UI/Commands/UI_Kill", true);
+		private static Texture2D texUI_Disarmed = ContentFinder<Texture2D>.Get("UI/Commands/UI_Disarmed", true);
 		private static Texture2D texUI_Overcharge = ContentFinder<Texture2D>.Get("UI/Commands/UI_Overcharge", true);
 		private static Texture2D texUI_Pain = ContentFinder<Texture2D>.Get("UI/Commands/UI_Pain", true);
 		private static Texture2D texUI_Disarm = ContentFinder<Texture2D>.Get("UI/Commands/UI_Disarm", true);
 
-		const int POWERDRAW = 800000;
+		const int POWERDRAW = 8000000;
 		public enum Floor_Mode
 		{
 			disarmed,
@@ -45,34 +46,46 @@ namespace TrapPack
 		/// <returns></returns>
 		public override IEnumerable<Command> GetCommands()
 		{
-			if (current_floor_mode == Floor_Mode.kill){
-			}	else{
-				Command_Action kill;
-				kill = new Command_Action();
-				kill.icon = texUI_Arm;
-		
-				kill.disabled = false;
-				kill.defaultDesc = "Arms floor. The floor draws a lot of power when armed, so watch out!";
-				kill.activateSound = SoundDef.Named("Click");
-			kill.action = () => (this.current_floor_mode = Floor_Mode.kill);
-				kill.groupKey = 313123004;
-			yield return kill;
-			}
-			
 			if (current_floor_mode == Floor_Mode.disarmed){
+				Command_Action disarmed;
+				disarmed = new Command_Action();
+				disarmed.icon = texUI_Disarmed;
+				disarmed.disabled = true;
+				disarmed.defaultDesc = "The floor is currently safe to walk on.";
+				disarmed.activateSound = SoundDef.Named("Click");
+				disarmed.action= () => (this.current_floor_mode = Floor_Mode.disarmed);
+				disarmed.groupKey = 313123020;
+				
+				yield return disarmed;
 			}
 			else{
-			Command_Action disarm;
+				Command_Action disarm;
 				disarm = new Command_Action();
 				disarm.icon = texUI_Disarm;
 				disarm.disabled = false;
 				disarm.defaultDesc = "Disarms the floor, making it safe to walk on again.";
 				disarm.activateSound = SoundDef.Named("Click");
-			disarm.action= () => (this.current_floor_mode = Floor_Mode.disarmed);
-				disarm.groupKey = 313123005;
+				disarm.action= () => (this.current_floor_mode = Floor_Mode.disarmed);
+				disarm.groupKey = 313123020;
 				
-			yield return disarm;
+				yield return disarm;
 			}
+			
+			if (current_floor_mode == Floor_Mode.kill){
+			}	else{
+				Command_Action kill;
+				kill = new Command_Action();
+				kill.icon = texUI_Kill;
+		
+				kill.disabled = false;
+				kill.defaultDesc = "Arms floor. The floor draws a lot of power when armed, so watch out!";
+				kill.activateSound = SoundDef.Named("Click");
+			kill.action = () => (this.current_floor_mode = Floor_Mode.kill);
+				kill.groupKey = 313123022;
+			yield return kill;
+			}
+			
+		
 			
 			
 			if (current_floor_mode == Floor_Mode.pain){
@@ -83,10 +96,10 @@ namespace TrapPack
 			pain.icon = texUI_Pain;
 		
 				pain.disabled = false;
-			pain.defaultDesc = "Sets the floor to only ouput non-lethal shocks.";
+			pain.defaultDesc = "Sets the floor to only ouput non-lethal shocks. Much less effective.";
 				pain.activateSound = SoundDef.Named("Click");
 			pain.action= () => (this.current_floor_mode = Floor_Mode.pain);
-				pain.groupKey = 313123006;
+				pain.groupKey = 313123023;
 			yield return pain;
 			}
 			if (current_floor_mode == Floor_Mode.overcharge){
@@ -96,10 +109,10 @@ namespace TrapPack
 				overcharge = new Command_Action();
 			overcharge.icon = texUI_Overcharge;
 				overcharge.disabled = false;
-				overcharge.defaultDesc = "Overcharges the trap. RUN!";
+				overcharge.defaultDesc = "Overcharges the trap. This causes damage to the trap.";
 				overcharge.activateSound = SoundDef.Named("Click");
 			overcharge.action = () => (this.current_floor_mode = Floor_Mode.overcharge);
-				overcharge.groupKey = 313123007;
+				overcharge.groupKey = 313123024;
 			yield return overcharge;
 			}
 			base.GetCommands();
@@ -168,9 +181,10 @@ namespace TrapPack
 							explosion_sound.PlayOneShot(this.Position);
 							break;
 							case Floor_Mode.overcharge:
+							this.power_Trader.powerOutput = -2 *POWERDRAW;
 							BodyDefPart targit_part = bodyparts.RandomElement();
-							pawn.TakeDamage(new DamageInfo(elec_damage_type, 10, this, new BodyPartDamageInfo(targit_part, false)));
-							this.TakeDamage(new DamageInfo(DamageTypeDefOf.Breakdown, 5, this));
+							pawn.TakeDamage(new DamageInfo(elec_damage_type, 20, this, new BodyPartDamageInfo(targit_part, false)));
+							this.TakeDamage(new DamageInfo(DamageTypeDefOf.Breakdown, 3, this));
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
 							
 							explosion_sound.PlayOneShot(this.Position);

@@ -67,7 +67,7 @@
     </costList>
     	<damage_def>Flame</damage_def>
         <explosion_min_radius>0.5</explosion_min_radius>
-        <explosion_max_radius>2.4</explosion_max_radius>
+        <explosion_max_radius>3.3</explosion_max_radius>
         <explosion_min_damage>10</explosion_min_damage>
 		<explosion_max_damage>30</explosion_max_damage>
 		<thing_to_spawn>Puddle_Fuel</thing_to_spawn>

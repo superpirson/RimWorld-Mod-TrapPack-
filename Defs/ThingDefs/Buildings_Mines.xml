@@ -188,6 +188,7 @@
       </ThingDef>
       
       
+<!-- 
       <ThingDef Class="Mine_Def" ParentName="MineBase">
     <defName>Wall_Arrow_Trap</defName>
     <label>Wall Arrow Trap</label>
@@ -197,7 +198,7 @@
      </placementRestricters>
      <altitudeLayer>BuildingTall</altitudeLayer>
     <description>A !bomb.</description>
-   <!--  <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite> -->
+   <!~~  <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite> ~~>
     <thingClass>TrapPack.Mine</thingClass>
     <workToBuild>200</workToBuild>
       <textureFolderPath>Things/Arrow_Trap/</textureFolderPath>
@@ -213,7 +214,7 @@
         <count>50</count>
       </li>
     </costList>
-    	
+
     	<trigger_spots>
     	<li>0,0,-1</li> 
     	<li>0,0,-2</li> 
@@ -239,6 +240,8 @@
         <projectile_to_launch>Arrow_Great</projectile_to_launch>
         <projectile_count>1</projectile_count>
       </ThingDef>
+       -->
+    	
 <ThingDef Class="Mine_Def" ParentName="MineBase">
  <defName>Claymore</defName>
     <label>Claymore Mine</label>

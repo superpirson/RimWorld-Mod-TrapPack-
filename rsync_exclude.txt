@@ -1,2 +1,5 @@
 Source/
 .git/
+*.xcf
+*.psd
+*.pdn
