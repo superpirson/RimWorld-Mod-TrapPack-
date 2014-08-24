@@ -45,72 +45,63 @@ namespace TrapPack
 		/// <returns></returns>
 		public override IEnumerable<Command> GetCommands()
 		{
-
-			Command_Action kill;
+			if (current_floor_mode == Floor_Mode.kill){
+			}	else{
+				Command_Action kill;
 				kill = new Command_Action();
 				kill.icon = texUI_Arm;
-			if (current_floor_mode == Floor_Mode.kill){
-				kill.disabled = true;
-			}	else{
+		
 				kill.disabled = false;
-				}
 				kill.defaultDesc = "Arms floor. The floor draws a lot of power when armed, so watch out!";
 				kill.activateSound = SoundDef.Named("Click");
 			kill.action = () => (this.current_floor_mode = Floor_Mode.kill);
 				kill.groupKey = 313123004;
 			yield return kill;
+			}
 			
+			if (current_floor_mode == Floor_Mode.disarmed){
+			}
+			else{
 			Command_Action disarm;
 				disarm = new Command_Action();
 				disarm.icon = texUI_Disarm;
-			if (current_floor_mode == Floor_Mode.disarmed){
-				disarm.disabled = true;
-			}
-			else{
 				disarm.disabled = false;
-			}
 				disarm.defaultDesc = "Disarms the floor, making it safe to walk on again.";
 				disarm.activateSound = SoundDef.Named("Click");
 			disarm.action= () => (this.current_floor_mode = Floor_Mode.disarmed);
 				disarm.groupKey = 313123005;
+				
 			yield return disarm;
+			}
 			
-
+			
+			if (current_floor_mode == Floor_Mode.pain){
+			}
+			else{
 			Command_Action pain;
 				pain = new Command_Action();
 			pain.icon = texUI_Pain;
-			if (current_floor_mode == Floor_Mode.pain){
-				pain.disabled = true;
-			}
-			else{
+		
 				pain.disabled = false;
-			}
 			pain.defaultDesc = "Sets the floor to only ouput non-lethal shocks.";
 				pain.activateSound = SoundDef.Named("Click");
 			pain.action= () => (this.current_floor_mode = Floor_Mode.pain);
 				pain.groupKey = 313123006;
 			yield return pain;
-			
+			}
+			if (current_floor_mode == Floor_Mode.overcharge){
+			}
+			else{
 			Command_Action overcharge;
 				overcharge = new Command_Action();
 			overcharge.icon = texUI_Overcharge;
-			if (current_floor_mode == Floor_Mode.overcharge){
-				overcharge.disabled = true;
-			}
-			else{
 				overcharge.disabled = false;
-			}
 				overcharge.defaultDesc = "Overcharges the trap. RUN!";
 				overcharge.activateSound = SoundDef.Named("Click");
 			overcharge.action = () => (this.current_floor_mode = Floor_Mode.overcharge);
 				overcharge.groupKey = 313123007;
 			yield return overcharge;
-			
-			
-		
-			
-			
-			
+			}
 			base.GetCommands();
 			}
 		public override void SpawnSetup(){
