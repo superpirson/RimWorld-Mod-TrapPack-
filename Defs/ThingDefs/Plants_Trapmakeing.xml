@@ -99,11 +99,11 @@
       <topWindExposure>0.1</topWindExposure>
 			<growthPer20kTicks>0.18</growthPer20kTicks>
 			<lifeSpan>200000</lifeSpan>
-			<fertilityMin>0.5</fertilityMin>
+			<fertilityMin>1.0</fertilityMin>
 			<fertilityFactorGrowthRate>1.0</fertilityFactorGrowthRate>
 			<visualSizeRange>
-				<min>0.3</min>
-				<max>1.05</max>
+				<min>0.6</min>
+				<max>1.55</max>
 			</visualSizeRange>
 		</plant>
 	</ThingDef>
