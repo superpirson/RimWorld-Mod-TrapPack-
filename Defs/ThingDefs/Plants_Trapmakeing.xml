@@ -74,4 +74,37 @@
 			</visualSizeRange>
 		</plant>
 	</ThingDef>
+	
+		<ThingDef ParentName="PlantBase">
+		<defName>PlantScorpionFlower</defName>
+		<label>Scorpion Flower</label>
+		<maxHealth>150</maxHealth>
+		<description>A deadly flower with a protruding thorn shaped like a scorpion's tail.</description>
+		<beauty>NiceTiny</beauty>
+		<textureFolderPath>Things/Plant/ScorpionFlower/</textureFolderPath>
+		<selectable>true</selectable>
+		<pathCost>10</pathCost>
+
+		<plant>
+      <shootsSeeds>false</shootsSeeds>
+      <harvestTag>Food</harvestTag>
+      <harvestedThingDef>ScorpionSeedPods</harvestedThingDef>
+      <harvestDestroys>True</harvestDestroys>
+      <harvestYieldRange>
+        <min>1</min>
+        <max>2</max>
+      </harvestYieldRange>
+      <sowableGround>true</sowableGround>
+      <sowableHydroponic>false</sowableHydroponic>
+      <topWindExposure>0.1</topWindExposure>
+			<growthPer20kTicks>0.18</growthPer20kTicks>
+			<lifeSpan>200000</lifeSpan>
+			<fertilityMin>0.5</fertilityMin>
+			<fertilityFactorGrowthRate>1.0</fertilityFactorGrowthRate>
+			<visualSizeRange>
+				<min>0.3</min>
+				<max>1.05</max>
+			</visualSizeRange>
+		</plant>
+	</ThingDef>
 </Plants>
