@@ -41,6 +41,15 @@
 	<hasForcefulImpact>false</hasForcefulImpact>
 	<makesBlood>false</makesBlood>
   </DamageTypeDef> 
+  
+     <DamageTypeDef>
+    <defName>Antidote</defName>
+    <incapChanceMultiplier>0</incapChanceMultiplier>
+    <externalViolence>true</externalViolence>
+	<injury>ExtendedInjuriesPoisoned</injury>
+	<hasForcefulImpact>false</hasForcefulImpact>
+	<makesBlood>false</makesBlood>
+  </DamageTypeDef> 
   <DamageTypeDef>
     <defName>pit_trap_damage_type</defName>
     <incapChanceMultiplier>0</incapChanceMultiplier>

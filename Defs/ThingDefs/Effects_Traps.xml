@@ -83,6 +83,20 @@
 	</frames>
 	
 	</ThingDef>
-  
+	
+	
+    <ThingDef ParentName="EffectBase">
+    <defName>Poisoning</defName>
+    <eType>Puddle</eType>
+	<label>Poisoning</label>
+		<thingClass>TrapPack.Poisoning</thingClass>
+		<category>Attachment</category>
+		<tickerType>Normal</tickerType>
+		<textureFolderPath>Things/Special/Fire</textureFolderPath>
+		<baseMaterialType>MotePostLight</baseMaterialType>
+		<altitudeLayer>PawnState</altitudeLayer>
+		<useStandardHealth>false</useStandardHealth>
+		<beauty>Horrifying</beauty>
+	</ThingDef>
   
 </ThingDefs>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+
+	<ThingDef Name="BaseGun" Abstract="True">
+		<category>Item</category>
+		<eType>Equipment</eType>
+		<thingClass>Equipment</thingClass>
+		<label>Gun</label>
+		<equipmentType>Primary</equipmentType>
+		<isGun>True</isGun>
+		<pathCost>10</pathCost>
+		<useStandardHealth>True</useStandardHealth>
+		<selectable>True</selectable>
+		<maxHealth>100</maxHealth>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>True</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<techLevel>Midworld</techLevel>
+		<storeCategories>
+			<li>Weapons</li>
+		</storeCategories>
+		<comps>
+			<li>
+				<compClass>CompForbiddable</compClass>
+			</li>
+		</comps>
+		<verb>
+      <category>Nonnative</category>
+			<verbClass>Verb_Shoot</verbClass>
+			<cooldownTicks>40</cooldownTicks>
+			<label>VerbGun</label>
+			<description>Fire a bullet.</description>
+			<hasStandardCommand>true</hasStandardCommand>
+			<targetParams>
+				<canTargetPawns>true</canTargetPawns>
+				<canTargetBuildings>true</canTargetBuildings>
+				<worldObjectTargetsMustBeAutoAttackable>true</worldObjectTargetsMustBeAutoAttackable>
+			</targetParams>
+			<canMiss>true</canMiss>
+		</verb>
+	</ThingDef>
+
+  <ThingDef Name="BaseHumanGun" ParentName="BaseGun" Abstract="True">
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+  </ThingDef>
+  
+  
+	<ThingDef Name="BaseBullet" Abstract="True">
+		<category>Projectile</category>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<thingClass>Bullet</thingClass>
+		<label>Bullet</label>
+		<useStandardHealth>False</useStandardHealth>
+		<neverMultiSelect>True</neverMultiSelect>
+		<baseMaterialType>Transparent</baseMaterialType>
+	</ThingDef>
+
+	<!-- ============================================================== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Poisoned_Bullet_Pistol</defName>
+		<label>Poisoned Pistol bullet</label>
+		<texturePath>Things/Projectile/Bullet_Small</texturePath>
+		<thingClass>TrapPack.PoisonBullet</thingClass>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+      <damageDef>Poisoned</damageDef>
+			<DamageAmountBase>10</DamageAmountBase>
+			<Speed>55</Speed>
+		</projectile>
+	</ThingDef>
+
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>Poisoned_Gun_Pistol</defName>
+		<label>Poisoned Pistol</label>
+		<description>Ancient pattern automatic pistol. added Poisoned effect for testing.</description>
+		<texturePath>Things/Item/Equipment/Pistol</texturePath>
+		<soundInteract>InteractPistol</soundInteract>
+		<tradersCarry>false</tradersCarry>
+		<basePrice>9999999</basePrice>
+		<verb>
+			<projectileDef>Poisoned_Bullet_Pistol</projectileDef>
+      <accuracyTouch>0.91</accuracyTouch>
+      <accuracyShort>0.91</accuracyShort>
+      <accuracyMedium>0.90</accuracyMedium>
+      <accuracyLong>0.92</accuracyLong>
+			<warmupTicks>2</warmupTicks>
+			<range>94</range>
+			<fireSound>ShotPistol</fireSound>
+		</verb>
+	</ThingDef>
+
+	<!-- ============================================================== -->
+</ThingDefs>
