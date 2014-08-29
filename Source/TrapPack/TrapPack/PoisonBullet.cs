@@ -38,7 +38,6 @@ namespace TrapPack
 				else if (hitThing is Pawn){
 					Poisoning poisoning = new Poisoning(hitThing as Pawn, this.def.projectile.damageAmountBase, this.def.projectile.damageAmountBase);
 					poisoning.AttachTo (hitThing);
-					GenSpawn.Spawn (poisoning, hitThing.Position, IntRot.north);
 				}
 			}
 			else

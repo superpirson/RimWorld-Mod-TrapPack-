@@ -179,6 +179,8 @@ namespace TrapPack
 							}
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
 							explosion_sound.PlayOneShot(this.Position);
+							MoteMaker.ThrowFlash (base.Position, "ShotFlash", 2f);
+							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
 							break;
 							case Floor_Mode.overcharge:
 							this.power_Trader.powerOutput = -2 *POWERDRAW;
@@ -188,11 +190,14 @@ namespace TrapPack
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
 							
 							explosion_sound.PlayOneShot(this.Position);
+							MoteMaker.ThrowFlash (base.Position, "ShotFlash", 6f);
+							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
 							break;
 							case Floor_Mode.pain:
 							pawn.healthTracker.bodyModel.ExtraPain = 50;
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,2, this), false);
 							zapSound.PlayOneShot(this.Position);
+							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
 							break;
 						}
 						
