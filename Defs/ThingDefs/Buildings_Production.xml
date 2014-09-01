@@ -83,7 +83,7 @@
     <DesignationCategory>Production</DesignationCategory>
     <Passability>Impassable</Passability>
     <hasInteractionSquare>True</hasInteractionSquare>
-    <interactionSquareOffset>(1,0,-1)</interactionSquareOffset>
+    <interactionSquareOffset>(3,0,-1)</interactionSquareOffset>
     <itemSurface>false</itemSurface>
     <constructionEffect>ConstructMetal</constructionEffect>
     <tickerType>Normal</tickerType>
@@ -95,7 +95,8 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
         <drawerType>RealtimeOnly</drawerType>
-    	<frames>
+    	<!-- 
+<frames>
 		<li>
 		<tex_name>Refinery-1-Test</tex_name>
 		<next_frame>Refinery-2-Test</next_frame>
@@ -109,6 +110,7 @@
 			<next_frame>Refinery-1-Test</next_frame>
 		</li>
 	</frames>
+ -->
 
 
     <building>
