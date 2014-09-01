@@ -22,21 +22,17 @@ namespace TrapPack
 	{
 		protected override void Impact (Thing hitThing)
 		{
-			base.Impact (hitThing);
+			//base.Impact (hitThing);
 			if (hitThing != null)
 			{
-				Poisoning found_p = null;
-				if ( hitThing.attachments != null){
-				 found_p =hitThing.attachments.Find((AttachableThing thing) => (thing is Poisoning)) as Poisoning;
-				}
 				// use puddle as our e-type
-				if (found_p != null)
-				{
-					found_p.quantity += this.def.projectile.damageAmountBase;
-					return;
-				}
-				else if (hitThing is Pawn){
-					Poisoning poisoning = new Poisoning(hitThing as Pawn, this.def.projectile.damageAmountBase, this.def.projectile.damageAmountBase);
+				if (hitThing is Pawn){
+					
+					Poisoning poisoning = ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("Poisoning")) as Poisoning;
+					poisoning.potency = this.def.projectile.damageAmountBase;
+					poisoning.SpawnSetup();
+					poisoning.body_parts.Add((hitThing as Pawn).healthTracker.bodyModel.GetRandomNotMissingPart());
+					Log.Message(poisoning.def.tickerType.ToString());
 					poisoning.AttachTo (hitThing);
 				}
 			}
@@ -44,8 +40,9 @@ namespace TrapPack
 			{
 			
 			}
-			MoteMaker.ThrowFlash (base.Position, "ShotFlash", 6f);
+			// MoteMaker.ThrowFlash (base.Position, "ShotFlash", 6f);
 			MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
+			this.Destroy();
 		}
 	
 	
@@ -57,17 +54,9 @@ namespace TrapPack
 	{
 		private static DamageTypeDef poisoned_damage = (DamageTypeDef)DefDatabase<DamageTypeDef>.GetNamed("Poisoned");
 		private static DamageTypeDef antidote_damage = (DamageTypeDef)DefDatabase<DamageTypeDef>.GetNamed("Antidote");
-		public int potency = 100;
-		public int quantity = 100;
+		public int potency;
 		public List<BodyDefPart> body_parts = new List<BodyDefPart>();
-		public Pawn attached_pawn;
 		public int ticksSinceDamage = 0;
-		
-		public Poisoning(Pawn attached_pawn, int potency, int quantity){
-			this.attached_pawn = attached_pawn;
-			this.potency = potency;
-							this.quantity = quantity;
-		}
 		public override string InfoStringAddon
 		{
 			get
@@ -87,14 +76,6 @@ namespace TrapPack
 				return "Poisening";
 			}
 		}
-		
-		private float TicksBeforeDamage
-		{
-			get
-			{
-				return 80f * 1f/(float)this.potency;
-			}
-		}
 		//
 		// Methods
 		//
@@ -112,6 +93,9 @@ namespace TrapPack
 			}
 		public override void Draw ()
 		{
+			Material parent_draw_mat = this.parent.DrawMat(this.parent.rotation);
+			parent_draw_mat.color = Color.green;
+			
 		/*
 			float num = this.fireSize / 1.2f;
 			if (num > 1.2f)
@@ -125,36 +109,26 @@ namespace TrapPack
 			*/
 		}
 		
-		public override Material DrawMat (IntRot rot)
-		{
-			return BaseContent.BadMat;
-		}
+
 		
 		public override void ExposeData ()
 		{
 			base.ExposeData ();
 			Scribe_Values.LookValue<int> (ref this.potency, "potency", 0,false);
-			Scribe_Values.LookValue<int> (ref this.quantity, "quantity", 0,false);
-			Scribe_Values.LookValue<Pawn> (ref this.attached_pawn, "attached_pawn", null,false);
+			Scribe_Values.LookValue<int> (ref this.ticksSinceDamage, "ticksSinceDamage", 0,false);
 			Scribe_Values.LookValue<List<BodyDefPart>> (ref this.body_parts, "body_parts", null,false);
 		}
-		
 		public override void SpawnSetup ()
 		{
+			
 			base.SpawnSetup ();
-			/*
-			this.RecalcPathsOnAndAroundMe ();
-			Find.ConceptTracker.TeachOpportunity (ConceptDefOf.HomeRegion, this, OpportunityType.Important);
-			SoundInfo info = SoundInfo.InWorld (this, MaintenanceType.PerTick);
-			this.sustainer = SustainerAggregatorUtility.AggregateOrSpawnSustainerFor (this, Fire.BurningSoundDef, info);
-			*/
-		}
-		
+			}
 		public override void Tick ()
 		{
+		//	Log.Message("ticked for poisen on " + this.parent.ToString());
 			//this.sustainer.Maintain ();
 			this.ticksSinceDamage++;
-			if ((float)this.ticksSinceDamage >= this.TicksBeforeDamage)
+			if (this.ticksSinceDamage >= 1000 / this.potency)
 			{
 				if (this.parent == null)
 				{
@@ -163,17 +137,17 @@ namespace TrapPack
 				}
 				// do the actual damage to the pawn
 				if (body_parts.Count > 0){
-					attached_pawn.TakeDamage (new DamageInfo (poisoned_damage, potency / 5, this, new BodyPartDamageInfo(body_parts.RandomElement(), false), this.def));
-				}
-				if (this.quantity > 80)
-				{
-					//attached_pawn.healthTracker.bodyModel.GetRandomNotMissingPart()
-					BodyDefPart new_part = body_parts.RandomElement().parent;
-					if (new_part != null){
-						body_parts.Add(new_part);
-						this.quantity -= new_part.def.health / 4;
+					(parent as Pawn).TakeDamage (new DamageInfo (poisoned_damage, 1, this, new BodyPartDamageInfo(body_parts.RandomElement(), false), this.def));
+					this.TakeDamage(new DamageInfo(antidote_damage, 1, this));
+					if (potency > 10){
+						body_parts.Add(body_parts.RandomElement().parent);
 					}
 				}
+				else{
+					Log.Error ("poisening found no body parts to affect, pickeing one at random");
+					body_parts.Add((parent as Pawn).healthTracker.bodyModel.GetRandomNotMissingPart());
+				}
+		
 				this.ticksSinceDamage = 0;
 			}
 		}

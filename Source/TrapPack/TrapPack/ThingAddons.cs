@@ -234,4 +234,71 @@ namespace ThingAddons
 			return this.current_frame.material;
 		}
 	}
+	
+	public class AnimatedBuilding_WorkTable : Building_WorkTable{
+		//this is an exact copy of animatedThing, but a it extends buildings
+		//animations are drawn on top of the thing's textures
+		//animations are drawn on top of the thing's textures
+		//this is an exact copy of animatedThing, but a it extends buildings
+		//animations are drawn on top of the thing's textures
+		public bool play = true;
+		private int tick_count = 0;
+		protected AnimatedThingDef animated_thing_def;
+		public Frame current_frame;
+		
+		//this is how long the animatior should wait before starting to cycle
+		public int wait_ticks = 0;
+		
+		
+		public void set_frame(string new_frame){
+			current_frame = (Frame)this.animated_thing_def.frame_hashmap[new_frame];
+			if (current_frame == null){
+				Log.Error("error, tried to set frame to " + new_frame + " but found null!");
+				current_frame = new Frame();
+			}
+			this.def.drawMat = current_frame.material;
+			Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
+		}
+		
+		
+		public override void SpawnSetup(){
+			if (this.def is AnimatedThingDef){
+				this.animated_thing_def = (AnimatedThingDef)this.def;
+			}else{
+				// make a new animated object for just this context
+				this.animated_thing_def = new AnimatedThingDef();
+				this.animated_thing_def.texturePath = this.def.texturePath;
+			}
+			this.current_frame = this.animated_thing_def.frames[0];
+			this.play = this.animated_thing_def.play;
+			base.SpawnSetup();
+		}	
+		public override void Tick(){
+			if (wait_ticks > 0){
+				wait_ticks--;
+				base.Tick();
+				return;
+			}
+			if (tick_count++ < current_frame.frame_delay){
+				base.Tick (); return;
+			}
+			tick_count = 0;
+			
+			
+			if (current_frame.next_frame != null && this.play){
+				this.set_frame(this.current_frame.next_frame);
+			}
+			base.Tick ();
+			
+		}
+		public override void Draw ()
+		{	
+			this.Comps_Draw ();
+			base.Draw ();
+		}
+		public override Material DrawMat (IntRot rot)
+		{
+			return this.current_frame.material;
+		}
+	}
 	}
