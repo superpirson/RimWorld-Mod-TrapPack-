@@ -1,21 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PoisonBullet.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ThingAddons.cs">
     <Files>
       <File FileName="Building_Mines.cs" Line="1" Column="1" />
       <File FileName="Building_Electrified_Floor.cs" Line="1" Column="1" />
       <File FileName="Trap_Effects.cs" Line="1" Column="1" />
-      <File FileName="ThingAddons.cs" Line="1" Column="1" />
+      <File FileName="ThingAddons.cs" Line="238" Column="41" />
       <File FileName="Building_Pit_Trap.cs" Line="1" Column="1" />
       <File FileName="PoisonBullet.cs" Line="96" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="TrapPack" expanded="True">
-            <Node name="PoisonBullet.cs" selected="True" />
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

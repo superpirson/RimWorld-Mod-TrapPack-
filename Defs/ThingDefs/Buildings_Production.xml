@@ -64,7 +64,7 @@
     <DefName>ExplosivesRefinery</DefName>
     <EType>Building_WorkTable</EType>
     <Label>Explosives Refinery</Label>
-    <ThingClass>AnimatedBuilding_WorkTable</ThingClass>
+    <ThingClass>ThingAddons.AnimatedBuilding_WorkTable</ThingClass>
     <Description>Used to refine all sorts of dangerous chemicals.</Description>
     <TexturePath>Things/Buildings/ExplosivesRefinery</TexturePath>
     <CostList>
