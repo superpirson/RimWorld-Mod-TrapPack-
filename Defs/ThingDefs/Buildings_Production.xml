@@ -60,13 +60,13 @@
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
     </building>
   </ThingDef>
-   <ThingDef ParentName="BuildingBase">
+   <ThingDef Class="AnimatedThingDef" ParentName="BuildingBase">
     <DefName>ExplosivesRefinery</DefName>
     <EType>Building_WorkTable</EType>
     <Label>Explosives Refinery</Label>
     <ThingClass>ThingAddons.AnimatedBuilding_WorkTable</ThingClass>
     <Description>Used to refine all sorts of dangerous chemicals.</Description>
-    <TextureFolderPath>Things/Buildings/Explosives_Refinery</TextureFolderPath>
+    <TextureFolderPath>Things/Explosives_Refinery/</TextureFolderPath>
     <CostList>
       <li>
         <thingDef>Metal</thingDef>
@@ -93,6 +93,22 @@
     <inspectorTabs>
       <li>ITab_Bills</li>
     </inspectorTabs>
+    	<frames>
+		<li>
+		<tex_name>Refinery-1-Test</tex_name>
+		<next_frame>Refinery-2-Test</next_frame>
+		</li>	
+		<li>
+		<tex_name>Refinery-2-Test</tex_name>
+		<next_frame>Refinery-3-Test</next_frame>
+		</li>
+		<li>
+		<tex_name>Refinery-3-Test</tex_name>
+			<next_frame>Refinery-1-Test</next_frame>
+		</li>
+	</frames>
+
+
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
     </building>

@@ -266,8 +266,8 @@ namespace ThingAddons
 				this.animated_thing_def = (AnimatedThingDef)this.def;
 			}else{
 				// make a new animated object for just this context
-				this.animated_thing_def = new AnimatedThingDef();
-				this.animated_thing_def.texturePath = this.def.texturePath;
+				//this.animated_thing_def = new AnimatedThingDef();
+				//this.animated_thing_def.texturePath = this.def.texturePath;
 			}
 			this.current_frame = this.animated_thing_def.frames[0];
 			this.play = this.animated_thing_def.play;
