@@ -86,6 +86,7 @@
     <interactionSquareOffset>(1,0,-1)</interactionSquareOffset>
     <itemSurface>false</itemSurface>
     <constructionEffect>ConstructMetal</constructionEffect>
+    <tickerType>Normal</tickerType>
     <recipes>
      <li>MakeExplosives</li>
      <li>MakePoison</li>
