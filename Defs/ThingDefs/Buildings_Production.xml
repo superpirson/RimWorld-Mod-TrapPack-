@@ -66,7 +66,7 @@
     <Label>Explosives Refinery</Label>
     <ThingClass>ThingAddons.AnimatedBuilding_WorkTable</ThingClass>
     <Description>Used to refine all sorts of dangerous chemicals.</Description>
-    <TexturePath>Things/Buildings/ExplosivesRefinery</TexturePath>
+    <TextureFolderPath>Things/Buildings/Explosives_Refinery</TextureFolderPath>
     <CostList>
       <li>
         <thingDef>Metal</thingDef>
