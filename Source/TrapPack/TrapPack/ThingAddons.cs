@@ -86,7 +86,11 @@ public class AnimatedThingDef : ThingDef{
 		
 	}	
 }
-
+public class AnimatiorCompProperties : CompProperties{
+	public List<ThingAddons.Frame> frames;
+	public bool play;
+	public Hashtable frame_hashmap;
+}
 
 namespace ThingAddons
 { 
@@ -105,7 +109,7 @@ namespace ThingAddons
 		public int frame_delay = 0;
 	}
 	
-	public  class AnimatedThing : ThingWithComponents
+	public  class AnimatorComp : ThingComp
 	{
 		public bool play = true;
 		private int tick_count = 0;
@@ -122,31 +126,20 @@ namespace ThingAddons
 				Log.Message("exception, tried to set frame to " + new_frame + " but found null!");
 				current_frame = new Frame();
 			}
-			this.def.drawMat = current_frame.material;
-			Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
+			//this.def.drawMat = current_frame.material;
+			//Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
 		}
 		
 		
 		public override void SpawnSetup(){
-			if (this.def is AnimatedThingDef){
-				this.animated_thing_def = (AnimatedThingDef)this.def;
-			}else{
-				// make a new animated object for just this context
-				this.animated_thing_def = new AnimatedThingDef();
-				this.animated_thing_def.texturePath = this.def.texturePath;
-			}
-			this.current_frame = this.animated_thing_def.frames[0];
-			this.play = this.animated_thing_def.play;
-			base.SpawnSetup();
-		}	
-		public override void Tick(){
+		}
+		public override void CompDraw(){
 			if (wait_ticks > 0){
 				wait_ticks--;
-				base.Tick();
 				return;
 			}
 			if (tick_count++ < current_frame.frame_delay){
-				base.Tick (); return;
+			 return;
 			}
 			tick_count = 0;
 			
@@ -154,18 +147,30 @@ namespace ThingAddons
 			if (current_frame.next_frame != null && this.play){
 				this.set_frame(this.current_frame.next_frame);
 			}
-			base.Tick ();
 			
 		}
-		public override void Draw ()
-		{	
-			this.Comps_Draw ();
-			base.Draw ();
-		}
-		public override Material DrawMat (IntRot rot)
+		
+		//directly pulled from ty's code
+		public virtual void DrawAt (Vector3 drawLoc)
 		{
-			return this.current_frame.material;
+			Quaternion quaternion;
+			if (this.def.graphic == null)
+			{
+				quaternion = this.rotation.AsQuat;
+			}
+			else
+			{
+				quaternion = Quaternion.identity;
+			}
+			Graphics.DrawMesh (this.DrawMesh, drawLoc, quaternion, this.DrawMat (this.rotation), 0);
+			if (this.def.sunShadowInfo != null && !Find.RoofGrid.Roofed (drawLoc.ToIntVec3 ()))
+			{
+				Vector3 position = drawLoc + this.def.sunShadowInfo.offset;
+				position.y = Altitudes.AltitudeFor (AltitudeLayer.Shadows);
+				Graphics.DrawMesh (this.def.sunShadowMesh, position, Quaternion.identity, MatBases.SunShadowFade, 0);
+			}
 		}
+		
 	}
 
 	public class AnimatedBuilding : Building{
@@ -254,6 +259,68 @@ namespace ThingAddons
 			current_frame = (Frame)this.animated_thing_def.frame_hashmap[new_frame];
 			if (current_frame == null){
 				Log.Error("error, tried to set frame to " + new_frame + " but found null!");
+				current_frame = new Frame();
+			}
+			this.def.drawMat = current_frame.material;
+			Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
+		}
+		
+		
+		public override void SpawnSetup(){
+			if (this.def is AnimatedThingDef){
+				this.animated_thing_def = (AnimatedThingDef)this.def;
+			}else{
+				// make a new animated object for just this context
+				this.animated_thing_def = new AnimatedThingDef();
+				this.animated_thing_def.texturePath = this.def.texturePath;
+			}
+			this.current_frame = this.animated_thing_def.frames[0];
+			this.play = this.animated_thing_def.play;
+			base.SpawnSetup();
+		}	
+		public override void Tick(){
+			if (wait_ticks > 0){
+				wait_ticks--;
+				base.Tick();
+				return;
+			}
+			if (tick_count++ < current_frame.frame_delay){
+				base.Tick (); return;
+			}
+			tick_count = 0;
+			
+			
+			if (current_frame.next_frame != null && this.play){
+				this.set_frame(this.current_frame.next_frame);
+			}
+			base.Tick ();
+			
+		}
+		public override void Draw ()
+		{	
+			this.Comps_Draw ();
+			base.Draw ();
+		}
+		public override Material DrawMat (IntRot rot)
+		{
+			return this.current_frame.material;
+		}
+	}
+	public  class AnimatedThing : ThingWithComponents
+	{
+		public bool play = true;
+		private int tick_count = 0;
+		protected AnimatedThingDef animated_thing_def;
+		public Frame current_frame;
+		
+		//this is how long the animatior should wait before starting to cycle
+		public int wait_ticks = 0;
+		
+		
+		public void set_frame(string new_frame){
+			current_frame = (Frame)this.animated_thing_def.frame_hashmap[new_frame];
+			if (current_frame == null){
+				Log.Message("exception, tried to set frame to " + new_frame + " but found null!");
 				current_frame = new Frame();
 			}
 			this.def.drawMat = current_frame.material;
