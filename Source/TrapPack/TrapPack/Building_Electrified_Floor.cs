@@ -181,6 +181,7 @@ namespace TrapPack
 							explosion_sound.PlayOneShot(this.Position);
 							MoteMaker.ThrowFlash (base.Position, "ShotFlash", 2f);
 							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
+							MoteMaker.ThrowLightningGlow(base.Position.ToVector3Shifted(), 2f);
 							break;
 							case Floor_Mode.overcharge:
 							this.power_Trader.powerOutput = -2 *POWERDRAW;
@@ -191,6 +192,7 @@ namespace TrapPack
 							
 							explosion_sound.PlayOneShot(this.Position);
 							MoteMaker.ThrowFlash (base.Position, "ShotFlash", 6f);
+							MoteMaker.ThrowLightningGlow(base.Position.ToVector3Shifted(), 2f);
 							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
 							break;
 							case Floor_Mode.pain:
@@ -216,7 +218,7 @@ namespace TrapPack
 				}	
 				else{
 					//if we caught someone, begin chosueing how to shock them
-					if (UnityEngine.Random.Range(0,20) < 1f && activated == true){
+					if (UnityEngine.Random.Range(0f,1f) < .07f ){
 						//if we happen to get less than 1, we will let him go free, he will be givin a random number of ticks to escape
 						tick_delay += (uint) UnityEngine.Random.Range(60,200);
 					}
@@ -226,8 +228,8 @@ namespace TrapPack
 				}
 				
 			}
-			// min tick delay is 4.
-			tick_delay += 4;
+			// min tick delay is 5.
+			tick_delay += 5;
 			base.Tick();
 
 		}
