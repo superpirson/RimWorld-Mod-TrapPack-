@@ -237,7 +237,9 @@ namespace TrapPack
 			}
 			if (this.mine_def.projectile_to_launch != null){
 				foreach (IntVec3 targ in this.mine_def.hit_spots){
+					//Log.Message("fireing proj at: " + targ.ToString());
 				for ( int i = 0; i< this.mine_def.projectile_count; i++){
+					
 					Projectile proj = (Projectile)GenSpawn.Spawn(this.mine_def.projectile_to_launch, this.Position);
 						proj.Launch(this, new TargetPack(targ.RotatedBy(this.rotation)+this.Position));
 				}

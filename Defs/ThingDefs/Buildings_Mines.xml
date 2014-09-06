@@ -178,7 +178,7 @@
     	 <li>6,0,0</li> 
     	</hit_spots>
     	
-    	<damage_def>Bomb</damage_def>
+    	<damage_def>mine_damage_type</damage_def>
         <explosion_min_radius>1.1</explosion_min_radius>
         <explosion_max_radius>1.4</explosion_max_radius>
         <explosion_min_damage>0</explosion_min_damage>
@@ -232,7 +232,7 @@
     	 <li>0,0,-6</li>  
     	</hit_spots>
     	
-    	<damage_def>Bomb</damage_def>
+    	<damage_def>mine_damage_type</damage_def>
         <explosion_min_radius>0.1</explosion_min_radius>
         <explosion_max_radius>0.4</explosion_max_radius>
         <explosion_min_damage>0</explosion_min_damage>
@@ -271,8 +271,8 @@
     	<li>2,0,0</li> 
     	</trigger_spots>
     	
-    	<damage_def>Bomb</damage_def>
-        <explosion_min_radius>1.1</explosion_min_radius>
+    	<damage_def>mine_damage_type</damage_def>
+        <explosion_min_radius>1.4</explosion_min_radius>
         <explosion_max_radius>1.4</explosion_max_radius>
         <explosion_min_damage>0</explosion_min_damage>
 		<explosion_max_damage>10</explosion_max_damage>

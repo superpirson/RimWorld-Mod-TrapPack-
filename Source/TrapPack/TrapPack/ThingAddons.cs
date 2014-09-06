@@ -93,7 +93,7 @@ namespace ThingAddons
 	public class Frame{
 		
 		public Frame(Material material){
-			this.material = material;
+			this.material = material; 
 		}
 		public Frame(){
 			material = Verse.BaseContent.BadMat;

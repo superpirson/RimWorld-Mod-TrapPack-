@@ -18,6 +18,7 @@ public class GasDef : AnimatedThingDef {
 	public DamageTypeDef damage_type;
 	public float new_gas_dispersion_rate = .2f;
 	public float found_gas_dispersion_rate = .4f;
+	public int gas_spread_min = 5;
 }
 
 namespace TrapPack
@@ -53,7 +54,7 @@ namespace TrapPack
 				}
 					foreach (IntVec3 pos  in this.Position.AdjacentSquares8Way().InRandomOrder()){
 					if (Find.PathGrid.Walkable(pos)){
-					if (this.thickness > 5){
+					if (this.thickness > this.gas_def.gas_spread_min){
 					try_place_Gas(pos,this.gas_def, this);
 					
 					}

@@ -196,9 +196,10 @@ namespace TrapPack
 							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
 							break;
 							case Floor_Mode.pain:
-							pawn.healthTracker.bodyModel.ExtraPain = 50;
+							pawn.healthTracker.bodyModel.ExtraPain += 2;
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,2, this), false);
 							zapSound.PlayOneShot(this.Position);
+							
 							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
 							break;
 						}
