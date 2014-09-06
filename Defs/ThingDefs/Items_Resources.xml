@@ -123,7 +123,7 @@
 		<defName>RawFireFruit</defName>
 		<label>Fire Fruit</label>
 		<description>These nasty berrys are highly flammable and quite toxic. UNSTABLE! These berrys will explode if damaged!</description>
-		<texturePath>Things/Item/RawFireFruit</texturePath>
+		<textureFolderPath>Things/Item/RawFireFruit/</textureFolderPath>
     <soundInteract>Food_Drop</soundInteract>
     <soundDrop>Food_Drop</soundDrop>
 		<basePrice>15.0</basePrice>
@@ -140,6 +140,22 @@
       		</li>
       </comps>
 	</ThingDef>
+		<ThingDef ParentName="ResourceBase">
+		<defName>ScorpionSeedPods</defName>
+		<label>Scorpion Seed Pods</label>
+		<description>an alien seed pod from an unknown world. only one thing is certain about them; they are toxic.</description>
+		<textureFolderPath>Things/Item/ScorpionSeedPods/</textureFolderPath>
+    <soundInteract>Food_Drop</soundInteract>
+    <soundDrop>Food_Drop</soundDrop>
+		<basePrice>35.0</basePrice>
+		<storeCategories>
+			<li>ResourcesRaw</li>
+		</storeCategories>
+			<maxHealth>5</maxHealth>
+		<comps>
+      </comps>
+	</ThingDef>
+
 
 
 
