@@ -19,16 +19,16 @@
           </li>
         </grains>
         <volumeRange>
-          <min>9</min>
-          <max>10</max>
+          <min>30</min>
+          <max>50</max>
         </volumeRange>
         <pitchRange>
-          <min>1</min>
-          <max>1</max>
+          <min>.9</min>
+          <max>1.1</max>
         </pitchRange>
         <distRange>
           <min>25</min>
-          <max>70</max>
+          <max>170</max>
         </distRange>
         <repeatMode>NeverLastHalf</repeatMode>
         <paramMappings />
@@ -64,12 +64,57 @@
           </li>
         </grains>
         <volumeRange>
-          <min>9</min>
-          <max>10</max>
+          <min>20</min>
+          <max>30</max>
         </volumeRange>
         <pitchRange>
-          <min>1</min>
-          <max>1</max>
+          <min>.8</min>
+          <max>1.2</max>
+        </pitchRange>
+        <distRange>
+          <min>25</min>
+          <max>70</max>
+        </distRange>
+        <repeatMode>NeverLastHalf</repeatMode>
+        <paramMappings />
+        <filters />
+        <sustainLoop>True</sustainLoop>
+        <sustainLoopDurationRange>
+          <min>9999</min>
+          <max>9999</max>
+        </sustainLoopDurationRange>
+        <sustainInterval>0</sustainInterval>
+        <sustainAttack>0</sustainAttack>
+        <sustainSkipFirstAttack>True</sustainSkipFirstAttack>
+        <sustainRelease>0</sustainRelease>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>big_zap</defName>
+    <sustain>False</sustain>
+    <eventNames />
+    <maxVoices>20</maxVoices>
+    <maxSimultaneous>1</maxSimultaneous>
+    <priorityMode>PrioritizeNewest</priorityMode>
+    <sustainStartSound></sustainStartSound>
+    <sustainStopSound></sustainStopSound>
+    <subSounds>
+      <li Class="SubSoundDef">
+        <name>False</name>
+        <onCamera>False</onCamera>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>big_zap</clipPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>20</min>
+          <max>40</max>
+        </volumeRange>
+        <pitchRange>
+          <min>.9</min>
+          <max>1.2</max>
         </pitchRange>
         <distRange>
           <min>25</min>

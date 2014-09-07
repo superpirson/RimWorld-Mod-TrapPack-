@@ -20,16 +20,20 @@ public class AnimatedThingDef : ThingDef{
 	public override void PostLoad(){
 		base.PostLoad();
 		//do the blueprint text:
+		
 		this.blueprintMat = new Material(VerseBase.MatBases.Blueprint);
 		if (!this.blueprintTexturePath.NullOrEmpty()){
 			Log.Message("makeing a blueprint drawmat useing tex at " + this.blueprintTexturePath);
 			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.Get (this.blueprintTexturePath, true);
 		}
-		else{
+		else if(!this.textureFolderPath.NullOrEmpty()){
 			Log.Message("trying to autogen a blueprint mat");
 			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.GetAllInFolder(this.textureFolderPath).RandomElement();
 		}
-	
+		if (this.folderDrawMats == null){
+			Log.Message("had to return due to a null folderdrawmats in " + this.defName);
+		return;
+				}
 		frame_hashmap = new Hashtable();
 		if (frames == null){
 			frames = new List<ThingAddons.Frame>();
@@ -159,12 +163,18 @@ namespace ThingAddons
 		}
 		public override void Draw ()
 		{	
+			
 			this.Comps_Draw ();
 			base.Draw ();
 		}
 		public override Material DrawMat (IntRot rot)
 		{
+			if (this.def.graphic == null){
 			return this.current_frame.material;
+			}
+			else{
+				return base.DrawMat(rot);
+			}
 		}
 	}
 
@@ -231,7 +241,12 @@ namespace ThingAddons
 		}
 		public override Material DrawMat (IntRot rot)
 		{
-			return this.current_frame.material;
+			if (this.def.graphic == null){
+				return this.current_frame.material;
+			}
+			else{
+				return base.DrawMat(rot);
+			}
 		}
 	}
 	
@@ -298,7 +313,12 @@ namespace ThingAddons
 		}
 		public override Material DrawMat (IntRot rot)
 		{
-			return this.current_frame.material;
+			if (this.def.graphic == null){
+				return this.current_frame.material;
+			}
+			else{
+				return base.DrawMat(rot);
+			}
 		}
 	}
 	}

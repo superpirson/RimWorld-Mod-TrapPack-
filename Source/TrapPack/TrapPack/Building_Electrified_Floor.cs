@@ -14,8 +14,9 @@ namespace TrapPack
 	//--misc
 	public class Building_Electrified_Floor : Building
 	{
-		protected static readonly SoundDef zapSound = SoundDef.Named("short_zap");
+		protected static readonly SoundDef zap_sound = SoundDef.Named("short_zap");
 		protected static readonly SoundDef explosion_sound = SoundDef.Named ("Explosion_Bomb");
+		protected static readonly SoundDef big_zap_sound = SoundDef.Named ("big_zap");
 		private static Texture2D texUI_Kill = ContentFinder<Texture2D>.Get("UI/Commands/UI_Kill", true);
 		private static Texture2D texUI_Disarmed = ContentFinder<Texture2D>.Get("UI/Commands/UI_Disarmed", true);
 		private static Texture2D texUI_Overcharge = ContentFinder<Texture2D>.Get("UI/Commands/UI_Overcharge", true);
@@ -124,7 +125,7 @@ namespace TrapPack
 			{
 				Log.Error("TrapsPack: Failed to retrieve power component upon spawn for an electrofied floor!");
 			}
-			if (zapSound == null || explosion_sound == null)
+			if (zap_sound == null || explosion_sound == null || big_zap_sound == null)
 			{
 				Log.Error("TrapsPack: Failed to load sound componet, sound is NULL!");
 			}
@@ -178,7 +179,7 @@ namespace TrapPack
 								}
 							}
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);
-							explosion_sound.PlayOneShot(this.Position);
+							big_zap_sound.PlayOneShot(this.Position);
 							MoteMaker.ThrowFlash (base.Position, "ShotFlash", 2f);
 							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
 							MoteMaker.ThrowLightningGlow(base.Position.ToVector3Shifted(), 2f);
@@ -194,11 +195,12 @@ namespace TrapPack
 							MoteMaker.ThrowFlash (base.Position, "ShotFlash", 6f);
 							MoteMaker.ThrowLightningGlow(base.Position.ToVector3Shifted(), 2f);
 							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
+							
 							break;
 							case Floor_Mode.pain:
 							pawn.healthTracker.bodyModel.ExtraPain += 2;
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,2, this), false);
-							zapSound.PlayOneShot(this.Position);
+							zap_sound.PlayOneShot(this.Position);
 							
 							MoteMaker.TryThrowMicroSparks (base.Position.ToVector3Shifted ());
 							break;
@@ -211,7 +213,7 @@ namespace TrapPack
 					//we diden't catch anyone, but do an effect anyways and wait.
 					float rand = UnityEngine.Random.Range(15,30);
 					if (rand < 20){
-						zapSound.PlayOneShot(this.Position);
+						zap_sound.PlayOneShot(this.Position);
 						IntVec3 shock_pos = this.Position;
 						 GenSpawn.Spawn(ThingDef.Named("Zap_Effect"),shock_pos);
 					}

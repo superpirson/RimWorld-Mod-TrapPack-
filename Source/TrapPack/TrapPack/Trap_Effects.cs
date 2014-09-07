@@ -14,6 +14,7 @@ public class GasDef : AnimatedThingDef {
 	
 	
 	public int damage_per_tick = 0;
+	public int pain_per_tick = 0;
 	public bool extinguish_fire = false;
 	public DamageTypeDef damage_type;
 	public float new_gas_dispersion_rate = .2f;
@@ -67,9 +68,16 @@ namespace TrapPack
 			foreach (Thing target in things){
 			
 			// if we found a pawn, prepare to do damage to it
-				if ( this.gas_def.damage_per_tick > 0 && target is Pawn ){
-					//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
+				if ( target is Pawn ){
+				
 					Pawn pawn = (Pawn)target;
+					// add pain if we are supposed to
+					if(this.gas_def.pain_per_tick > 0){
+						pawn.healthTracker.bodyModel.ExtraPain += this.gas_def.pain_per_tick;
+					}
+					
+					// we do damage to the pawn here, if we are supposed to.
+					if(this.gas_def.damage_per_tick > 0) {
 					List<BodyDefPart> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
 					float damage_mod = 0;
 					BodyDefPart protected_part = bodyparts.Find((BodyDefPart protected_part_can) => protected_part_can.def.activities != null && protected_part_can.def.activities.Contains("Eating_source"));
@@ -86,6 +94,7 @@ namespace TrapPack
 							}
 						}
 					}
+				}
 				}
 				if (this.gas_def.extinguish_fire && target is Fire){
 					Fire fire = (Fire)target;

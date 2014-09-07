@@ -32,6 +32,28 @@
 		<damage_type>Poisoned</damage_type>
   </ThingDef>
   
+		<ThingDef Class="GasDef" ParentName="EffectBase">
+		<eType>Wall</eType>
+		<defName>Scorpion_Flower_Spores</defName>
+		<label>Scorpion_Flower_Spores</label>
+  <linkDrawerType>Transmitter</linkDrawerType>
+  		 <linkFlags>
+      <li>Custom6</li>
+   		 </linkFlags>
+   		     <drawerType>MapMeshOnly</drawerType>
+		<tickerType>Normal</tickerType>
+		 <pathCost>20</pathCost>
+		<passability>PassThroughOnly</passability>
+		<thingClass>TrapPack.Gas</thingClass>
+		<textureFolderPath>Things/Poison_Gas/</textureFolderPath>
+		<beauty>Ugly</beauty>
+		<AltitudeLayer>Weather</AltitudeLayer>
+		<pain_per_tick>1</pain_per_tick>
+		<extinguish_fire>False</extinguish_fire>
+		<gas_spread_min>20</gas_spread_min>
+		<new_gas_dispersion_rate>.6</new_gas_dispersion_rate>
+  </ThingDef>
+  
   <ThingDef Class="GasDef" ParentName="EffectBase">
 		<eType>Wall</eType>
 		<defName>Nitrogen_Gas</defName>

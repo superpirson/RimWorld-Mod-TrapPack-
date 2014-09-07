@@ -27,8 +27,8 @@ namespace TrapPack
 			if (surrounding_tiles_free(this.Position, this)){
 				dyeing = false;
 					base.TickRare();
-				if (ticker_count % 1000 == 1){
-					Gas.try_place_Gas(this.Position, (GasDef)GasDef.Named("Poison_Gas"), 1000, this.Faction);
+				if (ticker_count % 100 == 1){
+					Gas.try_place_Gas(this.Position, (GasDef)GasDef.Named("Scorpion_Flower_Spores"), 100, this.Faction);
 				}
 			}
 		else{

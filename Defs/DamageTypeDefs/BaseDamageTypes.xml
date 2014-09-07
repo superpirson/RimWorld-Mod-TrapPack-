@@ -29,6 +29,7 @@
 	<injury>ExtendedInjuriesElectrocuted</injury>
 	<battleWound>true</battleWound>
 	<solidInjury>ExtendedInjuriesElectrocuted</solidInjury>
+		<makesBlood>false</makesBlood>
   </DamageTypeDef>
    
    <DamageTypeDef>
