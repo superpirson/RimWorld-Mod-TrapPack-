@@ -98,16 +98,52 @@
     	<!-- 
 <frames>
 		<li>
-		<tex_name>Refinery-1-Test</tex_name>
-		<next_frame>Refinery-2-Test</next_frame>
+		<tex_name>RefineryA</tex_name>
+		<next_frame>RefineryB</next_frame>
 		</li>	
 		<li>
-		<tex_name>Refinery-2-Test</tex_name>
-		<next_frame>Refinery-3-Test</next_frame>
+		<tex_name>RefineryB</tex_name>
+		<next_frame>RefineryC</next_frame>
 		</li>
 		<li>
-		<tex_name>Refinery-3-Test</tex_name>
-			<next_frame>Refinery-1-Test</next_frame>
+		<tex_name>RefineryC</tex_name>
+		<next_frame>RefineryD</next_frame>
+		</li>
+		<li>
+		<tex_name>RefineryD</tex_name>
+		<next_frame>RefineryE</next_frame>
+		</li>	
+		<li>
+		<tex_name>RefineryE</tex_name>
+		<next_frame>RefineryF</next_frame>
+		</li>
+		<li>
+		<tex_name>RefineryF</tex_name>
+		<next_frame>RefineryG</next_frame>
+		</li>
+		<li>
+		<tex_name>RefineryG</tex_name>
+		<next_frame>RefineryH</next_frame>
+		</li>	
+		<li>
+		<tex_name>RefineryH</tex_name>
+		<next_frame>RefineryI</next_frame>
+		</li>
+		<li>
+		<tex_name>RefineryI</tex_name>
+		<next_frame>RefineryJ</next_frame>
+		</li>
+		<li>
+		<tex_name>RefineryJ</tex_name>
+		<next_frame>RefineryK</next_frame>
+		</li>	
+		<li>
+		<tex_name>RefineryK</tex_name>
+		<next_frame>RefineryL</next_frame>
+		</li>
+		<li>
+		<tex_name>RefineryL</tex_name>
+		<next_frame>RefineryA</next_frame>
 		</li>
 	</frames>
  -->
