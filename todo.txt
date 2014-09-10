@@ -1,0 +1,12 @@
+TODO:
+
+
+-new system for poison production
+	—poison resource (Super) - cheap one made
+	—bulkhead that locks in presence of gas
+	-air filter
+	-(code)poison gas emitted from plants (super) - crude version done
+	-(code) make gas that is non-toxic but still annoying (super)
+-change interact effects
+-refinery should require wood
+-new TrapMakeing Table (Somz) - working
