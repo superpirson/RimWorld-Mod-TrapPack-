@@ -64,7 +64,7 @@
 	<ThingDef ParentName="BaseBullet">
 		<defName>Poisoned_Bullet_Pistol</defName>
 		<label>Poisoned Pistol bullet</label>
-		<texturePath>Things/Projectile/Bullet_Small</texturePath>
+		<graphicPathSingle>Things/Projectile/Bullet_Small</graphicPathSingle>
 		<thingClass>TrapPack.PoisonBullet</thingClass>
 		<projectile>
 			<flyOverhead>false</flyOverhead>
@@ -79,7 +79,7 @@
 		<defName>Poisoned_Gun_Pistol</defName>
 		<label>Poisoned Pistol</label>
 		<description>Ancient pattern automatic pistol. added Poisoned effect for testing.</description>
-		<texturePath>Things/Item/Equipment/Pistol</texturePath>
+		<graphicPathSingle>Things/Item/Equipment/Pistol</graphicPathSingle>
 		<soundInteract>InteractPistol</soundInteract>
 		<tradersCarry>false</tradersCarry>
 		<basePrice>9999999</basePrice>

@@ -16,6 +16,7 @@ using UnityEngine;
 using Verse.Sound;
 using Verse;
 using RimWorld;
+
 namespace TrapPack
 {
 	public class PoisonBullet :Bullet

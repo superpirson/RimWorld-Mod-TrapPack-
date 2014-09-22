@@ -41,7 +41,7 @@
 	<ThingDef ParentName="WallBase">
     <defName>WallReinforcedStone</defName>
     <label>Reinforced Wall</label>
-    <texturePath>Things/Building/WallReinforcedStone_Atlas</texturePath>
+    <graphicPathSingle>Things/Building/WallReinforcedStone_Atlas</graphicPathSingle>
     <menuIconPath>Things/Building/WallReinforcedStone_MenuIcon</menuIconPath>
     <maxHealth>1000</maxHealth>
     <flammability>0</flammability>
@@ -92,7 +92,7 @@
      
     </linkFlags>
     <category>Building</category>
-    <texturePath>Things/Armored_Power_Conduit/Armored_Power_Conduit_Atlas</texturePath>
+    <graphicPathSingle>Things/Armored_Power_Conduit/Armored_Power_Conduit_Atlas</graphicPathSingle>
     <blueprintTexturePath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</blueprintTexturePath>
     <uiIconPath>Things/Armored_Power_Conduit/Armored_Power_Conduit_MenuIcon</uiIconPath>
     <flammability>0.5</flammability>

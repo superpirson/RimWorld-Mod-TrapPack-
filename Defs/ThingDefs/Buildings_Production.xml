@@ -24,7 +24,7 @@
     <CostList>
       <li>
         <thingDef>WoodLog</thingDef>
-        <count>60</count>
+        <count>40</count>
       </li>
       <li>
         <thingDef>Metal</thingDef>
@@ -70,7 +70,11 @@
     <CostList>
       <li>
         <thingDef>Metal</thingDef>
-        <count>200</count>
+        <count>150</count>
+      </li>
+      <li>
+        <thingDef>WoodLog</thingDef>
+        <count>5</count>
       </li>
     </CostList>
     <AltitudeLayer>BuildingTall</AltitudeLayer>
@@ -96,7 +100,7 @@
     </inspectorTabs>
         <drawerType>RealtimeOnly</drawerType>
     	<!-- 
-<frames>
+		<frames>
 		<li>
 		<tex_name>RefineryA</tex_name>
 		<next_frame>RefineryB</next_frame>

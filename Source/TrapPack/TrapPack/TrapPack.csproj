@@ -39,7 +39,7 @@
     <Compile Include="ThingAddons.cs" />
     <Compile Include="Building_Electrified_Floor.cs" />
     <Compile Include="ScorpionFlower.cs" />
-    <Compile Include="PoisonBullet.cs" />
+    <Compile Include="Graphic_Animation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

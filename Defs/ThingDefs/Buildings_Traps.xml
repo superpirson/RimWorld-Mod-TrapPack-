@@ -75,7 +75,7 @@
     <thingClass>TrapPack.Building_Electrified_Floor</thingClass>
     <workToBuild>350</workToBuild>
     <researchPrerequisite>Electric_Traps_Research</researchPrerequisite>
-    <texturePath>Things/Electrified_Floor/Electrified_Floor</texturePath>
+    <graphicPathSingle>Things/Electrified_Floor/Electrified_Floor</graphicPathSingle>
     <soundInteract>Sounds/short_zap</soundInteract>
     <pathCost>15</pathCost>
     <costList>

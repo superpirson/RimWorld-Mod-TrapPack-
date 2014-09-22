@@ -54,7 +54,7 @@
 		<defName>Proj_Caltrops</defName>
 		<label>Caltrops</label>
 		<thingClass>TrapPack.Proj_Caltrops</thingClass>
-		<texturePath>Things/Projectile/Grenade</texturePath>
+		<graphicPathSingle>Things/Projectile/Grenade</graphicPathSingle>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseEquipment">
@@ -62,7 +62,7 @@
 		<equipmentType>Primary</equipmentType>
 		<label>Throwable Caltrops</label>
 	<description>Nasty caltrops. they can be thrown to impede access to an area. The rain and wind will wash them away over time. Clean them to remove them.</description>
-		<texturePath>Things/Caltrops_Bag</texturePath>
+		<graphicPathSingle>Things/Caltrops_Bag</graphicPathSingle>
 		<soundInteract>InteractGrenade</soundInteract>
 		<basePrice>200</basePrice>
 		<techLevel>Midworld</techLevel>
