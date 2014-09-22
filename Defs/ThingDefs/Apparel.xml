@@ -27,7 +27,7 @@
     <defName>Apparel_Gasmask</defName>
     <label>Gas Mask</label>
 	<description>Gas can kill you quite quickly if you don't have protection.</description>
-    <texturePath>Things/Pawn/Humanoid/Apparel/PowerArmorHelmet/PowerArmorHelmet</texturePath>
+    <graphicPathSingle>Things/Pawn/Humanoid/Apparel/PowerArmorHelmet/PowerArmorHelmet</graphicPathSingle>
     <apparel>
       <damageAbsorption>
         <li>
