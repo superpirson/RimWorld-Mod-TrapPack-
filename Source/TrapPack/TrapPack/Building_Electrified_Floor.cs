@@ -167,12 +167,12 @@ namespace TrapPack
 						//Log.Message("someone stepd on the trap! doing damage to " + target.ToString());
 						this.power_Trader.powerOutput = -POWERDRAW;
 						Pawn pawn = (Pawn)target;
-						List<BodyDefPart> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
+						List<BodyPartRecord> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
 						
 						//decide what to do to our poor victiam!
 						switch (this.current_floor_mode){
 							case Floor_Mode.kill:
-							foreach (BodyDefPart part in bodyparts.InRandomOrder()){
+							foreach (BodyPartRecord part in bodyparts.InRandomOrder()){
 								if (part.def.activities != null &&  part.def.activities.Contains("BloodPumping")){
 									pawn.TakeDamage(new DamageInfo(elec_damage_type, 1, this, new BodyPartDamageInfo(part, false)));
 									break;
@@ -186,7 +186,7 @@ namespace TrapPack
 							break;
 							case Floor_Mode.overcharge:
 							this.power_Trader.powerOutput = -2 *POWERDRAW;
-							BodyDefPart targit_part = bodyparts.RandomElement();
+							BodyPartRecord targit_part = bodyparts.RandomElement();
 							pawn.TakeDamage(new DamageInfo(elec_damage_type, 20, this, new BodyPartDamageInfo(targit_part, false)));
 							this.TakeDamage(new DamageInfo(DamageTypeDefOf.Breakdown, 3, this));
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,3, this), false);

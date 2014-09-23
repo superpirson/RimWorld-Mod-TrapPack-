@@ -73,19 +73,21 @@ namespace TrapPack
 					Pawn pawn = (Pawn)target;
 					// add pain if we are supposed to
 					if(this.gas_def.pain_per_tick > 0){
-						pawn.healthTracker.bodyModel.ExtraPain += this.gas_def.pain_per_tick;
+					Log.Error("can't give pain to targit, unimplemented");
+					//	pawn.healthTracker.bodyModel.AddHealthDiff += this.gas_def.pain_per_tick;
 					}
 					
 					// we do damage to the pawn here, if we are supposed to.
 					if(this.gas_def.damage_per_tick > 0) {
-					List<BodyDefPart> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
+					List<BodyPartRecord> bodyparts = pawn.healthTracker.bodyModel.GetNotMissingParts().ToList();
 					float damage_mod = 0;
-					BodyDefPart protected_part = bodyparts.Find((BodyDefPart protected_part_can) => protected_part_can.def.activities != null && protected_part_can.def.activities.Contains("Eating_source"));
+					BodyPartRecord protected_part = bodyparts.Find((BodyPartRecord protected_part_can) => protected_part_can.def.activities != null && protected_part_can.def.activities.Contains("Eating_source"));
 					if (protected_part != null && pawn.apparel != null){	
 						damage_mod = pawn.apparel.GetDamageAbsorption(protected_part,this.gas_def.damage_type.injury);
+						pawn.apparel
 					}
 					//Log.Message("got a damage mod of " + damage_mod.ToString());
-					foreach (BodyDefPart part in bodyparts.InRandomOrder()){
+					foreach (BodyPartRecord part in bodyparts.InRandomOrder()){
 						if (part.def.activities != null &&  (part.def.activities.Contains("Breathing") || part.def.activities.Contains("Breathing_main") || part.def.activities.Contains("Breathing_way"))){
 							if (damage_mod < 0.99f){
 								//Log.Message("trying to apply damage! ");

@@ -20,19 +20,20 @@ public class AnimatedThingDef : ThingDef{
 
 	public override void PostLoad(){
 		base.PostLoad();
+		/*
 		//do the blueprint text:
-		
-		this.blueprintMat = new Material(VerseBase.MatBases.Blueprint);
+		this.blueprintMat = new Material(MatBases.LightOverlay);
 		if (!this.blueprintTexturePath.NullOrEmpty()){
 			Log.Message("makeing a blueprint drawmat useing tex at " + this.blueprintTexturePath);
 			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.Get (this.blueprintTexturePath, true);
 		}
-		else if(!this.textureFolderPath.NullOrEmpty()){
+		else if(!this.graphicPathSingle.NullOrEmpty()){
 			Log.Message("trying to autogen a blueprint mat");
 			this.blueprintMat.mainTexture = ContentFinder<Texture2D>.GetAllInFolder(this.textureFolderPath).RandomElement();
 		}
-		if (this.folderDrawMats == null){
-			Log.Message("had to return due to a null folderdrawmats in " + this.defName);
+		*/
+		if (this.graphicPathSingle == null){
+			Log.Message("had to return due to a null graphicpathsingle in " + this.defName);
 		return;
 				}
 		frame_hashmap = new Hashtable();
@@ -45,47 +46,13 @@ public class AnimatedThingDef : ThingDef{
 				continue;
 			}
 			
-	Material material = new Material(VerseBase.MatBases.Cutout);
-			material.mainTexture = ContentFinder<Texture2D>.Get (this.textureFolderPath + frame.tex_name, true);
+	Material material = new Material(MatBases.EdgeShadow);
+			material.mainTexture = ContentFinder<Texture2D>.Get (this.graphicPathSingle + frame.tex_name, true);
 			frame.material = material;
 			frame_hashmap.Add (frame.tex_name, frame);
 	}
 		if (this.frames.Count <= 0){
-			if (this.folderDrawMats == null || this.folderDrawMats.Count <= 0)
-			{
-				Log.Error("Animated thing tried to find texture folder, but it was empty/null!");
-				return;
-			}
-			else if (this.folderDrawMats.Count == 1)
-			{
-				Log.Warning("Animated thing tried to find texture folder, but found only one texture.");
-				this.frames.Add(new ThingAddons.Frame(this.folderDrawMats[0]));
-			}
-			else{
-			try{
-				int i = 0;
-				foreach (Material mat in this.folderDrawMats){
-					ThingAddons.Frame quick_fix_frame = new ThingAddons.Frame(mat);
-					quick_fix_frame.tex_name = ("Unamed frame " + i.ToString());
-					
-					this.frames.Insert(i, quick_fix_frame);
-					quick_fix_frame.next_frame = this.frames[0].tex_name;
-					//set the prev frame's next_frame to this
-					if (i != 0){
-						this.frames[i-1].next_frame = quick_fix_frame.tex_name;
-					}
-					this.frame_hashmap.Add("Unamed frame " + i.ToString(), quick_fix_frame);
-					i++;
-				}
-				}catch (Exception e){
-					Log.Error("hi, this was my fault. damn. (error loading quick fix frames for object " + this.defName +" ) threw a    " + e.Message);
-					this.frames.Clear();
-					this.frames.Add(new ThingAddons.Frame(BaseContent.BadMat));	
-					this.frame_hashmap.Add("Unamed frame error" , frames[0]);
-				return;
-				
-				}
-			}
+		Log.Error("ohgod, no frames on " + this.defName);
 		}
 	
 		
@@ -138,7 +105,7 @@ namespace ThingAddons
 			}else{
 				// make a new animated object for just this context
 				this.animated_thing_def = new AnimatedThingDef();
-				this.animated_thing_def.graphicPathSingle = this.def.texturePath;
+				this.animated_thing_def.graphicPathSingle = this.def.graphicPathSingle;
 			}
 			this.current_frame = this.animated_thing_def.frames[0];
 			this.play = this.animated_thing_def.play;
@@ -178,9 +145,132 @@ namespace ThingAddons
 	}
 
 	public class AnimatedBuilding : Building{
+		public Material drawMat = BaseContent.BadMat;
+		public bool play = true;
+		private int tick_count = 0;
+		protected AnimatedThingDef animated_thing_def;
+		public Frame current_frame;
+		
+		//this is how long the animatior should wait before starting to cycle
+		public int wait_ticks = 0;
+		
+		
+		public void set_frame(string new_frame){
+			current_frame = (Frame)this.animated_thing_def.frame_hashmap[new_frame];
+			if (current_frame == null){
+				Log.Message("exception, tried to set frame to " + new_frame + " but found null!");
+				current_frame = new Frame();
+			}
+			//Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
+		}
+		
+		
+		public override void SpawnSetup(){
+			if (this.def is AnimatedThingDef){
+				this.animated_thing_def = (AnimatedThingDef)this.def;
+			}else{
+				// make a new animated object for just this context
+				this.animated_thing_def = new AnimatedThingDef();
+				this.animated_thing_def.graphicPathSingle = this.def.graphicPathSingle;
+			}
+			this.current_frame = this.animated_thing_def.frames[0];
+			this.play = this.animated_thing_def.play;
+			base.SpawnSetup();
+		}	
+		public override void Tick(){
+			
+			base.Tick ();
+			
+		}
+		public override void Draw ()
+		{	
+			if (wait_ticks > 0){
+				wait_ticks--;
+				base.Tick();
+				return;
+			}
+			if (tick_count++ < current_frame.frame_delay){
+				base.Tick (); return;
+			}
+			tick_count = 0;
+			
+			if (current_frame.next_frame != null && this.play){
+				this.set_frame(this.current_frame.next_frame);
+			}
+			Mesh mesh = null;
+			if (this.Rotation == IntRot.west)
+			{
+				mesh= MeshPool.gridPlanesFlip [this.RotatedSize.x, this.RotatedSize.z];
+			} else{
+				mesh= MeshPool.gridPlanes [this.RotatedSize.x, this.RotatedSize.z];
+			}
+			Graphics.DrawMesh( mesh,this.Position.ToVector3(), this.Rotation.AsQuat, this.current_frame.material, 0);
+		}
 		
 	}
 	
 	public class AnimatedBuilding_WorkTable : Building_WorkTable{
+		public Material drawMat = BaseContent.BadMat;
+		public bool play = true;
+		private int tick_count = 0;
+		protected AnimatedThingDef animated_thing_def;
+		public Frame current_frame;
+		
+		//this is how long the animatior should wait before starting to cycle
+		public int wait_ticks = 0;
+		
+		
+		public void set_frame(string new_frame){
+			current_frame = (Frame)this.animated_thing_def.frame_hashmap[new_frame];
+			if (current_frame == null){
+				Log.Message("exception, tried to set frame to " + new_frame + " but found null!");
+				current_frame = new Frame();
+			}
+			//Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
+		}
+		
+		
+		public override void SpawnSetup(){
+			if (this.def is AnimatedThingDef){
+				this.animated_thing_def = (AnimatedThingDef)this.def;
+			}else{
+				// make a new animated object for just this context
+				this.animated_thing_def = new AnimatedThingDef();
+				this.animated_thing_def.graphicPathSingle = this.def.graphicPathSingle;
+			}
+			this.current_frame = this.animated_thing_def.frames[0];
+			this.play = this.animated_thing_def.play;
+			base.SpawnSetup();
+		}	
+		public override void Tick(){
+			
+			base.Tick ();
+			
+		}
+		public override void Draw ()
+		{	
+			if (wait_ticks > 0){
+				wait_ticks--;
+				base.Tick();
+				return;
+			}
+			if (tick_count++ < current_frame.frame_delay){
+				base.Tick (); return;
+			}
+			tick_count = 0;
+			
+			if (current_frame.next_frame != null && this.play){
+				this.set_frame(this.current_frame.next_frame);
+			}
+			Mesh mesh = null;
+			if (this.Rotation == IntRot.west)
+			{
+				mesh= MeshPool.gridPlanesFlip [this.RotatedSize.x, this.RotatedSize.z];
+			} else{
+				mesh= MeshPool.gridPlanes [this.RotatedSize.x, this.RotatedSize.z];
+			}
+			Graphics.DrawMesh( mesh,this.Position.ToVector3(), this.Rotation.AsQuat, this.current_frame.material, 0);
+		}
+		
 	}
 	}

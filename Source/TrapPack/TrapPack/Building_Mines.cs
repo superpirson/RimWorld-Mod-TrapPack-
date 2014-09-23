@@ -114,7 +114,7 @@ namespace TrapPack
 		{
 			if (armed) {
 				foreach (IntVec3 pos in this.mine_def.trigger_spots){
-					IntVec3 corrected_pos = pos.RotatedBy(this.rotation);
+					IntVec3 corrected_pos = pos.RotatedBy(this.Rotation);
 					foreach (Thing thing in Find.Map.thingGrid.ThingsAt(this.Position +corrected_pos)){
 						if (this.mine_def.trigger_type != null &&  thing.GetType() ==  this.mine_def.trigger_type){
 							if (!this.mine_def.checks_for_frendly || thing.Faction != this.Faction){
@@ -185,7 +185,7 @@ namespace TrapPack
 			List<IntVec3> draw_trig_pos = new List<IntVec3>();
 			foreach (IntVec3 pos in this.mine_def.trigger_spots){
 					if (!pos.Equals(IntVec3.zero)){
-				draw_trig_pos.Add(pos.RotatedBy(this.rotation) + this.Position);
+				draw_trig_pos.Add(pos.RotatedBy(this.Rotation) + this.Position);
 				}
 			}
 				GenDraw.DrawFieldEdges(draw_trig_pos, Color.red);
@@ -195,7 +195,7 @@ namespace TrapPack
 			List<IntVec3> draw_hit_pos = new List<IntVec3>();
 			foreach (IntVec3 pos in this.mine_def.hit_spots){
 					if (!pos.Equals(IntVec3.zero)){
-				draw_hit_pos.Add(pos.RotatedBy(this.rotation) + this.Position);
+				draw_hit_pos.Add(pos.RotatedBy(this.Rotation) + this.Position);
 				}
 				}
 			GenDraw.DrawFieldEdges(draw_hit_pos, Color.white);
@@ -241,7 +241,7 @@ namespace TrapPack
 				for ( int i = 0; i< this.mine_def.projectile_count; i++){
 					
 					Projectile proj = (Projectile)GenSpawn.Spawn(this.mine_def.projectile_to_launch, this.Position);
-						proj.Launch(this, new TargetPack(targ.RotatedBy(this.rotation)+this.Position));
+						proj.Launch(this, new TargetPack(targ.RotatedBy(this.Rotation)+this.Position));
 				}
 				}
 			}
