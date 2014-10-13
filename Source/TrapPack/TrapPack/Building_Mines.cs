@@ -210,13 +210,13 @@ namespace TrapPack
 			changed = true;
 			if (armed){
 				armed = false;
-			this.set_frame("_Disarmed");
-				this.play = false;
+			this.mine_def.set_frame("_Disarmed");
+				this.mine_def.play = false;
 			}
 			else{
 				armed = true;
-				this.set_frame("_Armed");
-				this.play = true;
+				this.mine_def.set_frame("_Armed");
+				this.mine_def.play = true;
 			}
 		}
 		public virtual void Detonate(){

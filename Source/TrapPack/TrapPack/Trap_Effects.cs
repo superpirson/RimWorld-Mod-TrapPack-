@@ -36,7 +36,7 @@ namespace TrapPack
 		public uint ticks_untill_next_update = 20;
 		public override void SpawnSetup(){
 			this.gas_def = (GasDef)this.def;
-			this.wait_ticks = Rand.Range(0,100);
+			//this.wait_ticks = Rand.Range(0,100);
 			base.SpawnSetup();
 		}
 		public override void Tick(){

@@ -13,6 +13,7 @@ public class AnimatedThingDef : ThingDef
 {
 	public string graphicPathAnimated;
 	public List<TrapPack.Frame> frames;
+	public bool play = true;
 	public override void PostLoad ()
 	{
 		base.PostLoad ();
@@ -21,6 +22,10 @@ public class AnimatedThingDef : ThingDef
 			this.graphic = new Graphic_Animated(this.frames,this.graphicPathAnimated,this.shader, this.defaultColor, this.defaultColorTwo);
 		}
 	}
+	//depreciated helper function, will remove!!!
+		public void set_frame(string new_frame){
+			((Graphic_Animated)this.graphic).set_frame(new_frame);
+		}
 
 }
 }

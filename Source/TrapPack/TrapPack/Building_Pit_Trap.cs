@@ -34,7 +34,7 @@ namespace TrapPack
 					target.TakeDamage(new DamageInfo( pit_trap_damage_type, Rand.Range(0,20), this, new BodyPartDamageInfo(BodyPartHeight.Bottom,BodyPartDepth.Outside)));
 					target.TakeDamage(new DamageInfo(DamageTypeDefOf.Stun, 100, this));
 					set = false;
-					this.set_frame("_Unset");
+					((AnimatedThingDef)this.def).set_frame("_Unset");
 				}
 			}
 			base.Tick();       

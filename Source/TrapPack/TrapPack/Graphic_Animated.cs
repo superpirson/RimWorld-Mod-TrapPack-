@@ -28,7 +28,6 @@ namespace TrapPack
 	public class Graphic_Animated : Graphic
 	{
 		public Hashtable frame_hashmap;
-		public bool play = true;
 		public Frame current_frame;
 		public List<TrapPack.Frame> frames;
 				public string GraphicPath
@@ -145,7 +144,9 @@ namespace TrapPack
 			Quaternion rotation = this.QuatFromRot (rot);
 			Material material = this.current_frame.material;
 			Graphics.DrawMesh (mesh, loc, rotation, material, 0);
+			if (((AnimatedThingDef)thingDef).play){
 			set_frame(current_frame.next_frame);
+			}
 		}
 	}
 }
