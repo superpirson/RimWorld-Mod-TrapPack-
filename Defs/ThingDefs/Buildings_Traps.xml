@@ -51,7 +51,6 @@
     <rotatable>true</rotatable>
     <designationCategory>Security</designationCategory>
     <holdsRoof>false</holdsRoof>
-    <workToBuild>10</workToBuild>
     <useStandardHealth>true</useStandardHealth>
     <maxHealth>200</maxHealth>
     <flammability>2.0</flammability>
@@ -61,10 +60,7 @@
     <blueprintTexturePath>Things/Kindling/Blueprint_Kindling</blueprintTexturePath>
     <tickerType>Never</tickerType>
     <costList>
-      <li>
-        <thingDef>WoodLog</thingDef>
-        <count>1</count>
-      </li>
+      <WoodLog>1</WoodLog>
     </costList>
   </ThingDef>
     <ThingDef ParentName="TrapBase">
@@ -73,20 +69,14 @@
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <description> conduit placed underneath a metal panel. It's still pretty deadly, but the average attacker should be able to survive a quick jaunt over it, being stunned in the process. </description>
     <thingClass>TrapPack.Building_Electrified_Floor</thingClass>
-    <workToBuild>350</workToBuild>
+
     <researchPrerequisite>Electric_Traps_Research</researchPrerequisite>
     <graphicPathSingle>Things/Electrified_Floor/Electrified_Floor</graphicPathSingle>
     <soundInteract>Sounds/short_zap</soundInteract>
     <pathCost>15</pathCost>
     <costList>
-      <li>
-        <thingDef>Electronics</thingDef>
-        <count>5</count>
-      </li>
-      <li>
-        <thingDef>Metal</thingDef>
-        <count>50</count>
-      </li>
+    <Metal>50</Metal>
+        <Electronics>5</Electronics>
     </costList>
     <comps>
       <li>
@@ -106,14 +96,11 @@
      <pathCost>20</pathCost>
     <description>A small pit trap, just large enough to trap a person. Can only be built on non-sand soil. It takes forever to dig out, but it's crippling to anyone who falls in.</description>
     <thingClass>TrapPack.Building_Pit_Trap</thingClass>
-    <workToBuild>500</workToBuild>
+
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
     <textureFolderPath>Things/Building_Pit_Trap/</textureFolderPath>
     <costList>
-      <li>
-        <thingDef>Metal</thingDef>
-        <count>10</count>
-      </li>
+ 		 <Metal>10</Metal>
     </costList>
         <play>false</play>
     	<frames>

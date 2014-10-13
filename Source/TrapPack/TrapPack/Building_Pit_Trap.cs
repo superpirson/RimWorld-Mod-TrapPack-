@@ -14,7 +14,7 @@ namespace TrapPack
 
 
 	//--pit traps
-	public class Building_Pit_Trap : ThingAddons.AnimatedBuilding
+	public class Building_Pit_Trap :Building
     {
 		// globals
 		bool set = true;

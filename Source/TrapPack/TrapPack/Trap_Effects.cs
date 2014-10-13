@@ -10,22 +10,23 @@ using RimWorld;
 // used some code from Haplo's PowerSwitch mod, and used sheildmod by Darker as a template
 //
 
-public class GasDef : AnimatedThingDef {
-	
-	
-	public int damage_per_tick = 0;
-	public int pain_per_tick = 0;
-	public bool extinguish_fire = false;
-	public DamageTypeDef damage_type;
-	public float new_gas_dispersion_rate = .2f;
-	public float found_gas_dispersion_rate = .4f;
-	public int gas_spread_min = 5;
-}
 
 namespace TrapPack
 {
+	public class GasDef : AnimatedThingDef {
+		
+		
+		public int damage_per_tick = 0;
+		public int pain_per_tick = 0;
+		public bool extinguish_fire = false;
+		public DamageTypeDef damage_type;
+		public float new_gas_dispersion_rate = .2f;
+		public float found_gas_dispersion_rate = .4f;
+		public int gas_spread_min = 5;
+	}
+	
 
-	public class Gas : ThingAddons.AnimatedThing{
+	public class Gas : Thing{
 		//damage defs
 		//static DamageTypeDef Poisoned = DefDatabase<DamageTypeDef>.GetNamed("Poisoned");
 
@@ -83,15 +84,15 @@ namespace TrapPack
 					float damage_mod = 0;
 					BodyPartRecord protected_part = bodyparts.Find((BodyPartRecord protected_part_can) => protected_part_can.def.activities != null && protected_part_can.def.activities.Contains("Eating_source"));
 					if (protected_part != null && pawn.apparel != null){	
-						damage_mod = pawn.apparel.GetDamageAbsorption(protected_part,this.gas_def.damage_type.injury);
-						pawn.apparel
+						Log.Error("todo: fix damage mods to health for poisen");
+						//damage_mod = pawn.apparel.GetDamageAbsorption(protected_part,this.gas_def.damage_type.injury);
 					}
 					//Log.Message("got a damage mod of " + damage_mod.ToString());
 					foreach (BodyPartRecord part in bodyparts.InRandomOrder()){
 						if (part.def.activities != null &&  (part.def.activities.Contains("Breathing") || part.def.activities.Contains("Breathing_main") || part.def.activities.Contains("Breathing_way"))){
 							if (damage_mod < 0.99f){
-								//Log.Message("trying to apply damage! ");
-									pawn.healthTracker.ApplyDamage(new DamageInfo(this.gas_def.damage_type, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
+								Log.Error("todo fix apply damage for gas! ");
+									//	pawn.healthTracker.ApplyDamage(new DamageInfo(this.gas_def.damage_type, (int)((float)this.thickness * (1.0f-damage_mod)), this, new BodyPartDamageInfo(part, false)));
 							break;
 							}
 						}
@@ -173,7 +174,7 @@ namespace TrapPack
 	}
 	}
 	
-	public class Zap_Effect : ThingAddons.AnimatedThing{
+	public class Zap_Effect : Thing{
 		//gloables: 
 		int lifetime = 15;
 		public override void Tick (){

@@ -47,7 +47,6 @@
     <flammability>0</flammability>
     <mineable>true</mineable>
     <description>Tough stone reinforced with rebar and steel brackets. This is probably the strongest building material in the solar system. Does not transmit power.</description>
-    <workToBuild>450</workToBuild>
     <linkFlags>
       <li>Rock</li>
       <li>WallWood</li>
@@ -95,8 +94,13 @@
     <graphicPathSingle>Things/Armored_Power_Conduit/Armored_Power_Conduit_Atlas</graphicPathSingle>
     <blueprintTexturePath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</blueprintTexturePath>
     <uiIconPath>Things/Armored_Power_Conduit/Armored_Power_Conduit_MenuIcon</uiIconPath>
-    <flammability>0.5</flammability>
-    <building>
+ 		<statBases>
+      <WorkToBuild>100</WorkToBuild>
+       <MaxHealth>150</MaxHealth>
+      <Flammability>1.0</Flammability>
+      <Beauty>1</Beauty>
+    </statBases>   
+     <building>
       <ignoreNeedsPower>true</ignoreNeedsPower>
     </building>
      <fillPercent>0.2</fillPercent>
@@ -105,12 +109,8 @@
     <maxHealth>150</maxHealth>
     <description>A set of electrical cables covered in thick metal. more resistant to flame than ordinary conduits.</description>
     <placingDraggableDimensions>1</placingDraggableDimensions>
-    <workToBuild>75</workToBuild>
     <costList>
-      <li>
-        <thingDef>Metal</thingDef>
-        <count>3</count>
-      </li>
+            <Metal>5</Metal>
     </costList>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
@@ -118,7 +118,7 @@
     <soundBulletHit>BulletImpactMetal</soundBulletHit>
     <surfaceNeeded>Light</surfaceNeeded>
     <designationCategory>Power</designationCategory>
-    <constructionEffect>ConstructDig</constructionEffect>
+   
      <comps>
       <li>
         <compClass>CompPowerTransmitter</compClass>
@@ -137,11 +137,16 @@
     <linkFlags>
       <li>PowerConduit</li>
     </linkFlags>
+     <statBases>
+      <WorkToBuild>500</WorkToBuild>
+       <MaxHealth>280</MaxHealth>
+      <Flammability>1.0</Flammability>
+      <Beauty>1</Beauty>
+    </statBases>
     <category>Building</category>
     <textureFolderPath>Things/Sunken_Power_Conduit/Sunken_Power_Conduit_Atlas</textureFolderPath>
     <blueprintTexturePath>Things/Building/Linked/PowerConduit_Blueprint_Atlas</blueprintTexturePath>
     <uiIconPath>Things/Sunken_Power_Conduit/Sunken_Power_Conduit_MenuIcon</uiIconPath>
-    <flammability>0.0</flammability>
     <building>
       <ignoreNeedsPower>true</ignoreNeedsPower>
     </building>
@@ -151,16 +156,9 @@
     <description>A set of electrical cables deeply sunken into the ground and covered with strong headstones. Flameproof and nearly indestructible. Great for areas that see a lot of combat.</description>
     <fillPercent>0.01</fillPercent>
     <placingDraggableDimensions>1</placingDraggableDimensions>
-    <workToBuild>500</workToBuild>
     <costList>
-      <li>
-        <thingDef>Metal</thingDef>
-        <count>5</count>
-        </li>
-        <li>
-        <thingDef>StoneBlocks</thingDef>
-        <count>4</count>
-      </li>
+       <StoneBlocks>4</StoneBlocks>
+      <Metal>5</Metal>
     </costList>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
@@ -168,7 +166,6 @@
     <soundBulletHit>BulletImpactMetal</soundBulletHit>
     <surfaceNeeded>Diggable</surfaceNeeded>
     <designationCategory>Power</designationCategory>
-    <constructionEffect>ConstructDig</constructionEffect>
      <comps>
       <li>
         <compClass>CompPowerTransmitter</compClass>

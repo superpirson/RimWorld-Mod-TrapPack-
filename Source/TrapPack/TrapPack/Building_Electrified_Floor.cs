@@ -198,7 +198,8 @@ namespace TrapPack
 							
 							break;
 							case Floor_Mode.pain:
-							pawn.healthTracker.bodyModel.ExtraPain += 2;
+					Log.Error("todo fix extrapain for electrofloor");
+							//	pawn.healthTracker.bodyModel.ExtraPain += 2;
 							((Pawn)target).stances.stunner.Notify_DamageApplied(new DamageInfo( DamageTypeDefOf.Stun,2, this), false);
 							zap_sound.PlayOneShot(this.Position);
 							

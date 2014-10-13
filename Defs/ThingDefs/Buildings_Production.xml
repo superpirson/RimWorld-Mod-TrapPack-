@@ -11,6 +11,8 @@
     <surfaceNeeded>Light</surfaceNeeded>
     <constructionEffect>ConstructMetal</constructionEffect>
     <repairEffect>Repair</repairEffect>
+    <madeFromStuff>true</madeFromStuff>
+    <costStuffCount>15</costStuffCount>
   </ThingDef>
   
   <!-- ========================= Work tables ==========================-->
@@ -20,16 +22,18 @@
     <Label>Trap Making Table</Label>
     <ThingClass>Building_WorkTable</ThingClass>
     <Description>For making parts required in even the simplest of traps.</Description>
-    <TexturePath>Things/Buildings/TrapMakeingTable</TexturePath>
+    <graphicPathSingle>Things/Buildings/TrapMakeingTable</graphicPathSingle>
+     <statBases>
+      <WorkToBuild>1000</WorkToBuild>
+       <MaxHealth>150</MaxHealth>
+      <Flammability>1.0</Flammability>
+      <Beauty>2</Beauty>
+    </statBases>
     <CostList>
-      <li>
-        <thingDef>WoodLog</thingDef>
-        <count>40</count>
-      </li>
-      <li>
-        <thingDef>Metal</thingDef>
-        <count>10</count>
-      </li>
+    <costList>
+	 <WoodLog>20</WoodLog>
+      <Metal>10</Metal>
+    </costList>
     </CostList>
     <AltitudeLayer>Waist</AltitudeLayer>
     <WorkToBuild>850</WorkToBuild>
@@ -42,7 +46,6 @@
     <hasInteractionSquare>True</hasInteractionSquare>
     <interactionSquareOffset>(0,0,-1)</interactionSquareOffset>
     <itemSurface>True</itemSurface>
-    <constructionEffect>ConstructMetal</constructionEffect>
     <recipes>
       <li>MakeThrowableCaltrops</li>
      <li>MakeElectronics</li>
@@ -66,19 +69,18 @@
     <Label>Explosives Refinery</Label>
     <ThingClass>ThingAddons.AnimatedBuilding_WorkTable</ThingClass>
     <Description>Used to refine all sorts of dangerous chemicals.</Description>
-    <TextureFolderPath>Things/Explosives_Refinery/</TextureFolderPath>
+    <graphicPathSingle>Things/Explosives_Refinery/</graphicPathSingle>
+       <statBases>
+      <WorkToBuild>3000</WorkToBuild>
+       <MaxHealth>50</MaxHealth>
+      <Flammability>1.0</Flammability>
+      <Beauty>1</Beauty>
+    </statBases>
     <CostList>
-      <li>
-        <thingDef>Metal</thingDef>
-        <count>150</count>
-      </li>
-      <li>
-        <thingDef>WoodLog</thingDef>
-        <count>5</count>
-      </li>
+      <WoodLog>20</WoodLog>
+      <Metal>80</Metal>
     </CostList>
     <AltitudeLayer>BuildingTall</AltitudeLayer>
-    <WorkToBuild>2000</WorkToBuild>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <UseStandardHealth>True</UseStandardHealth>
     <maxHealth>50</maxHealth>
@@ -89,7 +91,6 @@
     <hasInteractionSquare>True</hasInteractionSquare>
     <interactionSquareOffset>(3,0,-1)</interactionSquareOffset>
     <itemSurface>false</itemSurface>
-    <constructionEffect>ConstructMetal</constructionEffect>
     <tickerType>Normal</tickerType>
     <recipes>
      <li>MakeExplosives</li>
