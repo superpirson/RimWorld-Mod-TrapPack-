@@ -1,16 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 3.4.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AnimatedThingDef.cs">
     <Files>
-      <File FileName="AnimatedThingDef.cs" Line="25" Column="2" />
-      <File FileName="Graphic_Animated.cs" Line="62" Column="5" />
-      <File FileName="ThingAddons.cs" Line="49" Column="1" />
+      <File FileName="AnimatedThingDef.cs" Line="28" Column="23" />
+      <File FileName="Graphic_Animated.cs" Line="146" Column="24" />
+      <File FileName="Building_Mines.cs" Line="214" Column="32" />
+      <File FileName="Building_Pit_Trap.cs" Line="36" Column="18" />
+      <File FileName="Trap_Effects.cs" Line="39" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="TrapPack" expanded="True">
-            <Node name="Graphic_Animated.cs" selected="True" />
+            <Node name="AnimatedThingDef.cs" selected="True" />
           </Node>
         </State>
       </Pad>

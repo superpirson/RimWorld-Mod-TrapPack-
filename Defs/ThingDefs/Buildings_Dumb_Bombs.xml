@@ -16,17 +16,14 @@
     <designationCategory>Security</designationCategory>
     <holdsRoof>false</holdsRoof>
     <useStandardHealth>true</useStandardHealth>
-    <maxHealth>100</maxHealth>
     <flammability>1.0</flammability>
     <tickerType>Normal</tickerType>
-    <soundBulletHit>BulletImpactMetal</soundBulletHit>
     <selectable>true</selectable>
     <surfaceNeeded>Light</surfaceNeeded>
     <constructionEffect>ConstructMetal</constructionEffect>
     <repairEffect>Repair</repairEffect>
     	<description>A high explosive with a contact sensor.</description>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>50</workToBuild>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <checks_for_frendly>false</checks_for_frendly>
 	<trigger_ui_texture_path>UI/Commands/UI_Trigger</trigger_ui_texture_path>
@@ -48,8 +45,7 @@
     <description>A crude improvised explosive, it produces a small and wildly inconsistent fireball. UNSTABLE! This bomb will explode if damaged! </description>
     <researchPrerequisite>Basic_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>200</workToBuild>
-      <textureFolderPath>Things/FireBomb/</textureFolderPath>
+      <graphicPathAnimated>Things/FireBomb/</graphicPathAnimated>
     <costList>
       <li>
         <thingDef>RawFireFruit</thingDef>
@@ -88,8 +84,7 @@
     <description>A weapon of death more so than fear, this gas bomb releases a cloud of lethal poison gas. The gas is quite unforgiving to colonists who get caught in the cloud, so you may want a gas mask.</description>
     <researchPrerequisite>Gas_Dispersion_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>200</workToBuild>
-    <textureFolderPath>Things/Poison_Gas_Bomb/</textureFolderPath>
+    <graphicPathAnimated>Things/Poison_Gas_Bomb/</graphicPathAnimated>
     <costList>
       <li>
         <thingDef>UnsetPoisonGasBomb</thingDef>
@@ -107,8 +102,7 @@
     <description>This gas is safe to inhale, and quickly puts out fires.</description>
     <researchPrerequisite>Gas_Dispersion_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>200</workToBuild>
-    <textureFolderPath>Things/Nitrogen_Gas_Bomb/</textureFolderPath>
+    <graphicPathAnimated>Things/Nitrogen_Gas_Bomb/</graphicPathAnimated>
     <costList>
       <li>
         <thingDef>UnsetNitrogenGasBomb</thingDef>

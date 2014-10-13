@@ -2,11 +2,8 @@
 <ThingDefs>
   <ThingDef Name="BuildingBase" Abstract="True">
     <category>Building</category>
-    <soundBulletHit>BulletImpactMetal</soundBulletHit>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
-    <surfaceNeeded>Light</surfaceNeeded>
-    <constructionEffect>ConstructMetal</constructionEffect>
     <repairEffect>Repair</repairEffect>
   </ThingDef>
   <ThingDef ParentName="BuildingBase" Name="TrapBase" Abstract="True">
@@ -25,8 +22,6 @@
     <designationCategory>Security</designationCategory>
     <holdsRoof>false</holdsRoof>
     <useStandardHealth>true</useStandardHealth>
-    <maxHealth>100</maxHealth>
-    <flammability>1.0</flammability>
     <selectable>true</selectable>
     <tickerType>Normal</tickerType>
 	<comps>
@@ -45,7 +40,6 @@
   <ThingDef Class="Mine_Def" Name="MineBase" ParentName="TrapBase" Abstract="True">
     <description>A high explosive with a contact sensor.</description>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>50</workToBuild>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <trigger_spots>
     <li>0,0,0</li>
@@ -81,9 +75,8 @@
     <defName>Building_Mine</defName>
     <label>Mine Trap</label>
     <description>A high explosive with a contact sensor.</description>
-        <textureFolderPath>Things/Mine/</textureFolderPath>
+        <graphicPathAnimated>Things/Mine/</graphicPathAnimated>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>50</workToBuild>
  <costList>
 	<li>
     <thingDef>UnsetMine</thingDef>
@@ -102,8 +95,7 @@
     <description>A high explosive with a contact sensor. Also has an RFID disarmer to stop it from killing colonists. IT WILL BLOW UP IF STEPED ON BY ANYONE ELSE, friendly or not. (Smart is a relative term)</description>
     <researchPrerequisite>FOF_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>50</workToBuild>
-    <textureFolderPath>Things/Smart_Mine/</textureFolderPath>
+    <graphicPathAnimated>Things/Smart_Mine/</graphicPathAnimated>
     <costList>
       <li>
         <thingDef>UnsetSmartMine</thingDef>
@@ -120,8 +112,7 @@
     <description>A small high explosive with a contact sensor, set up to splatter hot firefruit juice for up to four tiles. Much more consistant than the FireBomb.</description>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>50</workToBuild>
-    <textureFolderPath>Things/Mine_Incend/</textureFolderPath>
+    <graphicPathAnimated>Things/Mine_Incend/</graphicPathAnimated>
     <costList>
       <li>
         <thingDef>UnsetMineIncend</thingDef>
@@ -143,8 +134,7 @@
     <description>A deadly metal surprise awaits anyone who trips the laser rangefinder on this litte bomb.</description>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>200</workToBuild>
-      <textureFolderPath>Things/Shaped_Charge_Frag/</textureFolderPath>
+      <graphicPathAnimated>Things/Shaped_Charge_Frag/</graphicPathAnimated>
        <Passability>Impassable</Passability>
     <costList>
        <li>
@@ -199,10 +189,8 @@
      <altitudeLayer>Blueprint</altitudeLayer>
     <description>A !bomb.</description>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>200</workToBuild>
 <!--       <textureFolderPath>Things/Arrow_Trap/</textureFolderPath> -->
-      <graphicPath>Things/Arrow_Trap/arrow_trap</graphicPath>
-       
+      <graphicPathAnimated>Things/Arrow_Trap/arrow_trap</graphicPathAnimated>
     <costList>
        <li>
         <thingDef>Electronics</thingDef>
@@ -247,8 +235,7 @@
     <description>An ancient but deadly fragmentation mine.</description>
     <researchPrerequisite>Explosives_Traps_Research</researchPrerequisite>
     <thingClass>TrapPack.Mine</thingClass>
-    <workToBuild>200</workToBuild>
-      <textureFolderPath>Things/Claymore/</textureFolderPath>
+      <graphicPathAnimated>Things/Claymore/</graphicPathAnimated>
        <blueprintTexturePath>Things/Claymore/Blueprint_Claymore</blueprintTexturePath>
     <costList>
       <li>

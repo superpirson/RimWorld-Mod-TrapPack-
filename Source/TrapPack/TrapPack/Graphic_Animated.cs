@@ -6,6 +6,7 @@ using System.Text;
 using UnityEngine;
 using Verse.Sound;
 using Verse;
+using VerseBase;
 using RimWorld;
 using System.Collections;
 namespace TrapPack
@@ -30,6 +31,7 @@ namespace TrapPack
 		public Hashtable frame_hashmap;
 		public Frame current_frame;
 		public List<TrapPack.Frame> frames;
+		public AnimatedThingDef thingDef;
 				public string GraphicPath
 		{
 			get
@@ -40,19 +42,20 @@ namespace TrapPack
 		//
 		// Constructors
 		//
-		public Graphic_Animated (List<TrapPack.Frame> frames,string graphicPath, Shader shader, Color color, Color colorTwo)
+		public Graphic_Animated (List<TrapPack.Frame> frames,string graphicPath, Shader shader, Color color, Color colorTwo, AnimatedThingDef thingDef)
 		{
 			this.frame_hashmap = new Hashtable();
 			this.shader = shader;
 			this.color = color;
-			this.initPath = graphicPath;
 			this.colorTwo = colorTwo;
+			this.thingDef = thingDef;
+			this.initPath = graphicPath;
 			if (frames.NullOrEmpty()){
 			int idx = 0;
-			foreach (Texture2D tex in ContentFinder<Texture2D>.GetAllInFolder(this.initPath)){
-				Material material = new Material(MatBases.EdgeShadow);
-				material.mainTexture = tex;
+				foreach (Material material in MaterialLoader.MatsFromTexturesInFolder(this.initPath)){
+				
 				Frame newFrame = new Frame(material);
+					newFrame.tex_name = material.ToString();
 				frames.Add(newFrame);
 				if (idx > 0){
 				frames[idx-1].next_frame = newFrame.tex_name;
@@ -60,14 +63,21 @@ namespace TrapPack
 				idx++;
 			}
 			//set the last element to point to the first for looping
+				if (!frames.NullOrEmpty()){
 				frames[idx-1].next_frame = frames[0].tex_name;
+				}
+			}
+			if (frames.NullOrEmpty()){
+			Log.Error("we found no frames for " + this.thingDef.defName);
+			return;
 			}
 			foreach(Frame frame in frames){
 				frame_hashmap.Add(frame.tex_name,frame);
 			}
 			//set current frame To 0
-			current_frame = frames[0];
 			
+			current_frame = frames[0];
+		
 			/*
 			Texture2D[] array2 = new Texture2D[3];
 			if (shader.SupportsMaskTex ())
@@ -95,7 +105,7 @@ namespace TrapPack
 		//
 		public override Graphic GetColoredVersion (Shader newShader, Color newColor, Color newColorTwo)
 		{
-			return new Graphic_Animated(this.frames,this.initPath, newShader, newColor, newColorTwo);
+			return new Graphic_Animated(this.frames,this.initPath, newShader, newColor, newColorTwo, this.thingDef);
 		}
 		
 		public override int GetHashCode ()
@@ -126,27 +136,36 @@ namespace TrapPack
 			}
 			//Find.MapDrawer.MapChanged(this.Position, MapChangeType.Things);
 		}
-		public  void DrawWorker (Vector3 loc, IntRot rot, ThingDef thingDef, Thing thing)
+		
+		public override Material MatAt (IntRot rot, Thing thing = null)
 		{
-			bool overdraw;
-			IntVec2 size;
-			if (thingDef != null)
+		Material mat = null;
+			switch (rot.AsInt)
 			{
-				overdraw = thingDef.overdraw;
-				size = thingDef.size;
+			case 0:
+				//return this.MatBack;
+				mat =this.current_frame.material;
+				break;
+			case 1:
+				//return this.MatSide;
+				mat =this.current_frame.material;
+				break;
+			case 2:
+				//return this.MatFront;
+				mat =this.current_frame.material;
+				break;
+			case 3:
+				//return this.MatSide;
+				mat =this.current_frame.material;
+				break;
+			default:
+				return BaseContent.BadMat;
 			}
-			else
-			{
-				overdraw = false;
-				size = new IntVec2 (1, 1);
+			if ((thingDef).play){
+				set_frame(current_frame.next_frame);
 			}
-			Mesh mesh = this.MeshAt (rot, size, overdraw);
-			Quaternion rotation = this.QuatFromRot (rot);
-			Material material = this.current_frame.material;
-			Graphics.DrawMesh (mesh, loc, rotation, material, 0);
-			if (((AnimatedThingDef)thingDef).play){
-			set_frame(current_frame.next_frame);
-			}
+			return mat;
 		}
+		
 	}
 }

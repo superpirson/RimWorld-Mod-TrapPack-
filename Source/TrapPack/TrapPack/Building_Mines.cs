@@ -12,39 +12,34 @@ using RimWorld;
 
 //has to be outside namespace for odd resons requred by the game 
 
-
-
-namespace TrapPack
-{
-
-	public class Mine_Def : AnimatedThingDef {
-		
-		public float explosion_min_radius;
-		public float explosion_max_radius;
-		public float explosion_min_damage;
-		public float explosion_max_damage = 0f;
-		public DamageTypeDef damage_def;
-		public SoundDef explode_sound;
-		public ThingDef thing_to_spawn;
-		public ThingDef projectile_to_launch = null;
-		public int projectile_count;
-		
-		public List<IntVec3> trigger_spots;
-		public int random_sense_radius = 0;
-		public List<IntVec3> hit_spots;
-		
-		public Type trigger_type = null;
-		
-		public string arm_ui_texture_path;
-		public string disarm_ui_texture_path;
-		public string trigger_ui_texture_path;
-		//	public string gas_def_name;
-		public ThingDef gas_to_spawn;
-		public int gas_thickness = 1000;
-		
-		public bool checks_for_frendly = false;
-		public bool can_trigger = true;
-		/*
+public class Mine_Def : AnimatedThingDef {
+	
+	public float explosion_min_radius;
+	public float explosion_max_radius;
+	public float explosion_min_damage;
+	public float explosion_max_damage = 0f;
+	public DamageTypeDef damage_def;
+	public SoundDef explode_sound;
+	public ThingDef thing_to_spawn;
+	public ThingDef projectile_to_launch = null;
+	public int projectile_count;
+	
+	public List<IntVec3> trigger_spots;
+	public int random_sense_radius = 0;
+	public List<IntVec3> hit_spots;
+	
+	public Type trigger_type = null;
+	
+	public string arm_ui_texture_path;
+	public string disarm_ui_texture_path;
+	public string trigger_ui_texture_path;
+	//	public string gas_def_name;
+	public ThingDef gas_to_spawn;
+	public int gas_thickness = 1000;
+	
+	public bool checks_for_frendly = false;
+	public bool can_trigger = true;
+	/*
 	public override void ResolveReferences ()
 	{
 		if (gas_def_name != null){
@@ -53,7 +48,12 @@ namespace TrapPack
 		base.ResolveReferences();
 	}
 	//*/
-	}
+}
+
+namespace TrapPack
+{
+
+	
 	
 	
 	
